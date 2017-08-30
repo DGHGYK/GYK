@@ -37,7 +37,11 @@
         <activity android:name=".ActivityH.TopicActivity" />
         <activity android:name=".ActivityH.TemplateActivity" />
         <activity android:name=".ActivityH.InfoActivity" />
-        <activity android:name=".ActivityH.LayoutSS"></activity>
+        <activity android:name=".ActivityH.LayoutSS"/>
+        <activity android:name=".ActivityG.AddManuallyActivity"/>
+        <activity android:name=".ActivityG.ContactsPickerActivity"/>
+        <activity android:name=".ActivityG.InviteeActivity"/>
+        <activity android:name=".ActivityG.InviteeEditActivity"/>
     </application>
 
 </manifest>
