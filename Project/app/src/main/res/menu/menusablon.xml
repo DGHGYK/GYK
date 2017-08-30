@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_template"
+        android:title="Şablon" >
+        <!-- "file" submenu -->
+
+    </item>
+
+    <item android:id="@+id/mneu_setting"
+        android:title="Ayarlar" >
+        <!-- "file" submenu -->
+        <menu>
+            <item android:id="@+id/menu_color"
+                android:title="Renk" />
+            <item android:id="@+id/menu_font"
+                android:title="Yazı Tipi" />
+
+
+        </menu>
+    </item>
+
+    <item android:id="@+id/menu_register"
+        android:title="Kaydet" >
+    <!-- "file" submenu -->
+    </item>
+
+</menu>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<com.rajasharan.layout.RearrangeableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rearrangeable_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    app:outlineWidth="2dp"
+    app:selectionAlpha="0.5"
+    app:selectionZoom="1.2">
+
+    <ImageView
+        android:id="@+id/iv_camera_foto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:srcCompat="@mipmap/catalog" />
+
+
+    <TextView
+        android:id="@+id/tv_camera_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="başlık" />
+
+    <TextView
+        android:id="@+id/tv_camera_maintext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+
+        android:text="ana metin" />
+
+
+    <TextView
+        android:id="@+id/tv_camera_family1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="family 1" />
+
+    <TextView
+        android:id="@+id/tv_camera_family2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="family2" />
+
+    <TextView
+        android:id="@+id/tv_camera_adress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="adress" />
+
+
+    <TextView
+        android:id="@+id/tv_camera_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="tag #" />
+
+    <TextView
+        android:id="@+id/tv_camera_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="tag #" />
+
+    <TextView
+        android:id="@+id/tv_camera_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="tag #" />
+
+</com.rajasharan.layout.RearrangeableLayout>
+

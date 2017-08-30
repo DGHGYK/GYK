@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <com.rajasharan.layout.RearrangeableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rearrangeable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/magic"
+
+        android:clipToPadding="false"
+
+        app:outlineWidth="2dp"
+        app:selectionAlpha="0.5"
+        app:selectionZoom="1.2">
+
+
+
+    </com.rajasharan.layout.RearrangeableLayout>
+

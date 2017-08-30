@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.hatice.project.ActivityH.MenuActivity">
+
+    <Button
+        android:id="@+id/btn_menu_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Davetiye Oluştur" />
+
+    <Button
+        android:id="@+id/btn_menu_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Davetlilerimi ekle" />
+
+    <Button
+        android:id="@+id/btn_menu_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="davetiye linkini kopyala" />
+
+    <Button
+        android:id="@+id/btn_menu_control"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="davetliler durumunu kontrol et " />
+
+    <Button
+        android:id="@+id/btn_menu_copy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="davetiyemi baskıya gönder" />
+</LinearLayout>

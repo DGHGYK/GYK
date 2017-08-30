@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/iv_cd_sablon_choose_inva1"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        app:srcCompat="@drawable/invalidation1" />
+
+    <ImageView
+        android:id="@+id/iv_cd_sablon_choose_inva2"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/invalidation2" />
+
+    <ImageView
+        android:id="@+id/iv_cd_sablon_choose_inva3"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        app:srcCompat="@drawable/invalidation4" />
+
+    <Button
+        android:id="@+id/btn_cd_sablon_choose_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+</LinearLayout>
