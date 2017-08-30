@@ -262,7 +262,9 @@ public class InfoActivity extends AppCompatActivity {
         btn_bilgi_imageload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 dialog = new Dialog(context);
+                Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(captureIntent, 0);
+                dialog = new Dialog(context);
 
                 dialog.setContentView(R.layout.h_custom_dialog_fotoadd);
                 dialog.setTitle("Foto Ekle");
@@ -351,31 +353,29 @@ public class InfoActivity extends AppCompatActivity {
                         SvideoUri=videoUri.toString();
 
                         if (requestCode == REQUEST_SELECT_IMAGE) {
-                            Uri imageUri = getPickImageResultUri(data);
+                            Uri imageUri =getPickImageResultUri(data);
+                            SimageUri=imageUri.toString();
 
                 /*if(btn_crop.isClickable()){
                     startCropActivity(imageUri);
 
 
-                }*/         SimageUri=imageUri.toString();
+                }*/
 
 
                             //startCropActivity(imageUri);
                             foto.setImageURI(imageUri);
 
                            String fotoname=String.valueOf(foto.getTag()) ;
-                            Toast.makeText(InfoActivity.this, "foto davetiye sayfası yükleniyor"+ fotoname, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(InfoActivity.this, "seçim yapıldı", Toast.LENGTH_SHORT).show();
 
                         }
 
-            /*if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {//kırpılmıssa bas
-                CropImage.ActivityResult result = CropImage.getActivityResult(data);
-                imageView.setImageURI(result.getUri());
-            }*/
+
                     }
                 }
 
-                public Uri getPickImageResultUri(Intent data) {
+               public Uri getPickImageResultUri(Intent data) {
                     boolean isCamera = true;
                     if (data != null && data.getData() != null) {
                         String action = data.getAction();
