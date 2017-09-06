@@ -14,10 +14,9 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -27,23 +26,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
-        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.LoginActivity">
+        <activity android:name=".ActivityG.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.SignUpActivity"/>
-        <activity android:name="com.inwhiter.inviteapp.project.ActivityH.MenuActivity"/>
-        <activity android:name="com.inwhiter.inviteapp.project.ActivityH.TopicActivity" />
-        <activity android:name="com.inwhiter.inviteapp.project.ActivityH.TemplateActivity" />
-        <activity android:name="com.inwhiter.inviteapp.project.ActivityH.InfoActivity" />
-        <activity android:name="com.inwhiter.inviteapp.project.ActivityH.LayoutSS"/>
-        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.AddManuallyActivity"/>
-        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.ContactsPickerActivity"/>
-        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.InviteeActivity"/>
-        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.InviteeEditActivity"/>
+        <activity android:name=".ActivityG.SignUpActivity" />
+        <activity android:name=".ActivityH.MenuActivity" />
+        <activity android:name=".ActivityH.TopicActivity" />
+        <activity android:name=".ActivityH.TemplateActivity" />
+        <activity android:name=".ActivityH.InfoActivity" />
+        <activity android:name=".ActivityH.LayoutSS" />
+        <activity android:name=".ActivityG.AddManuallyActivity" />
+        <activity android:name=".ActivityG.ContactsPickerActivity" />
+        <activity android:name=".ActivityG.InviteeActivity" />
+        <activity android:name=".ActivityG.InviteeEditActivity" />
+        <activity android:name=".ActivityH.StartActivity"></activity>
     </application>
 
 </manifest>
