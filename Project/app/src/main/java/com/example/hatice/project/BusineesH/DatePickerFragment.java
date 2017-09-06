@@ -47,29 +47,29 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         Date chosenDate = cal.getTime();
 
         switch(month){
-            case 1: Smonth="Ocak";
+            case 0: Smonth="Ocak";
                 break;
-            case 2: Smonth="Şubat";
+            case 1: Smonth="Şubat";
                 break;
-            case 3: Smonth="Mart";
+            case 2: Smonth="Mart";
                 break;
-            case 4: Smonth="Nisan";
+            case 3: Smonth="Nisan";
                 break;
-            case 5: Smonth="Mayıs";
+            case 4: Smonth="Mayıs";
                 break;
-            case 6: Smonth="Haziran";
+            case 5: Smonth="Haziran";
                 break;
-            case 7: Smonth="Temmuz";
+            case 6: Smonth="Temmuz";
                 break;
-            case 8: Smonth="Ağustos";
+            case 7: Smonth="Ağustos";
                 break;
-            case 9: Smonth="Eylül";
+            case 8: Smonth="Eylül";
                 break;
-            case 10: Smonth="Ekim";
+            case 9: Smonth="Ekim";
                 break;
-            case 11: Smonth="Kasım";
+            case 10: Smonth="Kasım";
                 break;
-            case 12: Smonth="Aralık";
+            case 11: Smonth="Aralık";
                 break;
 
 

@@ -262,8 +262,7 @@ public class InfoActivity extends AppCompatActivity {
         btn_bilgi_imageload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(captureIntent, 0);
+
                 dialog = new Dialog(context);
 
                 dialog.setContentView(R.layout.h_custom_dialog_fotoadd);
@@ -366,7 +365,7 @@ public class InfoActivity extends AppCompatActivity {
                             //startCropActivity(imageUri);
                             foto.setImageURI(imageUri);
 
-                           String fotoname=String.valueOf(foto.getTag()) ;
+                          // String fotoname=String.valueOf(foto.getTag()) ;
                             Toast.makeText(InfoActivity.this, "seçim yapıldı", Toast.LENGTH_SHORT).show();
 
                         }

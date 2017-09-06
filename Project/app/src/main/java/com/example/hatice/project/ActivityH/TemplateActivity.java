@@ -220,6 +220,8 @@ public class TemplateActivity extends AppCompatActivity {
 
     public String takeScreenshot() {
 
+        //getActionBar().hide();
+
         View rootView = findViewById(R.id.sablon1).getRootView();
         rootView.setDrawingCacheEnabled(true);
         rootView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED) );
