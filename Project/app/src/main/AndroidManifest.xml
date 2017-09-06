@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hatice.project">
+    package="com.inwhiter.inviteapp.project">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -27,21 +27,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
-        <activity android:name=".ActivityH.MenuActivity">
+        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityH.TopicActivity" />
-        <activity android:name=".ActivityH.TemplateActivity" />
-        <activity android:name=".ActivityH.InfoActivity" />
-        <activity android:name=".ActivityH.LayoutSS"/>
-        <activity android:name=".ActivityG.AddManuallyActivity"/>
-        <activity android:name=".ActivityG.ContactsPickerActivity"/>
-        <activity android:name=".ActivityG.InviteeActivity"/>
-        <activity android:name=".ActivityG.InviteeEditActivity"/>
+        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.SignUpActivity"/>
+        <activity android:name="com.inwhiter.inviteapp.project.ActivityH.MenuActivity"/>
+        <activity android:name="com.inwhiter.inviteapp.project.ActivityH.TopicActivity" />
+        <activity android:name="com.inwhiter.inviteapp.project.ActivityH.TemplateActivity" />
+        <activity android:name="com.inwhiter.inviteapp.project.ActivityH.InfoActivity" />
+        <activity android:name="com.inwhiter.inviteapp.project.ActivityH.LayoutSS"/>
+        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.AddManuallyActivity"/>
+        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.ContactsPickerActivity"/>
+        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.InviteeActivity"/>
+        <activity android:name="com.inwhiter.inviteapp.project.ActivityG.InviteeEditActivity"/>
     </application>
 
 </manifest>

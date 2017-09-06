@@ -5,29 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.inwhiter.inviteapp.project.ActivityH.MenuActivity">
+    tools:context=".ActivityG.LoginActivity">
 
-    <Button
-        android:id="@+id/btn_menu_create"
+    <EditText
+        android:id="@+id/et_login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Davetiye Oluştur" />
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/btn_menu_view"
+    <EditText
+        android:id="@+id/et_login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Davetlilerimi ekle" />
+        android:ems="10"
+        android:hint="Şifre"
+        android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/btn_menu_control"
+        android:id="@+id/bt_login_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="davetliler durumunu kontrol et " />
+        android:text="Giriş" />
 
     <Button
-        android:id="@+id/btn_menu_copy"
+        android:id="@+id/bt_login_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="davetiyemi baskıya gönder" />
+        android:text="Kayıt Ol" />
 </LinearLayout>
