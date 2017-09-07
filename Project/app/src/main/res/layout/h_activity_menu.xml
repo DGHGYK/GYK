@@ -5,7 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.inwhiter.inviteapp.project.ActivityH.MenuActivity">
+    tools:context="com.inwhiter.inviteapp.project.ActivityH.MenuActivity"
+    android:weightSum="1">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_all_invites_view"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:layout_weight="0.47"
+        android:scrollbars="horizontal"
+        tools:listitem="@layout/recycler_item" />
 
     <Button
         android:id="@+id/btn_menu_create"
