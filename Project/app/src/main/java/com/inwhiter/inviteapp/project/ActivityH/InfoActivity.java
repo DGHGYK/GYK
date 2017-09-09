@@ -79,8 +79,6 @@ public class InfoActivity extends AppCompatActivity {
         tv_bilgi_time = (TextView) findViewById(R.id.tv_bilgi_time);
         tv_bilgi_date = (TextView) findViewById(R.id.tv_bilgi_date);
 
-        info = new Info( et_bilgi_title.getText().toString(),et_bilgi_maintext.getText().toString(),et_bilgi_family1.getText().toString(),
-                et_bilgi_family2.getText().toString(),et_bilgi_adress.getText().toString(),et_bilgi_tag.getText().toString(),tv_bilgi_date.getText().toString(), tv_bilgi_time.getText().toString());
 
         /*verilen moda göre bilgi aktarımın şablon ekranına aktarıyor*/
         /*her bir seçim için şablon ekranına ayrı bir menu gönderiyor*/
@@ -89,6 +87,8 @@ public class InfoActivity extends AppCompatActivity {
             btn_bilgi_save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    info = new Info( et_bilgi_title.getText().toString(),et_bilgi_maintext.getText().toString(),et_bilgi_family1.getText().toString(),
+                            et_bilgi_family2.getText().toString(),et_bilgi_adress.getText().toString(),et_bilgi_tag.getText().toString(),tv_bilgi_date.getText().toString(), tv_bilgi_time.getText().toString());
 
                     Intent intent = new Intent(InfoActivity.this, TemplateActivity.class);
                     Toast.makeText(InfoActivity.this, "hazır şablon davetiye  sayfası yükleniyor", Toast.LENGTH_SHORT).show();
@@ -110,6 +110,8 @@ public class InfoActivity extends AppCompatActivity {
             btn_bilgi_save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    info = new Info( et_bilgi_title.getText().toString(),et_bilgi_maintext.getText().toString(),et_bilgi_family1.getText().toString(),
+                            et_bilgi_family2.getText().toString(),et_bilgi_adress.getText().toString(),et_bilgi_tag.getText().toString(),tv_bilgi_date.getText().toString(), tv_bilgi_time.getText().toString());
 
                     Intent intent = new Intent(InfoActivity.this, TemplateActivity.class);
                     Toast.makeText(InfoActivity.this, "foto davetiye sayfası yükleniyor", Toast.LENGTH_SHORT).show();
@@ -131,9 +133,10 @@ public class InfoActivity extends AppCompatActivity {
             btn_bilgi_save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    info = new Info( et_bilgi_title.getText().toString(),et_bilgi_maintext.getText().toString(),et_bilgi_family1.getText().toString(),
+                            et_bilgi_family2.getText().toString(),et_bilgi_adress.getText().toString(),et_bilgi_tag.getText().toString(),tv_bilgi_date.getText().toString(), tv_bilgi_time.getText().toString());
 
                     Intent intent = new Intent(InfoActivity.this, TemplateActivity.class);
-
                     Toast.makeText(InfoActivity.this, "video davetiye sayfası yükleniyor", Toast.LENGTH_SHORT).show();
                     intent.putExtra("info", info);
                     intent.putExtra("menu", "video");

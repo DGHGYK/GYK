@@ -2,14 +2,15 @@ package com.inwhiter.inviteapp.project.ActivityH;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -24,10 +25,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.inwhiter.inviteapp.project.ModelG.Info;
 import com.inwhiter.inviteapp.project.ModelG.Invite;
 import com.inwhiter.inviteapp.project.R;
@@ -43,6 +49,8 @@ public class TemplateActivity extends AppCompatActivity {
     public static String inviteId;
     private RearrangeableLayout root;
     private FirebaseAuth mAuth;
+    private StorageReference mStorageRef;
+
 
 
     TextView s1_title, s1_maintext, s1_family1, s1_family2, s1_adress, s1_tag, s1_time, s1_date;//sablon1 için
@@ -227,9 +235,36 @@ public class TemplateActivity extends AppCompatActivity {
     /*layout screenshot*/
     public void registerLayout() {
 
-
-        Intent intent = new Intent(TemplateActivity.this, LayoutSS.class);
         String encoded = takeScreenshot();
+
+        byte[] decodedString = Base64.decode(encoded, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        // BitmapDrawable ob = new BitmapDrawable(getResources(), decodedByte);
+
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference isRef = mStorageRef.child("invites/"+TemplateActivity.inviteId+".jpg");
+
+        UploadTask uploadTask = isRef.putBytes(decodedString);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
+
+            }
+        });
+
+
+        Toast.makeText(getBaseContext(), "sayfanın ss i alınıyor", Toast.LENGTH_SHORT).show();
+
+
+
+       /* Intent intent = new Intent(TemplateActivity.this, LayoutSS.class);
 
 
         Toast.makeText(TemplateActivity.this, "sayfanın ss i alınıyor", Toast.LENGTH_SHORT).show();
@@ -237,12 +272,12 @@ public class TemplateActivity extends AppCompatActivity {
         intent.putExtra("ss", encoded);
         startActivity(intent);
 
-
+*/
     }
 
     public String takeScreenshot() {
 
-        View rootView = findViewById(R.id.sablon1).getRootView();
+        View rootView = findViewById(R.id.sablon1);
         rootView.setDrawingCacheEnabled(true);
         rootView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED) );
         rootView.layout(0,0,rootView.getMeasuredWidth(),rootView.getMeasuredHeight());
