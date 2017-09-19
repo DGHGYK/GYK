@@ -54,6 +54,11 @@ public class InviteeActivity extends AppCompatActivity {
         deleteInvitee = (Button) findViewById(R.id.bt_invitee_delete);
         addManually = (Button) findViewById(R.id.bt_invitee_addManually);
 
+        if(invitee_expandable.getChildCount()>0){
+            checkAll.setVisibility(View.VISIBLE);
+        }else{
+            checkAll.setVisibility(View.INVISIBLE);
+        }
 
 
 

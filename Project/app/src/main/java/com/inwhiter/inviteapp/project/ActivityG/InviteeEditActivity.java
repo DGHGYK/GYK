@@ -52,7 +52,7 @@ public class InviteeEditActivity extends AppCompatActivity {
         numberOfPeople.setSelection(nopSpinnerPosition);
 
 
-        List<String> answerList = Arrays.asList("Geliyor", "Gelmiyor", "Belki");
+        List<String> answerList = Arrays.asList("","Geliyor", "Belki", "Gelmiyor");
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, answerList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         answer.setAdapter(dataAdapter2);

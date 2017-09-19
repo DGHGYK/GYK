@@ -1,111 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/bt_inviteeChild_resend"
+        android:layout_width="87dp"
+        android:layout_height="24dp"
+        android:background="@drawable/buttonshape"
+        android:text="Tekrar Gönder"
+        android:textColor="@color/background"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toRightOf="@+id/bt_inviteeChild_edit"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10sp"
-            android:showDividers="middle">
+    <TextView
+        android:id="@+id/tv_inviteeChild_phoneNumber"
+        android:layout_width="114dp"
+        android:layout_height="23dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:text="5444666557"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_inviteeChild_phoneNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </TableRow>
+    <Button
+        android:id="@+id/bt_inviteeChild_edit"
+        android:layout_width="87dp"
+        android:layout_height="24dp"
+        android:background="@drawable/buttonshape"
+        android:text="Düzenle"
+        android:textColor="@color/background"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_inviteeChild_phoneNumber"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10sp"
-            android:showDividers="middle">
+    <Button
+        android:id="@+id/bt_inviteeChild_delete"
+        android:layout_width="57dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/buttonshape2"
+        android:text="SİL"
+        android:textColor="@color/background"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toRightOf="@+id/bt_inviteeChild_resend"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="16sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="Gönderilme Tarihi:"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_inviteeChild_phoneNumber" />
 
-                <ImageView
-                    android:id="@+id/iv_inviteeChild_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@mipmap/edit" />
+    <TextView
+        android:id="@+id/tv_inviteeChild_sendDate"
+        android:layout_width="160dp"
+        android:layout_height="16sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="gönderilme tarihi"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toRightOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/tv_inviteeChild_phoneNumber" />
 
-                <ImageView
-                    android:id="@+id/iv_inviteeChild_resend"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@mipmap/send" />
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="16sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="Yanıtlanma Tarihi:"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteY="64dp" />
 
-                <ImageView
-                    android:id="@+id/iv_inviteeChild_delete"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@mipmap/delete" />
-            </LinearLayout>
+    <TextView
+        android:id="@+id/tv_inviteeChild_answerDate"
+        android:layout_width="162dp"
+        android:layout_height="16sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="yanitlanma tarihi"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toRightOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/tv_inviteeChild_sendDate" />
 
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10sp"
-            android:showDividers="middle">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
-                android:layout_weight="1"
-                android:text="Gönderilme Tarihi:"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_inviteeChild_sendDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="gönderilme tarihi"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
-                android:layout_weight="1"
-                android:text="Yanıtlanma Tarihi:"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_inviteeChild_answerDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="yanitlanma tarihi"
-                android:textSize="12sp" />
-
-        </TableRow>
-
-    </TableLayout>
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
