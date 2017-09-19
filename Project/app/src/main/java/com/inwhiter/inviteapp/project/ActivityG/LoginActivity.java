@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,7 +23,8 @@ import com.inwhiter.inviteapp.project.R;
 public class LoginActivity extends AppCompatActivity {
 
     EditText email, password;
-    Button login, signup;
+    Button login;
+    TextView signup;
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
     //String email, sifre;
@@ -34,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.et_login_email);
         password = (EditText) findViewById(R.id.et_login_password);
         login = (Button) findViewById(R.id.bt_login_login);
-        signup = (Button) findViewById(R.id.bt_login_signup);
+        signup = (TextView) findViewById(R.id.tv_login_signup);
 
 
         mAuth = FirebaseAuth.getInstance();

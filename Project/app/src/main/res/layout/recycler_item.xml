@@ -8,7 +8,7 @@
         android:id="@+id/iv_recycler_item_image"
         android:layout_width="match_parent"
         android:layout_height="218dp"
-        app:srcCompat="@drawable/magic" />
+        app:srcCompat="@drawable/giris" />
 
     <TextView
         android:id="@+id/tv_recycler_item_id"

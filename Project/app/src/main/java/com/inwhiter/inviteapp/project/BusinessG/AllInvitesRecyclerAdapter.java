@@ -48,7 +48,7 @@ import java.util.List;
         @Override
         public void onBindViewHolder(final MyViewHolder holder, final int position) {
             holder.inviteId.setText(horizontalList.get(position));
-            holder.inviteImage.setImageResource(R.drawable.magic);
+            holder.inviteImage.setImageResource(R.drawable.giris);
 
             holder.inviteId.setOnClickListener(new View.OnClickListener() {
                 @Override

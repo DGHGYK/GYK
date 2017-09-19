@@ -1,5 +1,6 @@
 package com.inwhiter.inviteapp.project.BusinessG;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,10 +36,12 @@ import java.util.List;
 public class InviteeListAdapter extends BaseExpandableListAdapter {
     //public List<Invitee> InviteeListSingleton.getInst().getInviteeList();
     public Context context;
+    public Activity activity;
 
-    public InviteeListAdapter(Context context) {
+    public InviteeListAdapter(Context context, Activity activity) {
         // this.InviteeListSingleton.getInst().getInviteeList() = InviteeListSingleton.getInst().getInviteeList();
         this.context = context;
+        this.activity = activity;
     }
 
     @Override
@@ -99,7 +103,7 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
                 inviteeColor.setBackgroundColor(Color.rgb(31, 120, 180));
             } else if (listTitle.getStatus().getAnswer().equals("Gelmiyor")) {
                 inviteeColor.setBackgroundColor(Color.rgb(186, 22, 63));
-            } else {
+            } else if (listTitle.getStatus().getAnswer().equals("Belki")){
                 inviteeColor.setBackgroundColor(Color.rgb(153, 148, 194));
             }
         }
@@ -136,8 +140,7 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.tv_inviteeChild_phoneNumber);
         phoneNumber.setText(invitee.getPhoneNumber());
 
-        ImageView delete = (ImageView) convertView.findViewById(R.id.iv_inviteeChild_delete);
-        delete.setImageResource(R.mipmap.delete);
+        Button delete = (Button) convertView.findViewById(R.id.bt_inviteeChild_delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,8 +151,7 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
             }
         });
 
-        ImageView resend =(ImageView) convertView.findViewById(R.id.iv_inviteeChild_resend);
-        resend.setImageResource(R.mipmap.resend);
+        Button resend =(Button) convertView.findViewById(R.id.bt_inviteeChild_resend);
         resend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,14 +162,13 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
             }
         });
 
-        ImageView edit = (ImageView) convertView.findViewById(R.id.iv_inviteeChild_edit);
-        edit.setImageResource(R.mipmap.edit);
+        Button edit = (Button) convertView.findViewById(R.id.bt_inviteeChild_edit);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, InviteeEditActivity.class);
                 intent.putExtra("position", groupPosition);
-                context.startActivity(intent);
+                activity.startActivity(intent);
             }
         });
 

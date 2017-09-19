@@ -4,117 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityG.InviteeActivity">
+    tools:context=".ActivityG.InviteeActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
-    <LinearLayout
-        android:layout_width="96dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp"
-        android:id="@+id/linearLayout2">
+    <CheckBox
+        android:id="@+id/cb_invitee_checkAll"
+        android:layout_width="108dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="8dp"
+        android:text="Tümünü Seç"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/lv_invitee_expandable" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp">
+    <Button
+        android:id="@+id/bt_invitee_send"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="320dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/buttonshape"
+        android:text="SMS GÖNDER"
+        android:textColor="@color/background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
-            <ImageView
-                android:id="@+id/iv_invitee_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:visibility="visible"
-                app:srcCompat="@mipmap/delete"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="162dp" />
+    <Button
+        android:id="@+id/bt_invitee_delete"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="60sp"
+        android:layout_height="53sp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/buttonshape2"
+        android:text="SİL"
+        android:textColor="@color/background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
-            <ImageView
-                android:id="@+id/iv_invitee_send"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:visibility="visible"
-                app:srcCompat="@mipmap/resend"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp" />
+    <Button
+        android:id="@+id/bt_invitee_stats"
+        android:layout_width="70sp"
+        android:layout_height="87sp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/background"
+        android:drawableTop="@mipmap/status"
+        android:text="Durum"
+        android:textSize="8sp"
+        app:layout_constraintRight_toLeftOf="@+id/iv_invitee_pickContacts"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+    <Button
+        android:id="@+id/iv_invitee_pickContacts"
+        android:layout_width="70sp"
+        android:layout_height="87sp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/background"
+        android:drawableTop="@mipmap/add_contact"
+        android:text="Rehberden \nEkle"
+        android:textSize="8sp"
+        app:layout_constraintRight_toLeftOf="@+id/bt_invitee_addManually"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:id="@+id/cb_invitee_checkAll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            android:text="Tümünü Seç"
-            android:textSize="10sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
+    <Button
+        android:id="@+id/bt_invitee_addManually"
+        android:layout_width="70sp"
+        android:layout_height="87sp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/background"
+        android:drawableTop="@mipmap/add_manually"
+        android:text="Elle Ekle"
+        android:textSize="8sp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp">
-
-        <ImageView
-            android:id="@+id/iv_invitee_stats"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:visibility="visible"
-            app:srcCompat="@mipmap/stats"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <ImageView
-            android:id="@+id/iv_invitee_pickContacts"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:filterTouchesWhenObscured="false"
-            android:visibility="visible"
-            app:srcCompat="@mipmap/contact_add"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <ImageView
-            android:id="@+id/iv_invitee_addManually"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:visibility="visible"
-            app:srcCompat="@mipmap/add_box"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ExpandableListView
         android:id="@+id/lv_invitee_expandable"
-        android:layout_width="0dp"
-        android:layout_height="511dp"
+        android:layout_width="393dp"
+        android:layout_height="438dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/background"
+        android:divider="@color/colorPrimary"
+        android:dividerHeight="1sp"
         android:groupIndicator="@null"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_invitee_stats"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_invitee_send"
+        tools:layout_editor_absoluteX="10dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -33,13 +33,15 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/btn_done"
         android:layout_below="@+id/txt_load_progress" />
+
     <Button
+        android:id="@+id/btn_done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_done"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/buttonshape"
         android:text="Davetliler Listesine Ekle"
-        />
+        android:textColor="@color/background" />
 
 
 

@@ -1,9 +1,11 @@
 package com.inwhiter.inviteapp.project.ActivityH;
 
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -13,8 +15,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -53,6 +59,7 @@ public class TemplateActivity extends AppCompatActivity {
 
 
 
+
     TextView s1_title, s1_maintext, s1_family1, s1_family2, s1_adress, s1_tag, s1_time, s1_date;//sablon1 için
     TextView s2_title, s2_maintext, s2_family1, s2_family2, s2_adress, s2_tag, s2_time, s2_date;//şablon2 için
     TextView s3_title, s3_maintext, s3_family1, s3_family2, s3_adress, s3_tag, s3_time, s3_date;//şablon3 için
@@ -62,6 +69,8 @@ public class TemplateActivity extends AppCompatActivity {
     TextView v1_title, v1_maintext, v1_family1, v1_family2, v1_adress, v1_tag, v1_time, v1_date;//cameradan video layout için
 
     VideoView v1_video;
+
+
 
     Info info;
 
@@ -77,6 +86,8 @@ public class TemplateActivity extends AppCompatActivity {
     String title, maintext, family1, family2, date, time, adress, tag, fotoS ,videoS ;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,8 +96,60 @@ public class TemplateActivity extends AppCompatActivity {
 
         root = (RearrangeableLayout) findViewById(R.id.rearrangeable_layout);
 
+       /*custom action bar*/
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.h_custom_actionbar_sablon);
+        View mCustomView =getSupportActionBar().getCustomView();
+
+        Button template_select=(Button)mCustomView.findViewById(R.id.btn_actionbar_sablon);
+        final Button color_select=(Button)mCustomView.findViewById(R.id.btn_actionbar_color);
+        Button font_select=(Button)mCustomView.findViewById(R.id.btn_actionbar_font);
+        Button save=(Button)mCustomView.findViewById(R.id.btn_actionbar_save);
+
+        if (getIntent().getExtras().get("menu").equals("video") || getIntent().getExtras().get("menu").equals("camera") ) {
+            View video = findViewById(R.id.btn_actionbar_sablon);
+            video.setVisibility(View.INVISIBLE);
+
+        }
 
 
+
+
+
+
+
+        template_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                themeSelected();
+            }
+        });
+
+        color_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    colorSelected();
+
+            }
+        });
+
+        font_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fontSelected();
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerLayout();
+
+            }
+        });
+
+        /*info sayfasından gelen bilgiler*/
         info = getIntent().getExtras().getParcelable("info");
         title = info.getTitle();
         maintext = info.getText();
@@ -111,9 +174,45 @@ public class TemplateActivity extends AppCompatActivity {
         inviteRef.child(inviteId).setValue(invite);
 
 
-       // foto = getIntent().getExtras().toString("foto");
 
-        /*h_sablon1*/
+
+        /*seçeneğe göre layoutların çağırımı*/
+        if (getIntent().getExtras().get("menu").equals("template")) {
+            setContentView(R.layout.h_sablon1);
+            s1_title = (TextView) findViewById(R.id.tv_sablon1_title);
+            s1_title.setText(title);
+
+
+            s1_maintext = (TextView) findViewById(R.id.tv_sablon1_maintext);
+            s1_maintext.setText(maintext);
+
+            s1_family1 = (TextView) findViewById(R.id.tv_sablon1_family1);
+            s1_family1.setText(family1);
+
+            s1_family2 = (TextView) findViewById(R.id.tv_sablon1_family2);
+            s1_family2.setText(family2);
+
+            s1_adress = (TextView) findViewById(R.id.tv_sablon1_adress);
+            s1_adress.setText(adress);
+
+            s1_time = (TextView) findViewById(R.id.tv_sablon1_time);
+            s1_time.setText(time);
+
+            s1_date = (TextView) findViewById(R.id.tv_sablon1_date);
+            s1_date.setText(date);
+
+            s1_tag = (TextView) findViewById(R.id.tv_sablon1_tag);
+            s1_tag.setText(tag);
+
+            Toast.makeText(TemplateActivity.this, "şablon1 seçildi", Toast.LENGTH_SHORT).show();
+        }
+
+        else if (getIntent().getExtras().get("menu").equals("camera")) {
+            fotoLayoutSelected();
+
+
+        } else if (getIntent().getExtras().get("menu").equals("video")) {
+            videoLayoutSelected();}
 
 
 
@@ -152,11 +251,10 @@ public class TemplateActivity extends AppCompatActivity {
 
 
 
-    /* **************************************************************************/
 
 
         /*fontSelected function*/
-    public void fontSelected() {
+      public void fontSelected() {
         final Dialog dialog = new Dialog(context);
 
         dialog.setContentView(R.layout.h_custom_dialog_font);
@@ -206,20 +304,59 @@ public class TemplateActivity extends AppCompatActivity {
     /* ******************************************************************/
 
     /*colorSelected function*/
-    public void colorSelected(TextView v) {
-        OpenColorPickerDialog(false, v);
+    public void colorSelected() {
+        OpenColorPickerDialog(false);
 
     }
 
-    private void OpenColorPickerDialog(boolean AlphaSupport, final TextView v) {
+    public void OpenColorPickerDialog(boolean AlphaSupport) {
 
         AmbilWarnaDialog ambilWarnaDialog = new AmbilWarnaDialog(TemplateActivity.this, DefaultColor, AlphaSupport, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onOk(AmbilWarnaDialog ambilWarnaDialog, int color) {
 
                 DefaultColor = color;
+                /*burada rengni değiştirecekleri yaz*//*çözüm bulamadım amele gibi hepsini tek tek yazacağim*/
+                if (getIntent().getExtras().get("menu").equals("template")) {
+                           /*sadece şablon1 in elemanlarını yapabildim */
+                            s1_title.setTextColor(color);
+                            s1_maintext.setTextColor(color);
+                            s1_family1.setTextColor(color);
+                            s1_family2.setTextColor(color);
+                            s1_adress.setTextColor(color);
+                            s1_tag.setTextColor(color);
+                            s1_time.setTextColor(color);
+                            s1_date.setTextColor(color);
+                    /*SpannableString ss=  new SpannableString(title);
+                ss.setSpan(new ForegroundColorSpan(color), 0, 5, 0);*/
 
-                v.setTextColor(color);
+                }
+                else if (getIntent().getExtras().get("menu").equals("camera")) {
+
+                            c1_title.setTextColor(color);
+                            c1_maintext.setTextColor(color);
+                            c1_family1.setTextColor(color);
+                            c1_family2.setTextColor(color);
+                            c1_adress.setTextColor(color);
+                            c1_tag.setTextColor(color);
+                            c1_time.setTextColor(color);
+                            c1_date.setTextColor(color);
+
+
+                }
+                else if (getIntent().getExtras().get("menu").equals("video")) {
+
+                            v1_title.setTextColor(color);
+                            v1_maintext.setTextColor(color);
+                            v1_family1.setTextColor(color);
+                            v1_family2.setTextColor(color);
+                            v1_adress.setTextColor(color);
+                            v1_tag.setTextColor(color);
+                            v1_time.setTextColor(color);
+                            v1_date.setTextColor(color);
+
+
+                }
             }
 
             @Override
@@ -264,15 +401,7 @@ public class TemplateActivity extends AppCompatActivity {
 
 
 
-       /* Intent intent = new Intent(TemplateActivity.this, LayoutSS.class);
 
-
-        Toast.makeText(TemplateActivity.this, "sayfanın ss i alınıyor", Toast.LENGTH_SHORT).show();
-
-        intent.putExtra("ss", encoded);
-        startActivity(intent);
-
-*/
     }
 
     public String takeScreenshot() {
@@ -326,10 +455,6 @@ public class TemplateActivity extends AppCompatActivity {
         c1_foto = (ImageView) findViewById(R.id.iv_camera_foto);
         c1_foto.setImageURI(foto);
 
-
-
-
-
         Toast.makeText(TemplateActivity.this, "foto yerleşim sayfası oluşturuldu", Toast.LENGTH_SHORT).show();
 
 
@@ -369,8 +494,6 @@ public class TemplateActivity extends AppCompatActivity {
         v1_video=(VideoView)findViewById(R.id.vv_video);
         v1_video.setVideoURI(video);
         v1_video.start();
-
-
 
         Toast.makeText(TemplateActivity.this, "video yerleşim sayfası oluşturuldu", Toast.LENGTH_SHORT).show();
 
@@ -513,80 +636,6 @@ public class TemplateActivity extends AppCompatActivity {
         dialog_theme.show();
 
 
-    }
-
-
-/*MENU CREATE*/
-
-    @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        if (getIntent().getExtras().get("menu").equals("template")) {
-            setContentView(R.layout.h_sablon1);
-            s1_title = (TextView) findViewById(R.id.tv_sablon1_title);
-            s1_title.setText(title);
-
-
-            s1_maintext = (TextView) findViewById(R.id.tv_sablon1_maintext);
-            s1_maintext.setText(maintext);
-
-            s1_family1 = (TextView) findViewById(R.id.tv_sablon1_family1);
-            s1_family1.setText(family1);
-
-            s1_family2 = (TextView) findViewById(R.id.tv_sablon1_family2);
-            s1_family2.setText(family2);
-
-            s1_adress = (TextView) findViewById(R.id.tv_sablon1_adress);
-            s1_adress.setText(adress);
-
-            s1_time = (TextView) findViewById(R.id.tv_sablon1_time);
-            s1_time.setText(time);
-
-            s1_date = (TextView) findViewById(R.id.tv_sablon1_date);
-            s1_date.setText(date);
-
-            s1_tag = (TextView) findViewById(R.id.tv_sablon1_tag);
-            s1_tag.setText(tag);
-
-            Toast.makeText(TemplateActivity.this, "şablon1 seçildi", Toast.LENGTH_SHORT).show();
-
-
-            getMenuInflater().inflate(R.menu.menusablon, menu);
-        } else if (getIntent().getExtras().get("menu").equals("camera")) {
-            fotoLayoutSelected();
-            getMenuInflater().inflate(R.menu.menucamera, menu);
-
-        } else if (getIntent().getExtras().get("menu").equals("video")) {
-            videoLayoutSelected();
-            getMenuInflater().inflate(R.menu.menuvideo, menu);}
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.menu_template:
-                themeSelected();
-                return true;
-            case R.id.menu_color:
-                colorSelected(s1_title);
-                return true;
-            case R.id.menu_font:
-                fontSelected();
-                return true;
-            case R.id.menu_register:
-                registerLayout();
-                return true;
-            case R.id.menu_camera:
-                fotoLayoutSelected();
-                return true;
-            case R.id.menu_video:
-                videoLayoutSelected();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
 

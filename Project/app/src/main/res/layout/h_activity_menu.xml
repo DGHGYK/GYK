@@ -18,24 +18,46 @@
 
     <Button
         android:id="@+id/btn_menu_create"
+        android:textColor="#F3F3F3"
+        android:background="@drawable/buttonshape"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:text="Davetiye Oluştur" />
 
     <Button
         android:id="@+id/btn_menu_view"
+        android:textColor="#F3F3F3"
+        android:background="@drawable/buttonshape"
         android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_height="wrap_content"
         android:text="Davetlilerimi ekle" />
 
     <Button
         android:id="@+id/btn_menu_control"
+        android:textColor="#F3F3F3"
+        android:background="@drawable/buttonshape"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="davetliler durumunu kontrol et " />
 
     <Button
         android:id="@+id/btn_menu_copy"
+        android:textColor="#F3F3F3"
+        android:background="@drawable/buttonshape"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="davetiyemi baskıya gönder" />

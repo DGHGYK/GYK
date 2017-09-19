@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,7 +21,8 @@ import com.inwhiter.inviteapp.project.R;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText email, password, password2;
-    Button signup,login;
+    Button signup;
+    TextView login;
 
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
@@ -28,7 +30,9 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_signup);
+
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -37,7 +41,7 @@ public class SignUpActivity extends AppCompatActivity {
         password =(EditText)findViewById(R.id.et_signup_password);
         password2=(EditText)findViewById(R.id.et_signup_password2);
         signup = (Button)findViewById(R.id.bt_signup_signup);
-        login = (Button)findViewById(R.id.bt_signup_login);
+        login = (TextView) findViewById(R.id.tv_signup_login);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

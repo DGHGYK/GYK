@@ -92,7 +92,11 @@
         android:id="@+id/bt_inviteeEdit_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8sp"
+        android:layout_marginRight="8sp"
         android:layout_marginTop="20sp"
         android:layout_weight="1"
-        android:text="Düzenle" />
+        android:background="@drawable/buttonshape"
+        android:text="Düzenle"
+        android:textColor="@color/background" />
 </LinearLayout>
