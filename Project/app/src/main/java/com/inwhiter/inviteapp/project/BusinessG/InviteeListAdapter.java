@@ -1,5 +1,6 @@
 package com.inwhiter.inviteapp.project.BusinessG;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -34,10 +35,12 @@ import java.util.List;
 public class InviteeListAdapter extends BaseExpandableListAdapter {
     //public List<Invitee> InviteeListSingleton.getInst().getInviteeList();
     public Context context;
+    public Activity activity;
 
-    public InviteeListAdapter(Context context) {
+    public InviteeListAdapter(Context context, Activity activity) {
         // this.InviteeListSingleton.getInst().getInviteeList() = InviteeListSingleton.getInst().getInviteeList();
         this.context = context;
+        this.activity = activity;
     }
 
     @Override
@@ -149,7 +152,7 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
         });
 
         ImageView resend =(ImageView) convertView.findViewById(R.id.iv_inviteeChild_resend);
-        resend.setImageResource(R.mipmap.resend);
+        resend.setImageResource(R.mipmap.send);
         resend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,7 +170,7 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(context, InviteeEditActivity.class);
                 intent.putExtra("position", groupPosition);
-                context.startActivity(intent);
+                activity.startActivity(intent);
             }
         });
 

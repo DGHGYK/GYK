@@ -48,7 +48,7 @@
                     android:layout_weight="1"
                     android:clickable="true"
                     android:scaleType="fitXY"
-                    app:srcCompat="@mipmap/resend" />
+                    app:srcCompat="@mipmap/send" />
 
                 <ImageView
                     android:id="@+id/iv_inviteeChild_delete"

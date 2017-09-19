@@ -2,17 +2,15 @@ package com.inwhiter.inviteapp.project.ActivityG;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,11 +35,11 @@ public class InviteeActivity extends AppCompatActivity {
     ExpandableListView invitee_expandable;
     InviteeListAdapter invitee_adapter;
 
-    ImageView pickContacts;
-    ImageView sendSMS;
+    Button pickContacts;
+    Button sendSMS;
     CheckBox checkAll;
-    ImageView deleteInvitee;
-    ImageView addManually;
+    Button deleteInvitee;
+    Button addManually;
     final int CONTACT_PICK_REQUEST = 1000;
 
     @Override
@@ -50,11 +48,11 @@ public class InviteeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_invitee);
 
         invitee_expandable = (ExpandableListView) findViewById(R.id.lv_invitee_expandable);
-        pickContacts = (ImageView) findViewById(R.id.iv_invitee_pickContacts);
-        sendSMS = (ImageView) findViewById(R.id.iv_invitee_send);
+        pickContacts = (Button) findViewById(R.id.iv_invitee_pickContacts);
+        sendSMS = (Button) findViewById(R.id.bt_invitee_send);
         checkAll = (CheckBox) findViewById(R.id.cb_invitee_checkAll);
-        deleteInvitee = (ImageView) findViewById(R.id.iv_invitee_delete);
-        addManually = (ImageView) findViewById(R.id.iv_invitee_addManually);
+        deleteInvitee = (Button) findViewById(R.id.bt_invitee_delete);
+        addManually = (Button) findViewById(R.id.bt_invitee_addManually);
 
 
 
@@ -226,62 +224,6 @@ public class InviteeActivity extends AppCompatActivity {
             }
         });
 
-        //imageview olan butonların tıklanma efektinin eklenmesi
-        pickContacts.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    pickContacts.setColorFilter(Color.argb(50, 0, 0, 0));
-
-                }
-                if(event.getAction() == MotionEvent.ACTION_UP){
-                    pickContacts.setColorFilter(Color.argb(0, 0, 0, 0));
-                }
-                return false;
-            }
-        });
-
-        sendSMS.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    sendSMS.setColorFilter(Color.argb(50, 0, 0, 0));
-
-                }
-                if(event.getAction() == MotionEvent.ACTION_UP){
-                    sendSMS.setColorFilter(Color.argb(0, 0, 0, 0));
-                }
-                return false;
-            }
-        });
-
-        deleteInvitee.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    deleteInvitee.setColorFilter(Color.argb(50, 0, 0, 0));
-
-                }
-                if(event.getAction() == MotionEvent.ACTION_UP){
-                    deleteInvitee.setColorFilter(Color.argb(0, 0, 0, 0));
-                }
-                return false;
-            }
-        });
-
-        addManually.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    addManually.setColorFilter(Color.argb(50, 0, 0, 0));
-
-                }
-                if(event.getAction() == MotionEvent.ACTION_UP){
-                    addManually.setColorFilter(Color.argb(0, 0, 0, 0));
-                }
-                return false;
-            }
-        });
 
 
     }
@@ -328,7 +270,7 @@ public class InviteeActivity extends AppCompatActivity {
     {
        // InviteeListSingleton.getInst().getInviteeList().clear();
         //convertContactsToInvitees();
-        invitee_adapter = new InviteeListAdapter(getApplicationContext());
+        invitee_adapter = new InviteeListAdapter(getApplicationContext(),this);
         invitee_expandable.setAdapter(invitee_adapter);
 
 
