@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorLogin"
     android:orientation="vertical"
     tools:context="com.inwhiter.inviteapp.project.ActivityH.InfoActivity"
 
@@ -50,10 +51,12 @@
 
         <ImageButton
             android:id="@+id/ibtn_bilgi_maintext"
-            android:layout_width="wrap_content"
+            android:textColor="#F3F3F3"
+            android:layout_width="61dp"
             android:layout_height="match_parent"
-            android:text="Button"
-            app:srcCompat="@android:drawable/ic_menu_help" />
+            android:background="@drawable/buttonshape2"
+
+            app:srcCompat="@android:drawable/ic_menu_add" />
 
     </LinearLayout>
 
@@ -113,6 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button"
+            android:textColor="#F3F3F3"
             app:srcCompat="@android:drawable/ic_menu_mylocation" />
 
     </LinearLayout>
@@ -154,6 +158,7 @@
         <ImageButton
             android:id="@+id/ibtn_bilgi_date"
             android:layout_width="wrap_content"
+            android:background="@drawable/buttonshape2"
             android:layout_height="wrap_content"
             android:text="Button"
             app:srcCompat="@android:drawable/ic_menu_today" />
@@ -178,8 +183,9 @@
             android:id="@+id/ibtn_bilgi_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.02"
+            android:background="@drawable/buttonshape2"
             android:text="Button"
+            android:textColor="#F3F3F3"
             app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
 
     </LinearLayout>
@@ -194,20 +200,38 @@
 
         <Button
             android:id="@+id/btn_bilgi_imageload"
-            android:layout_width="wrap_content"
+            android:layout_width="104dp"
+            android:background="@drawable/buttonshape2"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#F3F3F3"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             android:text="foto yükle" />
 
         <Button
             android:id="@+id/btn_bilgi_videoload"
             android:layout_width="wrap_content"
+            android:textColor="#F3F3F3"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+
+            android:layout_marginTop="10dp"
+
             android:layout_weight="0.01"
+            android:background="@drawable/buttonshape2"
             android:text="video yükle" />
 
         <Button
             android:id="@+id/btn_bilgi_save"
+            android:textColor="#F3F3F3"
             android:layout_width="wrap_content"
+            android:background="@drawable/buttonshape"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             android:text="kaydet"
             android:layout_weight="0.01" />

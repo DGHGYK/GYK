@@ -1,46 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context="com.android.gamze.firebase.Kayit">
 
 
-    <EditText
-        android:id="@+id/et_signup_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="E-posta"
-        android:inputType="textEmailAddress" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="264dp"
+        android:layout_height="142dp"
+        android:background="@color/colorLogin"
+        app:srcCompat="@drawable/in"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
-    <EditText
-        android:id="@+id/et_signup_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Şifre"
-        android:inputType="textPassword" />
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="268dp"
+        android:layout_height="235dp"
+        android:layout_marginBottom="103dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
 
-    <EditText
-        android:id="@+id/et_signup_password2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Şifre Tekrar"
-        android:inputType="textPassword" />
+        >
 
-    <Button
-        android:id="@+id/bt_signup_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="KAYIT OL" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorLogin"
 
-    <Button
-        android:id="@+id/bt_signup_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Giriş Yap" />
-</LinearLayout>
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/et_signup_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="E-posta"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/et_signup_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Şifre"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/et_signup_password2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Şifre Tekrar"
+                android:inputType="textPassword" />
+
+            <Button
+                android:id="@+id/bt_signup_signup"
+
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/buttonshape"
+
+                android:shadowColor="#85A62D"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:text="kayıt ol"
+                android:textColor="#F3F3F3"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/tv_signup_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.23"
+                android:text="Zaten kayıtlı mısınız?"
+                android:textColor="@color/colorPrimaryDark" />
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

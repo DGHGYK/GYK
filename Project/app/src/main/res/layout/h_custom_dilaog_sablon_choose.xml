@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:weightSum="1">
 
     <ImageView
@@ -26,6 +27,12 @@
     <Button
         android:id="@+id/btn_cd_sablon_choose_ok"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_height="35dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttonshape"
+        android:text="tamam"
+        android:textColor="#F3F3F3" />
 </LinearLayout>
