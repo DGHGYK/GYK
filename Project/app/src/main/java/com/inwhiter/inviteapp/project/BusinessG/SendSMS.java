@@ -49,7 +49,7 @@ public class SendSMS extends AsyncTask<List<Invitee>, Void, String> {
                 inviteeRef.child(invitee.getInviteeId()).setValue(invitee);
 
                 //SMS gönderimi
-                String inviteUrl="www.inwhiter.com/"+invitee.getInviteeId();
+                String inviteUrl="www.inwhiter.com/invite.html?id="+invitee.getInviteeId();
                 String getUrl="https://api.iletimerkezi.com/v1/send-sms/get/?username=5333665570&password=azrazra&text="+invitee.getName()+", bir davetiniz var. Görmek için tıklayın: "+inviteUrl+"&receipents="+formatPhoneNumber(invitee.getPhoneNumber())+"&sender=inwhiter";
                 response += run(getUrl);
 
