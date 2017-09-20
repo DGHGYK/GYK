@@ -30,17 +30,18 @@
         android:id="@+id/tv_sablon1_maintext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="336dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:inputType="textMultiLine"
         android:text="maintext"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.8"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sablon1_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sablon1_title"
+        app:layout_constraintVertical_bias="0.187" />
 
     <TextView
         android:id="@+id/tv_sablon1_family1"
@@ -102,9 +103,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
 
 
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/tv_sablon2_time"
+        app:layout_constraintRight_toLeftOf="@+id/tv_sablon1_time"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.983" />
 

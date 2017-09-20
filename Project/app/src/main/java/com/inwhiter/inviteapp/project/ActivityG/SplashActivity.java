@@ -1,4 +1,4 @@
-package com.inwhiter.inviteapp.project.ActivityB;
+package com.inwhiter.inviteapp.project.ActivityG;
 
 import android.content.Intent;
 import android.os.Bundle;
