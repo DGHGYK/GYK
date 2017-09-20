@@ -25,7 +25,7 @@ public class LayoutSS extends AppCompatActivity {
         byte[] encoded = (byte[]) getIntent().getExtras().get("ss");
         Glide.with(LayoutSS.this)
                 .load(encoded)
-                .asBitmap()
+               // .asBitmap()
                 //.centerCrop()
                 .into(ss);
     }

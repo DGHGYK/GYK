@@ -378,17 +378,13 @@ public class TemplateActivity extends AppCompatActivity {
 
     /*layout screenshot*/
     public void registerLayout() {
-       // Intent intent=new Intent(TemplateActivity.this,LayoutSS.class);
+        Intent intent=new Intent(TemplateActivity.this,LayoutSS.class);
         byte[] encoded=takeScreenshot();
         Toast.makeText(TemplateActivity.this, "sayfanın ss i alınıyor", Toast.LENGTH_SHORT).show();
-       // intent.putExtra("ss",encoded);
-       // startActivity(intent);
+       intent.putExtra("ss",encoded);
+        startActivity(intent);
 
-        /*String encoded = takeScreenshot();
 
-        byte[] decodedString = Base64.decode(encoded, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        // BitmapDrawable ob = new BitmapDrawable(getResources(), decodedByte);*/
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
         StorageReference isRef = mStorageRef.child("invites/"+TemplateActivity.inviteId+".jpg");
@@ -417,6 +413,11 @@ public class TemplateActivity extends AppCompatActivity {
     }
 
     public byte[] takeScreenshot() {
+       /* View v;
+        switch(v){
+            case R.layout.h_sablon1: v=findViewById(R.id.sablon1);
+                break;
+        }*/ 
 
         View rootView = findViewById(R.id.sablon1);
         rootView.setDrawingCacheEnabled(true);
