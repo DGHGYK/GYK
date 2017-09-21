@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+import com.inwhiter.inviteapp.project.ActivityD.PrintActivity;
 import com.inwhiter.inviteapp.project.ActivityG.InviteeActivity;
 import com.inwhiter.inviteapp.project.BusinessG.AllInvitesRecyclerAdapter;
 import com.inwhiter.inviteapp.project.R;
@@ -71,6 +72,19 @@ public class MenuActivity extends AppCompatActivity {
         invite_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
         invite_recycler_view.setAdapter(recyclerAdapter);
+
+
+ //DUYGUUUUU DAVETIYEMI BASKIYA GONDER
+        btn_menu_copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//davetiyemi baskiya gonder
+
+                Intent intent=new Intent(MenuActivity.this,PrintActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
     }
 
 

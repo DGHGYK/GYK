@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+        <string name="spnr_paper_type_array">Choose a paper type</string>
+        <string name="spnr_paper_size_array">Choose the size of paper</string>
+        <string name="spnr_card_unit_price_array">Choose number of invitation card-price</string>
+        <string name="spnr_envelope_color_array">Choose envelope color</string>
+        <string name="spnr_envelope_price_array">Choose number of envelope-price</string>
+        <string name="spnr_zarf_astar_price_array">Choose zarf astar price</string>
+
+        <string-array name="spnr_paper_type_array">
+            <item>Kagit turu seciniz</item>
+            <item>Ithal dokulu Kagit</item>
+            <item>Kalin Bristol Kagit</item>
+            <item>Tuval dokulu Kagit</item>
+            <item>Fransiz dokulu Kagit</item>
+        </string-array>
+
+
+        <string-array name="spnr_paper_size_array">
+            <item>Davetiye boyutu seciniz</item>
+            <item>17 cm x 17 cm</item>
+            <item>13 cm x 19 cm</item>
+            <item>15 cm x22 cm</item>
+            <item>12 cm x 17 cm</item>
+
+        </string-array>
+
+
+
+        <string-array name="spnr_card_unit_price_array">
+            <item>Davetiye adedi ve fiyatini seciniz</item>
+            <item>1 davetiye = 0.90 tl</item>
+            <item>50 davetiye = 40 tl</item>
+            <item>100 davetiye = 85 tl</item>
+            <item>150 davetiye = 100 tl</item>
+            <item>500 davetiye = 250 tl</item>
+            <item>1000 davetiye = 500tl</item>
+        </string-array>
+
+
+        <string-array name="spnr_envelope_color_array">
+            <item>Zarf rengi seciniz</item>
+            <item>Kraft</item>
+            <item>Bordo</item>
+            <item>Lacivert</item>
+            <item>Metalik pembe</item>
+            <item>Menekse Moru</item>
+            <item>Beyaz</item>
+            <item>Ask Kirmizisi</item>
+            <item>Doga Yesili</item>
+        </string-array>
+
+
+        <string-array name="spnr_envelope_price_array">
+            <item>Zarfi adedi ve fiyatini seciniz</item>
+            <item>1 davetiye zarfi = 0.60 tl</item>
+            <item>50 davetiye zarfi = 25 tl</item>
+            <item>100 davetiye zarfi = 55 tl</item>
+            <item>150 davetiye zarfi = 85 tl</item>
+            <item>500 davetiye zarfi = 150 tl</item>
+            <item>1000 davetiye zarfi = 300 tl</item>
+
+        </string-array>
+
+
+
+        <string-array name="spnr_zarf_astar_price_array">
+            <item>Davetiye zarf astari adedi ve fiyatini seciniz</item>
+            <item>1 davetiye zarf astari = 0.30 tl</item>
+            <item>1 davetiye zarf astari = 0.30 tl</item>
+            <item>50 davetiye zarf astari = 15 tl</item>
+            <item>100 davetiye zarf astari = 30 tl</item>
+            <item>150 davetiye zarf astari = 45 tl</item>
+            <item>500 davetiye zarf astari = 120 tl</item>
+            <item>1000 davetiye zarf astari = 250 tl</item>
+        </string-array>
+
+
+</resources>
