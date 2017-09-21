@@ -3,6 +3,7 @@ package com.inwhiter.inviteapp.project.ActivityH;
 import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -12,10 +13,12 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
@@ -181,6 +184,9 @@ public class TemplateActivity extends AppCompatActivity {
             setContentView(R.layout.h_sablon1);
             s1_title = (TextView) findViewById(R.id.tv_sablon1_title);
             s1_title.setText(title);
+               if(color_select.isClickable()){
+
+               }
 
 
             s1_maintext = (TextView) findViewById(R.id.tv_sablon1_maintext);
@@ -318,6 +324,7 @@ public class TemplateActivity extends AppCompatActivity {
                 DefaultColor = color;
                 /*burada rengni değiştirecekleri yaz*//*çözüm bulamadım amele gibi hepsini tek tek yazacağim*/
                 if (getIntent().getExtras().get("menu").equals("template")) {
+
                            /*sadece şablon1 in elemanlarını yapabildim */
                             s1_title.setTextColor(color);
                             s1_maintext.setTextColor(color);
@@ -371,17 +378,18 @@ public class TemplateActivity extends AppCompatActivity {
 
     /*layout screenshot*/
     public void registerLayout() {
+        Intent intent=new Intent(TemplateActivity.this,LayoutSS.class);
+        byte[] encoded=takeScreenshot();
+        Toast.makeText(TemplateActivity.this, "sayfanın ss i alınıyor", Toast.LENGTH_SHORT).show();
+       intent.putExtra("ss",encoded);
+        startActivity(intent);
 
-        String encoded = takeScreenshot();
 
-        byte[] decodedString = Base64.decode(encoded, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        // BitmapDrawable ob = new BitmapDrawable(getResources(), decodedByte);
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
         StorageReference isRef = mStorageRef.child("invites/"+TemplateActivity.inviteId+".jpg");
 
-        UploadTask uploadTask = isRef.putBytes(decodedString);
+        UploadTask uploadTask = isRef.putBytes(encoded);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
@@ -397,14 +405,19 @@ public class TemplateActivity extends AppCompatActivity {
         });
 
 
-        Toast.makeText(getBaseContext(), "sayfanın ss i alınıyor", Toast.LENGTH_SHORT).show();
+
 
 
 
 
     }
 
-    public String takeScreenshot() {
+    public byte[] takeScreenshot() {
+       /* View v;
+        switch(v){
+            case R.layout.h_sablon1: v=findViewById(R.id.sablon1);
+                break;
+        }*/ 
 
         View rootView = findViewById(R.id.sablon1);
         rootView.setDrawingCacheEnabled(true);
@@ -415,9 +428,8 @@ public class TemplateActivity extends AppCompatActivity {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         b.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream .toByteArray();
-        String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
         rootView.setDrawingCacheEnabled(false);
-        return encoded;
+        return byteArray;
 
     }
     /*fotoLayoutSelected function*/

@@ -9,6 +9,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.inwhiter.inviteapp.project.R;
 
 public class LayoutSS extends AppCompatActivity {
@@ -21,10 +22,11 @@ public class LayoutSS extends AppCompatActivity {
         setContentView(R.layout.h_activity_layout_ss);
 
         ss= (ImageView) findViewById(R.id.imageView);
-        String encoded = (String) getIntent().getExtras().get("ss");
-        byte[] decodedString = Base64.decode(encoded, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        BitmapDrawable ob = new BitmapDrawable(getResources(), decodedByte);
-        ss.setBackgroundDrawable(ob);
+        byte[] encoded = (byte[]) getIntent().getExtras().get("ss");
+        Glide.with(LayoutSS.this)
+                .load(encoded)
+               // .asBitmap()
+                //.centerCrop()
+                .into(ss);
     }
 }
