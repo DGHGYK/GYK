@@ -23,6 +23,7 @@
         android:id="@+id/tv_camera_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="başlık" />
@@ -31,6 +32,7 @@
         android:id="@+id/tv_camera_maintext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
         android:ems="10"
         android:inputType="textMultiLine"
 
@@ -41,6 +43,7 @@
         android:id="@+id/tv_camera_family1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="family 1" />
@@ -49,6 +52,7 @@
         android:id="@+id/tv_camera_family2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="family2" />
@@ -57,6 +61,7 @@
         android:id="@+id/tv_camera_adress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="adress" />
@@ -66,6 +71,7 @@
         android:id="@+id/tv_camera_tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
         android:text="tag #" />
 
     <TextView
@@ -78,6 +84,7 @@
         android:id="@+id/tv_camera_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
         android:text="tag #" />
 
 </com.rajasharan.layout.RearrangeableLayout>

@@ -50,6 +50,7 @@
         android:id="@+id/et_login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName" />
@@ -58,6 +59,7 @@
         android:id="@+id/et_login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
         android:ems="10"
         android:hint="Şifre"
         android:inputType="textPassword" />
@@ -87,6 +89,7 @@
                 android:id="@+id/tv_login_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
                 android:layout_weight="0.23"
                 android:text="kayıtlı değil misiniz?"
                 android:textColor="@color/colorPrimaryDark" />
