@@ -234,7 +234,7 @@ public class InviteeActivity extends AppCompatActivity {
         });
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference inviteeRef = database.getReference("invitee/"+TemplateActivity.inviteId+"/numberOfAnswers");
+        DatabaseReference inviteeRef = database.getReference("invite/"+TemplateActivity.inviteId+"/numberOfAnswers");
         inviteeRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
