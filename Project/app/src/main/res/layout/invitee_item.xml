@@ -73,7 +73,8 @@
     <ImageView
         android:id="@+id/iv_item_inviteeStatus"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="30sp"
+        android:layout_margin="10sp"
         android:layout_weight="1"
         android:background="@color/background"
         app:layout_constraintBottom_toBottomOf="@+id/tv_item_lastProcess"
