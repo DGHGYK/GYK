@@ -60,6 +60,10 @@ public class TemplateActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private StorageReference mStorageRef;
 
+    int id;//hangi layouttayız ?
+
+
+
 
 
 
@@ -116,12 +120,6 @@ public class TemplateActivity extends AppCompatActivity {
 
         }
 
-
-
-
-
-
-
         template_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +150,8 @@ public class TemplateActivity extends AppCompatActivity {
             }
         });
 
+         /* cunstom action bar finish */
+
         /*info sayfasından gelen bilgiler*/
         info = getIntent().getExtras().getParcelable("info");
         title = info.getTitle();
@@ -181,7 +181,10 @@ public class TemplateActivity extends AppCompatActivity {
 
         /*seçeneğe göre layoutların çağırımı*/
         if (getIntent().getExtras().get("menu").equals("template")) {
+            id=R.layout.h_sablon1;
+
             setContentView(R.layout.h_sablon1);
+
             s1_title = (TextView) findViewById(R.id.tv_sablon1_title);
             s1_title.setText(title);
                if(color_select.isClickable()){
@@ -211,15 +214,18 @@ public class TemplateActivity extends AppCompatActivity {
             s1_tag.setText(tag);
 
             Toast.makeText(TemplateActivity.this, "şablon1 seçildi", Toast.LENGTH_SHORT).show();
+
         }
 
         else if (getIntent().getExtras().get("menu").equals("camera")) {
-            fotoLayoutSelected();
 
+            fotoLayoutSelected();
+           // id=R.layout.h_camera1;
 
         } else if (getIntent().getExtras().get("menu").equals("video")) {
-            videoLayoutSelected();}
 
+            videoLayoutSelected();}
+            //id=R.layout.h_video1;
 
 
 
@@ -325,6 +331,7 @@ public class TemplateActivity extends AppCompatActivity {
                 /*burada rengni değiştirecekleri yaz*//*çözüm bulamadım amele gibi hepsini tek tek yazacağim*/
                 if (getIntent().getExtras().get("menu").equals("template")) {
 
+
                            /*sadece şablon1 in elemanlarını yapabildim */
                             s1_title.setTextColor(color);
                             s1_maintext.setTextColor(color);
@@ -413,22 +420,35 @@ public class TemplateActivity extends AppCompatActivity {
     }
 
     public byte[] takeScreenshot() {
-       /* View v;
-        switch(v){
-            case R.layout.h_sablon1: v=findViewById(R.id.sablon1);
+        View rootView = null;
+       /* switch(id){
+            case R.layout.h_sablon1: rootView = findViewById(R.id.sablon1);
                 break;
-        }*/ 
+            case R.layout.h_sablon2: rootView = findViewById(R.id.sablon2);
+                break;
+            case R.layout.h_sablon3: rootView = findViewById(R.id.sablon3);
+                break;
+            case R.layout.h_camera1: rootView = findViewById(R.id.camera1);
+                break;
+            case R.layout.h_video1: rootView = findViewById(R.id.video1);
 
-        View rootView = findViewById(R.id.sablon1);
-        rootView.setDrawingCacheEnabled(true);
-        rootView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED) );
-        rootView.layout(0,0,rootView.getMeasuredWidth(),rootView.getMeasuredHeight());
-        rootView.buildDrawingCache(true);
-        Bitmap b = Bitmap.createBitmap(rootView.getDrawingCache());
+                break;
+        }*/
+       if(id==R.layout.h_sablon1) rootView=findViewById(R.id.sablon1);
+        else if(id==R.layout.h_sablon2) rootView=findViewById(R.id.sablon2);
+       else if(id==R.layout.h_sablon3) rootView=findViewById(R.id.sablon3);
+       else if(id==R.layout.h_camera1) rootView=findViewById(R.id.camera1);
+       //else if(id==R.layout.h_video1) rootView=findViewById(R.id.video1);
+
+        View v1=rootView;
+        v1.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+        v1.setDrawingCacheEnabled(false);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        b.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream .toByteArray();
         rootView.setDrawingCacheEnabled(false);
+
         return byteArray;
 
     }
@@ -531,6 +551,7 @@ public class TemplateActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                id=R.layout.h_sablon1;
                 setContentView(R.layout.h_sablon1);
                 s1_title = (TextView) findViewById(R.id.tv_sablon1_title);
                 s1_title.setText(title);
@@ -568,6 +589,7 @@ public class TemplateActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                id=R.layout.h_sablon2;
 
                 setContentView(R.layout.h_sablon2);
                 s2_title = (TextView) findViewById(R.id.tv_sablon2_title);
@@ -605,6 +627,7 @@ public class TemplateActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                id=R.layout.h_sablon3;
 
                 setContentView(R.layout.h_sablon3);
                 s3_title = (TextView) findViewById(R.id.tv_sablon3_title);
