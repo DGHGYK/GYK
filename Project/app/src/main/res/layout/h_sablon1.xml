@@ -36,6 +36,7 @@
         android:layout_marginTop="8dp"
         android:inputType="textMultiLine"
         android:text="maintext"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.227"
         app:layout_constraintLeft_toLeftOf="parent"
