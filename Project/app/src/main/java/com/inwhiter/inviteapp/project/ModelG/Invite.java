@@ -11,6 +11,7 @@ public class Invite {
     private int status; //aktif, aktif değil
     private String view;
     private String mood;
+    private int numberOfAnswers;
 
 
 
@@ -20,6 +21,7 @@ public class Invite {
         this.status = status;
         this.view = view;
         this.mood = mood;
+        this.numberOfAnswers =0;
     }
 
     public String getInviteId() {
@@ -68,5 +70,13 @@ public class Invite {
 
     public void setMood(String mood) {
         this.mood = mood;
+    }
+
+    public int getNumberOfAnswers() {
+        return numberOfAnswers;
+    }
+
+    public void setNumberOfAnswers(int numberOfAnswers) {
+        this.numberOfAnswers = numberOfAnswers;
     }
 }

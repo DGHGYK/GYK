@@ -15,8 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.inwhiter.inviteapp.project.ActivityH.TemplateActivity;
 import com.inwhiter.inviteapp.project.BusinessG.InviteeListAdapter;
 import com.inwhiter.inviteapp.project.BusinessG.SendSMS;
@@ -46,6 +49,7 @@ public class InviteeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invitee);
+
 
         invitee_expandable = (ExpandableListView) findViewById(R.id.lv_invitee_expandable);
         pickContacts = (Button) findViewById(R.id.iv_invitee_pickContacts);
@@ -225,6 +229,26 @@ public class InviteeActivity extends AppCompatActivity {
                         }else {
                             Toast.makeText(getBaseContext(), "Seçili davetli bulunamadı.", Toast.LENGTH_SHORT).show();
                         }
+
+            }
+        });
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference inviteeRef = database.getReference("invitee/"+TemplateActivity.inviteId+"/numberOfAnswers");
+        inviteeRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("DATASNAPSHOT", "A");
+                /*topicList.clear();
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    topicList.add(ds.getKey());
+                }
+                adapter.notifyDataSetChanged();*/
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
