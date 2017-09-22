@@ -10,6 +10,7 @@
         android:id="@+id/font"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
         android:layout_weight="0.16"
         android:visibility="visible">
 
@@ -17,29 +18,34 @@
             android:id="@+id/rb_bilgi_painterfont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
             android:text="Painter Font" />
 
         <RadioButton
             android:id="@+id/rb_bilgi_geckofont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
             android:text="Gecko Font" />
 
         <RadioButton
             android:id="@+id/rb_bilgi_glarosomefont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
             android:text="Glarosome Font" />
 
         <RadioButton
             android:id="@+id/rb_bilgi_solenafont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
             android:text="Solena Font" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingLeft="20dp"
             android:layout_weight="0.16"
             android:orientation="horizontal"
             android:weightSum="1">

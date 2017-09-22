@@ -38,6 +38,7 @@
         <activity android:name=".ActivityG.InviteeActivity" />
         <activity android:name=".ActivityG.InviteeEditActivity" />
         <activity android:name=".ActivityH.StartActivity" />
+        <activity android:name=".ActivityD.PrintActivity" />
         <activity android:name=".ActivityG.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
