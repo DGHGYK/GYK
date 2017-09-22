@@ -13,6 +13,9 @@ public class Invitee {
     private String name, phoneNumber;
     private InviteeStatus status;
 
+    public Invitee() {
+    }
+
     public Invitee(String inviteeId, String inviteId, int lastProcess, String name, String phoneNumber, InviteeStatus status) {
         this.inviteeId = inviteeId;
         this.inviteId = inviteId;

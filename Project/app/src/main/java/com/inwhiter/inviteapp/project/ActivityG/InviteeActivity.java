@@ -15,11 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.inwhiter.inviteapp.project.ActivityH.TemplateActivity;
 import com.inwhiter.inviteapp.project.BusinessG.InviteeListAdapter;
 import com.inwhiter.inviteapp.project.BusinessG.SendSMS;
@@ -233,25 +230,34 @@ public class InviteeActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference inviteeRef = database.getReference("invite/"+TemplateActivity.inviteId+"/numberOfAnswers");
-        inviteeRef.addValueEventListener(new ValueEventListener() {
+        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference inviteeRef = database.getReference("invitee");
+        Query q =inviteeRef.orderByChild("inviteId").equalTo(TemplateActivity.inviteId);
+        q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("DATASNAPSHOT", "A");
-                /*topicList.clear();
-                for(DataSnapshot ds: dataSnapshot.getChildren()){
-                    topicList.add(ds.getKey());
-                }
-                adapter.notifyDataSetChanged();*/
-            }
+                if (dataSnapshot.exists()) {
+                    // dataSnapshot is the "issue" node with all children with id 0
+                    for (DataSnapshot i : dataSnapshot.getChildren()) {
+                        // do something with the individual "issues"
+                        for (Invitee in: InviteeListSingleton.getInst().getInviteeList())
+                            if(in.getName().equals(i.getValue(Invitee.class).getName()) )
+                              {
+                                in.setStatus(i.child("status").getValue(InviteeStatus.class));
+                                initList();
+                              }
 
+                    }
+                }
+            }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
+
+
 
 
 
@@ -301,6 +307,8 @@ public class InviteeActivity extends AppCompatActivity {
         //convertContactsToInvitees();
         invitee_adapter = new InviteeListAdapter(getApplicationContext(),this);
         invitee_expandable.setAdapter(invitee_adapter);
+
+
 
 
 

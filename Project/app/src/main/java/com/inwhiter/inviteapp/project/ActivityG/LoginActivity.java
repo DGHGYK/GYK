@@ -81,6 +81,16 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getBaseContext(), "İstenen bilgileri eksiksiz giriniz.", Toast.LENGTH_LONG).show();
                 }
+
+
+                String s = password.getText().toString();
+
+                if(s.length() < 6){
+                    password.setError("Sifreyi en az 6 karakter giriniz!");
+                } else {
+                    // ...
+                    Toast.makeText(getBaseContext(),"Girisiniz yapiliyor.", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
