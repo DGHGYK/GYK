@@ -16,27 +16,18 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_bilgi_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:layout_weight="1"
             android:ems="10"
-<<<<<<< HEAD
             android:inputType="textPersonName"
             android:hint="başlık giriniz.Ör: Nane &amp; Limon"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
-=======
-            android:hint="baslik"
-            android:inputType="textPersonName"
-            android:paddingLeft="20dp" />
->>>>>>> 18b45c3deec07fffc9c584f983aa6f1c9f2618e6
 
     </LinearLayout>
 
@@ -44,7 +35,6 @@
         android:id="@+id/maintext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
         android:orientation="horizontal"
         android:weightSum="1"
         android:layout_weight="0.36">
@@ -53,7 +43,6 @@
             android:id="@+id/et_bilgi_maintext"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="20dp"
             android:layout_weight="1.01"
             android:ems="10"
             android:inputType="textMultiLine"
@@ -75,23 +64,16 @@
         android:id="@+id/family1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_bilgi_family1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
             android:layout_weight="1"
             android:ems="10"
-<<<<<<< HEAD
             android:inputType="textPersonName"
             android:hint="birinci aile.Örn:YEŞİLLİK Ailesi" />
-=======
-            android:hint="Birinci Aile"
-            android:inputType="textPersonName" />
->>>>>>> 18b45c3deec07fffc9c584f983aa6f1c9f2618e6
 
     </LinearLayout>
 
@@ -99,23 +81,16 @@
         android:id="@+id/family2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_bilgi_family2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
             android:layout_weight="1"
             android:ems="10"
-<<<<<<< HEAD
             android:inputType="textPersonName"
             android:hint="ikinci aile.Örn:TURUNÇGİLLER Ailesi" />
-=======
-            android:hint="Ikinci Aile"
-            android:inputType="textPersonName" />
->>>>>>> 18b45c3deec07fffc9c584f983aa6f1c9f2618e6
 
     </LinearLayout>
 
@@ -123,24 +98,16 @@
         android:id="@+id/adress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_bilgi_adress1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
             android:layout_weight="1"
             android:ems="10"
-<<<<<<< HEAD
             android:inputType="textMultiLine"
             android:hint="adres:Mah.Sok.cad.no" />
-=======
-
-            android:hint="adres:Mah.Sok.cad.no"
-            android:inputType="textMultiLine" />
->>>>>>> 18b45c3deec07fffc9c584f983aa6f1c9f2618e6
 
 
 
@@ -150,7 +117,6 @@
     <LinearLayout
         android:id="@+id/tag"
         android:layout_width="match_parent"
-        android:paddingLeft="20dp"
         android:layout_height="0dp"
         android:layout_weight="0.54"
         android:orientation="horizontal">
@@ -158,7 +124,6 @@
         <EditText
             android:id="@+id/et_bilgi_tag"
             android:layout_width="wrap_content"
-            android:paddingLeft="20dp"
             android:layout_height="53dp"
             android:layout_weight="0.98"
             android:ems="10"
@@ -171,7 +136,6 @@
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -179,16 +143,10 @@
             android:id="@+id/tv_bilgi_date"
             android:layout_width="wrap_content"
             android:layout_height="46dp"
-            android:layout_weight="0.98"
             android:ems="10"
             android:inputType="textPersonName"
-<<<<<<< HEAD
             android:text="Tarih"
             android:layout_weight="0.98" />
-=======
-            android:paddingLeft="20dp"
-            android:text="tarih" />
->>>>>>> 18b45c3deec07fffc9c584f983aa6f1c9f2618e6
 
         <ImageButton
             android:id="@+id/ibtn_bilgi_date"
@@ -202,14 +160,12 @@
     <LinearLayout
         android:id="@+id/time"
         android:layout_width="match_parent"
-        android:paddingLeft="20dp"
         android:layout_height="46dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_bilgi_time"
             android:layout_width="wrap_content"
-            android:paddingLeft="20dp"
             android:layout_height="38dp"
             android:ems="10"
             android:inputType="textPersonName"
@@ -232,7 +188,6 @@
         android:id="@+id/ibutton"
         android:layout_width="378dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
         android:orientation="horizontal">
 
 
@@ -254,9 +209,7 @@
             android:textColor="#F3F3F3"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-
             android:layout_marginTop="10dp"
-
             android:layout_weight="0.01"
             android:background="@drawable/buttonshape2"
             android:text="video yükle" />
