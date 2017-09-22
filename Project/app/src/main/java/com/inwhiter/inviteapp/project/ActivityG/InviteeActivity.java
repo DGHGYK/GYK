@@ -238,7 +238,7 @@ public class InviteeActivity extends AppCompatActivity {
         inviteeRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("DATASNAPSHOT", "A");
+                Log.d("DATASNAPSHOT", dataSnapshot.getChildren().toString());
                 /*topicList.clear();
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
                     topicList.add(ds.getKey());
