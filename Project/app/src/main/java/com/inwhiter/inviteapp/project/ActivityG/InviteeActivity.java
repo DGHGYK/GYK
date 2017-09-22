@@ -15,12 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.inwhiter.inviteapp.project.ActivityH.TemplateActivity;
 import com.inwhiter.inviteapp.project.BusinessG.InviteeListAdapter;
 import com.inwhiter.inviteapp.project.BusinessG.SendSMS;
@@ -234,7 +230,7 @@ public class InviteeActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference inviteeRef = database.getReference("invitee");
         Query q =inviteeRef.orderByChild("inviteId").equalTo(TemplateActivity.inviteId);
         q.addValueEventListener(new ValueEventListener() {
@@ -245,10 +241,10 @@ public class InviteeActivity extends AppCompatActivity {
                     for (DataSnapshot i : dataSnapshot.getChildren()) {
                         // do something with the individual "issues"
                         for (Invitee in: InviteeListSingleton.getInst().getInviteeList())
-                                if(in.getName().equals(i.getValue(Invitee.class).getName()) )
+                            if(in.getName().equals(i.getValue(Invitee.class).getName()) )
                               {
-                                in.setStatus(i.child(i.getKey()).child("status").getValue(InviteeStatus.class));
-
+                                in.setStatus(i.child("status").getValue(InviteeStatus.class));
+                                initList();
                               }
 
                     }
@@ -259,7 +255,7 @@ public class InviteeActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
 
 
