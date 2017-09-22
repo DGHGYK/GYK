@@ -40,16 +40,6 @@
         android:text="Davetlilerimi ekle"
         android:textColor="#F3F3F3" />
 
-    <Button
-        android:id="@+id/btn_menu_control"
-        android:textColor="#F3F3F3"
-        android:background="@drawable/buttonshape"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="davetliler durumunu kontrol et " />
 
     <Button
         android:id="@+id/btn_menu_copy"

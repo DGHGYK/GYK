@@ -37,7 +37,7 @@ public class MenuActivity extends AppCompatActivity {
 
         btn_menu_create=(Button)findViewById(R.id.btn_menu_create);
         btn_menu_view=(Button)findViewById(R.id.btn_menu_view);
-        btn_menu_control=(Button)findViewById(R.id.btn_menu_control);
+
         btn_menu_copy=(Button)findViewById(R.id.btn_menu_copy);
 
         btn_menu_create.setOnClickListener(new View.OnClickListener() {

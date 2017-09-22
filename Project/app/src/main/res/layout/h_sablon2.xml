@@ -14,7 +14,7 @@
         android:layout_width="131dp"
         android:layout_height="19dp"
         android:text="title"
-        android:textSize="30dp"
+        android:textSize="20dp"
 
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
