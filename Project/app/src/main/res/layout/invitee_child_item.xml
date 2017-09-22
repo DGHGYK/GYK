@@ -13,23 +13,23 @@
         android:text="Tekrar Gönder"
         android:textColor="@color/background"
         android:textSize="10sp"
-        app:layout_constraintLeft_toRightOf="@+id/bt_inviteeChild_edit"
-        android:layout_marginLeft="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/bt_inviteeChild_delete"
+        android:layout_marginRight="8dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/tv_inviteeChild_phoneNumber"
-        android:layout_width="114dp"
+        android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center_vertical"
+        android:paddingLeft="20dp"
         android:text="5444666557"
         android:textStyle="bold"
-        android:paddingLeft="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Button
         android:id="@+id/bt_inviteeChild_edit"
@@ -39,8 +39,8 @@
         android:text="Düzenle"
         android:textColor="@color/background"
         android:textSize="10sp"
-        app:layout_constraintLeft_toRightOf="@+id/tv_inviteeChild_phoneNumber"
-        android:layout_marginLeft="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/bt_inviteeChild_resend"
+        android:layout_marginRight="8dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp" />
 
@@ -48,66 +48,64 @@
         android:id="@+id/bt_inviteeChild_delete"
         android:layout_width="57dp"
         android:layout_height="24dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:background="@drawable/buttonshape2"
         android:text="SİL"
         android:textColor="@color/background"
         android:textSize="10sp"
-        app:layout_constraintLeft_toRightOf="@+id/bt_inviteeChild_resend"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="16sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:paddingLeft="20dp"
         android:layout_weight="1"
         android:text="Gönderilme Tarihi:"
         android:textSize="12sp"
         android:textStyle="bold"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_inviteeChild_phoneNumber" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/bt_inviteeChild_edit" />
 
     <TextView
         android:id="@+id/tv_inviteeChild_sendDate"
-        android:layout_width="160dp"
+        android:layout_width="wrap_content"
         android:layout_height="16sp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:paddingLeft="20dp"
         android:layout_weight="1"
+        android:paddingLeft="20dp"
         android:text="gönderilme tarihi"
         android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/tv_inviteeChild_phoneNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_inviteeChild_edit" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="16sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:paddingLeft="20dp"
         android:layout_weight="1"
         android:text="Yanıtlanma Tarihi:"
         android:textSize="12sp"
         android:textStyle="bold"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/tv_inviteeChild_answerDate"
-        android:layout_width="162dp"
+        android:layout_width="wrap_content"
         android:layout_height="16sp"
-        android:layout_marginBottom="16sp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:paddingLeft="20dp"
         android:layout_weight="1"
+        android:paddingLeft="20dp"
         android:text="yanitlanma tarihi"
         android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@+id/textView13"

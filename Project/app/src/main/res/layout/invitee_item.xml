@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,81 +10,72 @@
     <CheckBox
         android:id="@+id/cb_item_check"
         style="@android:style/Widget.CompoundButton.CheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:focusable="false"
         android:focusableInTouchMode="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="285dp"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/tv_item_inviteeName"
+        android:layout_width="0dp"
+        android:layout_height="29dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
         android:paddingLeft="20dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@+id/cb_item_check"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/iv_item_inviteeStatus"
+        android:layout_marginRight="8dp" />
 
-        <TextView
-            android:id="@+id/tv_item_id"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:paddingLeft="20dp"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:visibility="gone" />
+    <TextView
+        android:id="@+id/tv_item_id"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="20dp"
+        android:text="TextView"
+        android:visibility="gone"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
 
-        <TextView
-            android:id="@+id/tv_item_inviteeName"
-            android:layout_width="match_parent"
-            android:layout_height="30sp"
-            android:paddingLeft="20dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:textSize="16sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toRightOf="@+id/cb_item_check"
-            app:layout_constraintRight_toLeftOf="@+id/iv_item_inviteeStatus"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_item_lastProcess"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_inviteeName" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="20dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_item_lastProcess"
-                android:layout_width="match_parent"
-                android:paddingLeft="20dp"
-                android:layout_height="20sp"
-                android:layout_weight="1"
-                app:layout_constraintLeft_toLeftOf="@+id/tv_item_inviteeName"
-                app:layout_constraintTop_toBottomOf="@+id/tv_item_inviteeName" />
-
-            <TextView
-                android:id="@+id/tv_item_answer"
-                android:layout_width="154dp"
-                android:layout_height="20sp"
-                android:paddingLeft="20dp"
-                android:layout_weight="1"
-                app:layout_constraintLeft_toRightOf="@+id/tv_item_lastProcess"
-                app:layout_constraintTop_toBottomOf="@+id/tv_item_inviteeName" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_item_answer"
+        android:layout_width="0dp"
+        android:layout_height="20sp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="20dp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_item_lastProcess"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_inviteeName"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
         android:id="@+id/iv_item_inviteeStatus"
-        android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:layout_margin="10sp"
+        android:layout_width="32sp"
+        android:layout_height="30dp"
         android:layout_weight="1"
         android:background="@color/background"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_item_lastProcess"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

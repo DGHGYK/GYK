@@ -3,6 +3,7 @@ package com.inwhiter.inviteapp.project.ActivityG;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
@@ -14,12 +15,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.inwhiter.inviteapp.project.ActivityH.MenuActivity;
 import com.inwhiter.inviteapp.project.ActivityH.TemplateActivity;
 import com.inwhiter.inviteapp.project.BusinessG.InviteeListAdapter;
 import com.inwhiter.inviteapp.project.BusinessG.SendSMS;
@@ -130,7 +131,7 @@ public class InviteeActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 for(int i=0; i < invitee_expandable.getChildCount(); i++){
-                    LinearLayout itemLayout = (LinearLayout) invitee_expandable.getChildAt(i);
+                    ConstraintLayout itemLayout = (ConstraintLayout) invitee_expandable.getChildAt(i);
                     CheckBox cb = (CheckBox)itemLayout.findViewById(R.id.cb_item_check);
                     cb.setChecked(isChecked);
                 }
@@ -144,7 +145,7 @@ public class InviteeActivity extends AppCompatActivity {
                 final List<String> checkedIdList=new ArrayList<>();
                 final List<Invitee> checkedInvitees = new ArrayList<>();
                 for(int i=0; i < invitee_expandable.getChildCount(); i++) {
-                    LinearLayout itemLayout = (LinearLayout) invitee_expandable.getChildAt(i);
+                    ConstraintLayout itemLayout = (ConstraintLayout) invitee_expandable.getChildAt(i);
                     CheckBox cb = (CheckBox) itemLayout.findViewById(R.id.cb_item_check);
 
                     if (cb.isChecked()) {
@@ -178,6 +179,9 @@ public class InviteeActivity extends AppCompatActivity {
 
                     AlertDialog sendCheckedListAlert = sendCheckedListDialog.create();
                     sendCheckedListAlert.show();
+                    Intent intent = new Intent(InviteeActivity.this, MenuActivity.class);
+                    startActivity(intent);
+
                 }else {
                     Toast.makeText(getBaseContext(), "Seçili davetli bulunamadı.", Toast.LENGTH_SHORT).show();
                 }
@@ -192,7 +196,7 @@ public class InviteeActivity extends AppCompatActivity {
 
                 final List<Invitee> checkedInvitees = new ArrayList<>();
                 for(int i=0; i < invitee_expandable.getChildCount(); i++) {
-                    LinearLayout itemLayout = (LinearLayout) invitee_expandable.getChildAt(i);
+                    ConstraintLayout itemLayout = (ConstraintLayout) invitee_expandable.getChildAt(i);
                     CheckBox cb = (CheckBox) itemLayout.findViewById(R.id.cb_item_check);
                     TextView tv = (TextView) itemLayout.findViewById(R.id.tv_item_id);
 
