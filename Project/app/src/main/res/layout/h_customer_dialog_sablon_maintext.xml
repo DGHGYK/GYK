@@ -6,13 +6,11 @@
     <TextView
         android:id="@+id/tv_cd_maintext1"
         android:layout_width="match_parent"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_height="69dp"
         android:inputType="textMultiLine"
         android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:paddingTop="10dp"
 
         android:text="Masallar gerçeğe, gerçekler masala dönüşürken mutluluğumuzu sizlerle paylaşmayı diliyoruz." />
@@ -20,8 +18,7 @@
     <TextView
         android:id="@+id/tv_cd_maintext2"
         android:layout_width="match_parent"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
+
         android:layout_height="69dp"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
@@ -34,16 +31,10 @@
     <TextView
         android:id="@+id/tv_cd_maintext3"
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
-
-=======
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
->>>>>>> 18b45c3deec07fffc9c584f983aa6f1c9f2618e6
         android:layout_height="69dp"
         android:inputType="textMultiLine"
         android:text=" Yaşama dair ne varsa her anında birlikte olmaya karar verdik. Bu tekrarı olmayacak özel günümüzü birlikte yaşamak dileğiyle." />
@@ -52,6 +43,11 @@
         android:id="@+id/btn_ok"
         android:layout_width="match_parent"
         android:textColor="#F3F3F3"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"

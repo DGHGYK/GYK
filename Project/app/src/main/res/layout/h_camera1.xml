@@ -20,14 +20,9 @@
 
     <TextView
         android:id="@+id/tv_camera_title"
-<<<<<<< HEAD
-        android:layout_width="244dp"
-        android:layout_height="59dp"
-=======
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
->>>>>>> 18b45c3deec07fffc9c584f983aa6f1c9f2618e6
         android:ems="10"
         android:inputType="textPersonName"
         android:text="başlık" />
