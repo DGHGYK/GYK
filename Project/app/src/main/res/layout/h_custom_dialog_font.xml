@@ -14,10 +14,10 @@
         android:visibility="visible">
 
         <RadioButton
-            android:id="@+id/rb_bilgi_painterfont"
+            android:id="@+id/rb_bilgi_bonbon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Painter Font" />
+            android:text="Bonbon Font" />
 
         <RadioButton
             android:id="@+id/rb_bilgi_geckofont"

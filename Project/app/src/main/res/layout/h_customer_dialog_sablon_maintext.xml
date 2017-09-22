@@ -8,18 +8,33 @@
         android:layout_width="match_parent"
         android:layout_height="69dp"
         android:inputType="textMultiLine"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+
         android:text="Masallar gerçeğe, gerçekler masala dönüşürken mutluluğumuzu sizlerle paylaşmayı diliyoruz." />
 
     <TextView
         android:id="@+id/tv_cd_maintext2"
         android:layout_width="match_parent"
         android:layout_height="69dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+
         android:inputType="textMultiLine"
         android:text="Yaşamı güzellikleriyle, zorluklarıyla, hüzün ve mutluluklarıyla, her anıyla paylaşmaya… Evet!" />
 
     <TextView
         android:id="@+id/tv_cd_maintext3"
         android:layout_width="match_parent"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+
         android:layout_height="69dp"
         android:inputType="textMultiLine"
         android:text=" Yaşama dair ne varsa her anında birlikte olmaya karar verdik. Bu tekrarı olmayacak özel günümüzü birlikte yaşamak dileğiyle." />

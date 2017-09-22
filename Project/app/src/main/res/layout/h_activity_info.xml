@@ -25,7 +25,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="baslik"
+            android:hint="başlık giriniz.Ör: Nane &amp; Limon"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
@@ -46,16 +46,16 @@
             android:layout_weight="1.01"
             android:ems="10"
             android:inputType="textMultiLine"
-            android:hint="ana metin"
+            android:hint="Metni seçiniz"
             />
 
         <ImageButton
             android:id="@+id/ibtn_bilgi_maintext"
             android:textColor="#F3F3F3"
-            android:layout_width="61dp"
+            android:layout_width="35dp"
             android:layout_height="match_parent"
-            android:background="@drawable/buttonshape2"
 
+            android:background="@drawable/buttonshape3"
             app:srcCompat="@android:drawable/ic_menu_add" />
 
     </LinearLayout>
@@ -73,7 +73,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="aile1" />
+            android:hint="birinci aile.Örn:YEŞİLLİK Ailesi" />
 
     </LinearLayout>
 
@@ -90,7 +90,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="aile2" />
+            android:hint="ikinci aile.Örn:TURUNÇGİLLER Ailesi" />
 
     </LinearLayout>
 
@@ -106,18 +106,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-
             android:inputType="textMultiLine"
             android:hint="adres:Mah.Sok.cad.no" />
 
 
-        <ImageButton
-            android:id="@+id/ibtn_bilgi_adress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:textColor="#F3F3F3"
-            app:srcCompat="@android:drawable/ic_menu_mylocation" />
+
 
     </LinearLayout>
 
@@ -135,7 +128,7 @@
             android:layout_weight="0.98"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="#hashtag" />
+            android:hint="hashtag.Örn:#HastalıklaraŞifaDüğünü" />
 
     </LinearLayout>
 
@@ -152,13 +145,13 @@
             android:layout_height="46dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="tarih"
+            android:text="Tarih"
             android:layout_weight="0.98" />
 
         <ImageButton
             android:id="@+id/ibtn_bilgi_date"
-            android:layout_width="wrap_content"
-            android:background="@drawable/buttonshape2"
+            android:layout_width="35dp"
+            android:background="@drawable/buttonshape3"
             android:layout_height="wrap_content"
             android:text="Button"
             app:srcCompat="@android:drawable/ic_menu_today" />
@@ -176,14 +169,14 @@
             android:layout_height="38dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="saat"
+            android:text="Saat"
             android:layout_weight="0.14" />
 
         <ImageButton
             android:id="@+id/ibtn_bilgi_time"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/buttonshape2"
+            android:background="@drawable/buttonshape3"
             android:text="Button"
             android:textColor="#F3F3F3"
             app:srcCompat="@android:drawable/ic_lock_idle_alarm" />

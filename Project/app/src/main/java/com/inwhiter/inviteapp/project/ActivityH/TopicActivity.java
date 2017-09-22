@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptor;
 import com.inwhiter.inviteapp.project.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,8 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class TopicActivity extends AppCompatActivity {
-    FirebaseDatabase db= FirebaseDatabase.getInstance();
-    DatabaseReference dbref=db.getReference("Inwhiter").child("Topic");
+
     ArrayList<String> topiclist=new ArrayList<>();
     ListView lv_konu_list;
 
@@ -27,60 +28,46 @@ public class TopicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.h_activity_topic);
-        topiclist.add("Yükleniyor..");
 
         lv_konu_list=(ListView)findViewById(R.id.lv_konu_list);
-        final ArrayAdapter<String> adapter=
-                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,android.R.id.text1,topiclist);
-        lv_konu_list.setAdapter(adapter);
-
-        dbref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                topiclist.clear();
-                for (DataSnapshot ds:dataSnapshot.getChildren())
-                {
-                    topiclist.add(ds.getValue().toString());
-                }
-                adapter.notifyDataSetChanged();
+        topiclist.add("Hazır şablon ile hazırlayın");
+        topiclist.add("Fotoğraf yükleyerek hazırlayın");
+        topiclist.add("Video yükleyerek hazırlayın");
 
 
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
+        CustomAdaptor adp=new CustomAdaptor(this,topiclist);
+        lv_konu_list.setAdapter(adp);
 
 
         /*bilgi sayfasında resim ve video da alabilmek için her birinin formatını ayrı gönderdim. ör:resim dedğinde resim ekle butonu da gelsin*/
-        lv_konu_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       lv_konu_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                if(topiclist.get(position).equals("Hazır Şablon İle Hazırlayın")){
+                if(topiclist.get(position).toString().equals("Hazır şablon ile hazırlayın")){
 
                     Intent intent=new Intent(TopicActivity.this,InfoActivity.class);
                     intent.putExtra("mood","template");
                     startActivity(intent);
                     // finish();
                 }
-                else if(topiclist.get(position).equals("Fotoğraf Yükleyerek Hazırlayın")){
+                else if(topiclist.get(position).toString().equals("Fotoğraf yükleyerek hazırlayın")){
 
                     Intent intent=new Intent(TopicActivity.this,InfoActivity.class);
                     intent.putExtra("mood","image");
                     startActivity(intent);
                     // finish();
                 }
-                else if(topiclist.get(position).equals("Video Ekleyerek Hazırlayın")){
+                else if(topiclist.get(position).toString().equals("Video yükleyerek hazırlayın")){
 
-                    Intent intent=new Intent(TopicActivity.this,InfoActivity.class);
+                    Toast.makeText(TopicActivity.this, "YAKINDA :)", Toast.LENGTH_SHORT).show();
+
+
+                   /* Intent intent=new Intent(TopicActivity.this,InfoActivity.class);
                     intent.putExtra("mood","video");
                     startActivity(intent);
-                    // finish();
+                    // finish();*/
                 }
 
 

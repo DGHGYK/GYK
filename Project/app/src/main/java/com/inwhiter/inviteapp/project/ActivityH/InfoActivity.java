@@ -35,7 +35,7 @@ import java.util.List;
 
 public class InfoActivity extends AppCompatActivity {
     Button btn_bilgi_save, btn_bilgi_imageload, btn_bilgi_videoload;
-    ImageButton ibtn_bilgi_maintext, ibtn_bilgi_adress, ibtn_bilgi_date, ibtn_bilgi_time;
+    ImageButton ibtn_bilgi_maintext, ibtn_bilgi_date, ibtn_bilgi_time;
     EditText et_bilgi_title, et_bilgi_maintext, et_bilgi_family1, et_bilgi_family2, et_bilgi_adress, et_bilgi_tag;
     TextView tv_bilgi_time, tv_bilgi_date;
     Context context = this;
@@ -62,7 +62,6 @@ public class InfoActivity extends AppCompatActivity {
 
 
         ibtn_bilgi_maintext = (ImageButton) findViewById(R.id.ibtn_bilgi_maintext);
-        ibtn_bilgi_adress = (ImageButton) findViewById(R.id.ibtn_bilgi_adress);
         ibtn_bilgi_date = (ImageButton) findViewById(R.id.ibtn_bilgi_date);
         ibtn_bilgi_time = (ImageButton) findViewById(R.id.ibtn_bilgi_time);
 
@@ -106,7 +105,7 @@ public class InfoActivity extends AppCompatActivity {
 
 
         } else if (getIntent().getExtras().get("mood").equals("image")) {
-            et_bilgi_title.setText("foto yükle");
+
             btn_bilgi_save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -129,7 +128,7 @@ public class InfoActivity extends AppCompatActivity {
 
 
         } else if (getIntent().getExtras().get("mood").equals("video")) {
-            et_bilgi_title.setText("video yükle");
+
             btn_bilgi_save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

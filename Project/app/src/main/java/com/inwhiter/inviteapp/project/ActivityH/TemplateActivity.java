@@ -67,6 +67,7 @@ public class TemplateActivity extends AppCompatActivity {
 
 
 
+
     TextView s1_title, s1_maintext, s1_family1, s1_family2, s1_adress, s1_tag, s1_time, s1_date;//sablon1 için
     TextView s2_title, s2_maintext, s2_family1, s2_family2, s2_adress, s2_tag, s2_time, s2_date;//şablon2 için
     TextView s3_title, s3_maintext, s3_family1, s3_family2, s3_adress, s3_tag, s3_time, s3_date;//şablon3 için
@@ -83,12 +84,13 @@ public class TemplateActivity extends AppCompatActivity {
 
     Uri foto,video;
     int DefaultColor;
-    RadioButton rb_painterfont, rb_solenafont, rb_glaresomefont, rb_geckofont;//fontlar
+    RadioButton rb_bonbonRegularfont, rb_solenafont, rb_glaresomefont, rb_geckofont;//fontlar
     Typeface face, face2, face3, face4;//fonttipi
     Drawable image = null;
 
     ImageView invalidation1, invalidation2, invalidation3,c1_foto;
     Context context = this;
+
 
     String title, maintext, family1, family2, date, time, adress, tag, fotoS ,videoS ;
 
@@ -220,7 +222,7 @@ public class TemplateActivity extends AppCompatActivity {
         else if (getIntent().getExtras().get("menu").equals("camera")) {
 
             fotoLayoutSelected();
-           // id=R.layout.h_camera1;
+            id=R.layout.h_camera1;
 
         } else if (getIntent().getExtras().get("menu").equals("video")) {
 
@@ -273,15 +275,15 @@ public class TemplateActivity extends AppCompatActivity {
         dialog.setTitle("Font");
 
 
-        rb_painterfont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_painterfont);
+        rb_bonbonRegularfont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_bonbon);
         rb_solenafont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_solenafont);
         rb_glaresomefont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_glarosomefont);
         rb_geckofont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_geckofont);
 
 
         /*fontlar*/
-        face = Typeface.createFromAsset(getAssets(), "fonts/Painter.ttf");
-        rb_painterfont.setTypeface(face);
+        face = Typeface.createFromAsset(getAssets(), "fonts/BonbonRegular.otf");
+        rb_bonbonRegularfont.setTypeface(face);
         face2 = Typeface.createFromAsset(getAssets(), "fonts/solena.otf");
         rb_solenafont.setTypeface(face2);
         face3 = Typeface.createFromAsset(getAssets(), "fonts/Glaresome.otf");
@@ -289,24 +291,27 @@ public class TemplateActivity extends AppCompatActivity {
         face4 = Typeface.createFromAsset(getAssets(), "fonts/Gecko.ttf");
         rb_geckofont.setTypeface(face4);
 
-        /*    final Button ok = (Button) dialog.findViewById(R.id.btn_cdfont_ok);
+          final Button ok = (Button) dialog.findViewById(R.id.btn_cdfont_ok);
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (rb_painterfont.isChecked()) {
-                        title.setTypeface(face);
-
+                    if (rb_bonbonRegularfont.isChecked()) {
+                        font_edit(face);
                     } else if (rb_solenafont.isChecked()) {
-                        title.setTypeface(face2);
+                        font_edit(face2);
+
                     } else if (rb_glaresomefont.isChecked()) {
-                        title.setTypeface(face3);
+                        font_edit(face3);
+
                     } else if (rb_geckofont.isChecked()) {
-                        title.setTypeface(face4);
+                        font_edit(face4);
+
                     }
+
                     dialog.dismiss();
 
                 }
-            });*/
+            });
 
 
         dialog.show();
@@ -314,6 +319,78 @@ public class TemplateActivity extends AppCompatActivity {
 
     }
     /* ******************************************************************/
+    public void font_edit(Typeface tf) {
+        if (getIntent().getExtras().get("menu").equals("template")) {
+            if(id==R.layout.h_sablon1){
+
+
+
+                           /*sadece şablon1 in elemanlarını yapabildim */
+                s1_title.setTypeface(tf);
+                s1_maintext.setTypeface(tf);
+                s1_family1.setTypeface(tf);
+                s1_family2.setTypeface(tf);
+                s1_adress.setTypeface(tf);
+                s1_tag.setTypeface(tf);
+                s1_time.setTypeface(tf);
+                s1_date.setTypeface(tf);
+                    /*SpannableString ss=  new SpannableString(title);
+                ss.setSpan(new ForegroundColorSpan(color), 0, 5, 0);*/}
+            else if(id==R.layout.h_sablon2){
+                s2_title.setTypeface(tf);
+                s2_maintext.setTypeface(tf);
+                s2_family1.setTypeface(tf);
+                s2_family2.setTypeface(tf);
+                s2_adress.setTypeface(tf);
+                s2_tag.setTypeface(tf);
+                s2_time.setTypeface(tf);
+                s2_date.setTypeface(tf);
+
+            }
+
+            else if(id==R.layout.h_sablon3){
+                s3_title.setTypeface(tf);
+                s3_maintext.setTypeface(tf);
+                s3_family1.setTypeface(tf);
+                s3_family2.setTypeface(tf);
+                s3_adress.setTypeface(tf);
+                s3_tag.setTypeface(tf);
+                s3_time.setTypeface(tf);
+                s3_date.setTypeface(tf);
+
+            }
+
+        }
+        else if (getIntent().getExtras().get("menu").equals("camera")) {
+
+            c1_title.setTypeface(tf);
+            c1_maintext.setTypeface(tf);
+            c1_family1.setTypeface(tf);
+            c1_family2.setTypeface(tf);
+            c1_adress.setTypeface(tf);
+            c1_tag.setTypeface(tf);
+            c1_time.setTypeface(tf);
+            c1_date.setTypeface(tf);
+
+
+        }
+        else if (getIntent().getExtras().get("menu").equals("video")) {
+
+            v1_title.setTypeface(tf);
+            v1_maintext.setTypeface(tf);
+            v1_family1.setTypeface(tf);
+            v1_family2.setTypeface(tf);
+            v1_adress.setTypeface(tf);
+            v1_tag.setTypeface(tf);
+            v1_time.setTypeface(tf);
+            v1_date.setTypeface(tf);
+
+
+        }
+
+
+
+    }
 
     /*colorSelected function*/
     public void colorSelected() {
@@ -330,6 +407,8 @@ public class TemplateActivity extends AppCompatActivity {
                 DefaultColor = color;
                 /*burada rengni değiştirecekleri yaz*//*çözüm bulamadım amele gibi hepsini tek tek yazacağim*/
                 if (getIntent().getExtras().get("menu").equals("template")) {
+                    if(id==R.layout.h_sablon1){
+
 
 
                            /*sadece şablon1 in elemanlarını yapabildim */
@@ -342,7 +421,30 @@ public class TemplateActivity extends AppCompatActivity {
                             s1_time.setTextColor(color);
                             s1_date.setTextColor(color);
                     /*SpannableString ss=  new SpannableString(title);
-                ss.setSpan(new ForegroundColorSpan(color), 0, 5, 0);*/
+                ss.setSpan(new ForegroundColorSpan(color), 0, 5, 0);*/}
+                    else if(id==R.layout.h_sablon2){
+                        s2_title.setTextColor(color);
+                        s2_maintext.setTextColor(color);
+                        s2_family1.setTextColor(color);
+                        s2_family2.setTextColor(color);
+                        s2_adress.setTextColor(color);
+                        s2_tag.setTextColor(color);
+                        s2_time.setTextColor(color);
+                        s2_date.setTextColor(color);
+
+                    }
+
+                    else if(id==R.layout.h_sablon3){
+                        s3_title.setTextColor(color);
+                        s3_maintext.setTextColor(color);
+                        s3_family1.setTextColor(color);
+                        s3_family2.setTextColor(color);
+                        s3_adress.setTextColor(color);
+                        s3_tag.setTextColor(color);
+                        s3_time.setTextColor(color);
+                        s3_date.setTextColor(color);
+
+                    }
 
                 }
                 else if (getIntent().getExtras().get("menu").equals("camera")) {
@@ -387,7 +489,7 @@ public class TemplateActivity extends AppCompatActivity {
     public void registerLayout() {
         Intent intent=new Intent(TemplateActivity.this,LayoutSS.class);
         byte[] encoded=takeScreenshot();
-        Toast.makeText(TemplateActivity.this, "sayfanın ss i alınıyor", Toast.LENGTH_SHORT).show();
+        Toast.makeText(TemplateActivity.this, "Tebrikler Davetiyeniz Oluşturuldu.", Toast.LENGTH_SHORT).show();
        intent.putExtra("ss",encoded);
         startActivity(intent);
 
@@ -435,7 +537,7 @@ public class TemplateActivity extends AppCompatActivity {
                 break;
         }*/
        if(id==R.layout.h_sablon1) rootView=findViewById(R.id.sablon1);
-        else if(id==R.layout.h_sablon2) rootView=findViewById(R.id.sablon2);
+       else if(id==R.layout.h_sablon2) rootView=findViewById(R.id.sablon2);
        else if(id==R.layout.h_sablon3) rootView=findViewById(R.id.sablon3);
        else if(id==R.layout.h_camera1) rootView=findViewById(R.id.camera1);
        //else if(id==R.layout.h_video1) rootView=findViewById(R.id.video1);
