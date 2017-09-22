@@ -165,6 +165,8 @@ public class InviteeActivity extends AppCompatActivity {
                                     new SendSMS().execute(checkedInvitees);
                                     Toast.makeText(getBaseContext(), "Davetiyeleriniz seçilen davetlilere SMS ile iletilmiştir.", Toast.LENGTH_LONG).show();
                                     dialog.cancel();
+                                    Intent intent = new Intent(InviteeActivity.this, MenuActivity.class);
+                                    startActivity(intent);
                                 }
                             });
 
@@ -179,8 +181,7 @@ public class InviteeActivity extends AppCompatActivity {
 
                     AlertDialog sendCheckedListAlert = sendCheckedListDialog.create();
                     sendCheckedListAlert.show();
-                    Intent intent = new Intent(InviteeActivity.this, MenuActivity.class);
-                    startActivity(intent);
+
 
                 }else {
                     Toast.makeText(getBaseContext(), "Seçili davetli bulunamadı.", Toast.LENGTH_SHORT).show();
