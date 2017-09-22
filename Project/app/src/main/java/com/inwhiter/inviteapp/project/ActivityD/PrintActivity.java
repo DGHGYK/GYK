@@ -3,6 +3,9 @@ package com.inwhiter.inviteapp.project.ActivityD;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,6 +39,11 @@ public class PrintActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.d_activity_print);
+        String titlem=getSupportActionBar().getTitle().toString();
+
+        SpannableString s = new SpannableString(titlem);
+        s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        getSupportActionBar().setTitle(s);
 
 
         papertype = (Spinner) findViewById(R.id.spnr_paper_type);

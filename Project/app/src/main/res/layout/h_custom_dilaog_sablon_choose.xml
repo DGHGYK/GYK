@@ -22,7 +22,7 @@
         android:id="@+id/iv_cd_sablon_choose_inva3"
         android:layout_width="match_parent"
         android:layout_height="74dp"
-        app:srcCompat="@drawable/invalidation4" />
+        app:srcCompat="@drawable/invalidation3" />
 
     <Button
         android:id="@+id/btn_cd_sablon_choose_ok"

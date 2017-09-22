@@ -4,24 +4,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-  >
+    android:weightSum="1">
 
     <ImageView
         android:id="@+id/iv_cd_fotoadd"
         android:layout_width="match_parent"
         android:layout_height="226dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="0.13"
+        android:weightSum="1">
+
         <Button
             android:id="@+id/btn_cd_fotoadd"
+            android:layout_width="169dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape2"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
             android:text="Resim Seç"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/colorLogin"
+            android:layout_weight="0.84" />
 
         <Button
             android:id="@+id/btn_ok"
-            android:layout_width="match_parent"
+            android:layout_width="177dp"
             android:layout_height="wrap_content"
-            android:text="Button" />
-
-
+            android:background="@drawable/buttonshape"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="Tamam"
+            android:textColor="@color/colorLogin" />
     </LinearLayout>
+
+
+</LinearLayout>

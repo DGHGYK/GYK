@@ -4,6 +4,9 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,6 +23,8 @@ public class LayoutSS extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.h_activity_layout_ss);
+
+
 
         ss= (ImageView) findViewById(R.id.imageView);
         byte[] encoded = (byte[]) getIntent().getExtras().get("ss");

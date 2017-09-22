@@ -3,6 +3,7 @@ package com.inwhiter.inviteapp.project.ActivityG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -33,6 +34,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ActionBar ab=getSupportActionBar();
+        ab.hide();
+
         email = (EditText) findViewById(R.id.et_login_email);
         password = (EditText) findViewById(R.id.et_login_password);
         login = (Button) findViewById(R.id.bt_login_login);

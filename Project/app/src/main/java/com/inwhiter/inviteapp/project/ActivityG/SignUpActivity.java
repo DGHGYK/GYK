@@ -3,6 +3,7 @@ package com.inwhiter.inviteapp.project.ActivityG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,9 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_signup);
+
+        ActionBar ab=getSupportActionBar();
+        ab.hide();
 
 
         mAuth = FirebaseAuth.getInstance();

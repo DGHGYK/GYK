@@ -3,6 +3,9 @@ package com.inwhiter.inviteapp.project.ActivityH;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,6 +36,11 @@ public class TopicActivity extends AppCompatActivity {
         topiclist.add("Hazır şablon ile hazırlayın");
         topiclist.add("Fotoğraf yükleyerek hazırlayın");
         topiclist.add("Video yükleyerek hazırlayın");
+        String titlem=getSupportActionBar().getTitle().toString();
+
+        SpannableString s = new SpannableString(titlem);
+        s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        getSupportActionBar().setTitle(s);
 
 
         CustomAdaptor adp=new CustomAdaptor(this,topiclist);
