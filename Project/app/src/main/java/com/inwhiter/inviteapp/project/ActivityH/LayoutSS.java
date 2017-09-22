@@ -1,15 +1,15 @@
 package com.inwhiter.inviteapp.project.ActivityH;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.support.v7.app.AppCompatActivity;
+import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Base64;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.inwhiter.inviteapp.project.ActivityG.InviteeActivity;
 import com.inwhiter.inviteapp.project.R;
 
 public class LayoutSS extends AppCompatActivity {
@@ -28,5 +28,20 @@ public class LayoutSS extends AppCompatActivity {
                // .asBitmap()
                 //.centerCrop()
                 .into(ss);
+
+        /*custom action bar*/
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.h_custom_actionbar_ss);
+        View customSS =getSupportActionBar().getCustomView();
+        Button addInvitees=(Button)customSS.findViewById(R.id.btn_actionbarSS_addInvitees);
+        addInvitees.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LayoutSS.this, InviteeActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
