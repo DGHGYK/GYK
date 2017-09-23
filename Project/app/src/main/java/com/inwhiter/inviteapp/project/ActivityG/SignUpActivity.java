@@ -83,13 +83,13 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 String s = password.getText().toString();
 
-                if(s.length() < 6){
+            /*    if(s.length() < 6){
                     password.setError("Sifreyi en az 6 karakter giriniz!");
                     password2.setError("Sifreyi en az 6 karakter giriniz!");
                 } else {
                     // ...
                     Toast.makeText(getBaseContext(),"Kaydiniz Gerceklestirilmistir.", Toast.LENGTH_LONG).show();
-                }
+                }*/
             }
         });
 
