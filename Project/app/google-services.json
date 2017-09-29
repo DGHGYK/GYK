@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "444661735156-qtcg4atpularjci5pkgtkh2mnk2hulap.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inwhiter.inviteapp.project",
+            "certificate_hash": "d9a5ab09d1ed2dadf1bac59c5e20742b4309a9cb"
+          }
+        },
+        {
           "client_id": "444661735156-h3h5uidauglbhllfr2iood6askoqbe83.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

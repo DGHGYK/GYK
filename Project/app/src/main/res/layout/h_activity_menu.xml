@@ -51,4 +51,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="davetiyemi baskıya gönder" />
+
+    <Button
+        android:id="@+id/btn_menu_cikis"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/buttonshape2"
+        android:text="çıkış yap"
+        android:textColor="#F3F3F3"
+        android:layout_weight="0.03" />
 </LinearLayout>

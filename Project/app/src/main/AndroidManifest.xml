@@ -25,7 +25,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityG.LoginActivity"/>
+        <activity android:name=".ActivityG.LoginActivity" />
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
         <activity android:name=".ActivityG.SignUpActivity" />
         <activity android:name=".ActivityH.MenuActivity" />
@@ -39,13 +39,29 @@
         <activity android:name=".ActivityG.InviteeEditActivity" />
         <activity android:name=".ActivityH.StartActivity" />
         <activity android:name=".ActivityD.PrintActivity" />
-        <activity android:name=".ActivityG.SplashActivity"
+        <activity
+            android:name=".ActivityG.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".BusinessG.FirebaseToken">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".BusinessG.FirebaseMessaging">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>
