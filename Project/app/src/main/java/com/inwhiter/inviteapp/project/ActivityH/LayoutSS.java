@@ -23,29 +23,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.inwhiter.inviteapp.project.ActivityG.InviteeActivity;
 import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptorMediaplayer;
-<<<<<<< HEAD
+
 import com.inwhiter.inviteapp.project.ModelG.Invite;
 import com.inwhiter.inviteapp.project.ModelH.Media;
-=======
->>>>>>> 1b8718ae32edaa40943a8a689cded808139fb9a1
+
 import com.inwhiter.inviteapp.project.R;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Calendar;
+
 import java.util.List;
-=======
->>>>>>> 1b8718ae32edaa40943a8a689cded808139fb9a1
 import java.util.concurrent.TimeUnit;
 
 public class LayoutSS extends AppCompatActivity {
     ImageView ss;
     Context context=this;
 
-    public static String inviteId;
-    private RearrangeableLayout root;
-    private FirebaseAuth mAuth;
-    private StorageReference mStorageRef;
+    public String inviteId;
+    private FirebaseDatabase database;
 
 
     public List<Media> playlist=new ArrayList<Media>();
@@ -172,25 +166,12 @@ public class LayoutSS extends AppCompatActivity {
                         btn_ok.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-
-<<<<<<< HEAD
-
-                                String firebase_music_name=media.getMusic_name();//bu isim gönderilecek firebase e
-                             //firebase e gönderme/sanırım burayı yapamam gamze :)su invitee içine neleri koyacağım bilemedim
-                             /*   FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference inviteRef = database.getReference("invite");
-
-                                mAuth = FirebaseAuth.getInstance();
-                                FirebaseUser currentUser = mAuth.getCurrentUser();
-                                Invite invite = new Invite(currentUser.getUid(),info, 1, "", getIntent().getExtras().getString("menu"),  Calendar.getInstance().getTime() );
-                                if(inviteId==null || inviteId.equals("")) {
-                                    inviteId = inviteRef.push().getKey();
-                                }
-                                inviteRef.child(inviteId).setValue(invite);*/
+                                String firebase_music_name=media.getMusic_name();
+                                database = FirebaseDatabase.getInstance();
+                                DatabaseReference musicRef = database.getReference("invite").child(inviteId).child("info").child("music");
+                                musicRef.setValue(firebase_music_name);
                                 Toast.makeText(LayoutSS.this,media.getMusic_name()+ " seçildi", Toast.LENGTH_SHORT).show();
-=======
-                                Toast.makeText(LayoutSS.this,music_name+ " seçildi", Toast.LENGTH_SHORT).show();
->>>>>>> 1b8718ae32edaa40943a8a689cded808139fb9a1
+
                              mp.stop();
 
                              dialog.dismiss();
