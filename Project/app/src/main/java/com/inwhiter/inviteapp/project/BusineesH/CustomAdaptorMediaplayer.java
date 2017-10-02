@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.inwhiter.inviteapp.project.ModelH.Media;
 import com.inwhiter.inviteapp.project.R;
 
 import java.util.ArrayList;
@@ -21,22 +22,22 @@ import java.util.List;
 public class CustomAdaptorMediaplayer extends BaseAdapter {
 
     private LayoutInflater Inflater;
-    private List<String> liste = new ArrayList<String>();
+    private List<Media> medialistem;
 
-    public CustomAdaptorMediaplayer(Activity activity, List<String> liste) {
+    public CustomAdaptorMediaplayer(Activity activity, List<Media> medialistem) {
 
         Inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.liste = liste;
+        this.medialistem = medialistem;
     }
 
     @Override
     public int getCount() {
-        return liste.size();
+        return medialistem.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return liste.get(position);
+        return medialistem.get(position);
     }
 
     @Override
@@ -56,42 +57,50 @@ public class CustomAdaptorMediaplayer extends BaseAdapter {
 
 
 
-        String music = liste.get(position).toString();
+        Media media= medialistem.get(position);
+
+        if(media.getIs_play()){
+            imageView.setImageResource(R.drawable.icon_music_play);
+            media.setIs_play(false);
+        }
 
 
-        if(music.equals("dm")){
-           // imageView.setImageResource(R.drawable.icon_music_play);
+
+        if(media.getMusic_name().equals("dm")){
+
+
+           //
             textView.setText("Düğün Marşı");
 
 
         }
-        else if(music.equals("happy1")){
+        else if(media.getMusic_name().equals("happy1")){
            // imageView.setImageResource(R.drawable.icon_music_play);
             textView.setText("happy1");
 
         }
-        else if(music.equals("happy2")){
+        else if(media.getMusic_name().equals("happy2")){
            // imageView.setImageResource(R.drawable.icon_music_play);
             textView.setText("happy2");
 
 
 
        }
-        else if(music.equals("happy3")){
+        else if(media.getMusic_name().equals("happy3")){
             // imageView.setImageResource(R.drawable.icon_music_play);
             textView.setText("happy3");
 
 
 
         }
-        else if(music.equals("slow1")){
+        else if(media.getMusic_name().equals("slow1")){
             // imageView.setImageResource(R.drawable.icon_music_play);
             textView.setText("slow1");
 
 
 
         }
-        else if(music.equals("slow2")){
+        else if(media.getMusic_name().equals("slow2")){
             // imageView.setImageResource(R.drawable.icon_music_play);
             textView.setText("slow2");
 
@@ -102,4 +111,6 @@ public class CustomAdaptorMediaplayer extends BaseAdapter {
         return satirView;
 
     }
+
+
 }

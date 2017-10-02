@@ -34,12 +34,14 @@ import com.google.firebase.storage.StorageReference;
 import com.inwhiter.inviteapp.project.ActivityG.InviteeActivity;
 import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptorMediaplayer;
 import com.inwhiter.inviteapp.project.ModelG.Invite;
+import com.inwhiter.inviteapp.project.ModelH.Media;
 import com.inwhiter.inviteapp.project.R;
 import com.rajasharan.layout.RearrangeableLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static com.inwhiter.inviteapp.project.R.drawable.icon_music_play;
@@ -54,7 +56,7 @@ public class LayoutSS extends AppCompatActivity {
     private StorageReference mStorageRef;
 
 
-    public ArrayList<String> playlist=new ArrayList<>();
+    public List<Media> playlist=new ArrayList<Media>();
     public ListView lv_playlist;
     public ImageView icon_play;
     public   MediaPlayer mp = null;
@@ -63,7 +65,7 @@ public class LayoutSS extends AppCompatActivity {
     public int oneTimeOnly = 0;
     public Handler myHandler = new Handler() ;
     public SeekBar seekBar;
-    public ImageView play_pause;
+    public ImageView play_pause,on_off;
     Button btn_ok;
     //public Layout layout_media_player;
     public TextView current_duration,total_duration,current_music;
@@ -134,19 +136,24 @@ public class LayoutSS extends AppCompatActivity {
                   total_duration=(TextView)dialog.findViewById(R.id.txt_total_duration);
                  play_pause=(ImageView)dialog.findViewById(R.id.btn_play_pause);
                 btn_ok=(Button)dialog.findViewById(R.id.btn_ok);
+
                 // icon_play= (ImageView)findViewById(R.id.media_simge);
+
 
                  play_pause.setVisibility(View.INVISIBLE);
 
-                playlist.add("dm");
-                playlist.add("happy1");
-                playlist.add("happy2");
-                playlist.add("happy3");
-                playlist.add("slow1");
-                playlist.add("slow2");
 
-                CustomAdaptorMediaplayer adp=new CustomAdaptorMediaplayer((Activity) context,playlist);
+
+                playlist.add(new Media("dm",false));
+                playlist.add(new Media("happy1",false));
+                playlist.add(new Media("happy2",false));
+                playlist.add(new Media("happy3",false));
+                playlist.add(new Media("slow1",false));
+                playlist.add(new Media("slow2",false));
+
+                final CustomAdaptorMediaplayer adp=new CustomAdaptorMediaplayer((Activity) context, playlist);
                 lv_playlist.setAdapter(adp);
+
 
 
 
@@ -161,14 +168,16 @@ public class LayoutSS extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                        final String music_name = playlist.get(position).toString();
+                         final Media media = playlist.get(position);
+                        media.setIs_play(true);
+                        adp.notifyDataSetChanged();
 
                         btn_ok.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 
 
-                                String firebase_music_name=music_name;//bu isim gönderilecek firebase e
+                                String firebase_music_name=media.getMusic_name();//bu isim gönderilecek firebase e
                              //firebase e gönderme/sanırım burayı yapamam gamze :)su invitee içine neleri koyacağım bilemedim
                              /*   FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference inviteRef = database.getReference("invite");
@@ -180,7 +189,7 @@ public class LayoutSS extends AppCompatActivity {
                                     inviteId = inviteRef.push().getKey();
                                 }
                                 inviteRef.child(inviteId).setValue(invite);*/
-                                Toast.makeText(LayoutSS.this,music_name+ " seçildi", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LayoutSS.this,media.getMusic_name()+ " seçildi", Toast.LENGTH_SHORT).show();
                              mp.stop();
 
                              dialog.dismiss();
@@ -190,11 +199,16 @@ public class LayoutSS extends AppCompatActivity {
 
                         //play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
                         play_pause.setVisibility(View.VISIBLE);
-                        if (music_name.equals("dm")) {
+                        if (media.getMusic_name().equals("dm")) {
+
+
                             if (mp != null) {
+
+                                play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
                                 mp.reset();
 
                             }
+
                             mp = MediaPlayer.create(LayoutSS.this, R.raw.dm);
                            // icon_play.setImageDrawable(getResources().getDrawable(R.drawable.icon_music_play));
 
@@ -203,11 +217,14 @@ public class LayoutSS extends AppCompatActivity {
 
 
 
+
                         }
-                        else if(music_name.equals("happy1"))
+                        else if(media.getMusic_name().equals("happy1"))
 
                         {
                             if (mp != null) {
+                                play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
                                 mp.reset();
 
                             }
@@ -217,10 +234,12 @@ public class LayoutSS extends AppCompatActivity {
                             play();
 
                         }
-                        else if(music_name.equals("happy2"))
+                        else if(media.getMusic_name().equals("happy2"))
 
                         {
                             if (mp != null) {
+
+                                play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
                                 mp.reset();
 
 
@@ -230,10 +249,12 @@ public class LayoutSS extends AppCompatActivity {
                             play();
 
                         }
-                        else if(music_name.equals("happy3"))
+                        else if(media.getMusic_name().equals("happy3"))
 
                         {
                             if (mp != null) {
+                                play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
                                 mp.reset();
 
 
@@ -243,10 +264,12 @@ public class LayoutSS extends AppCompatActivity {
                             play();
 
                         }
-                        else if(music_name.equals("slow1"))
+                        else if(media.getMusic_name().equals("slow1"))
 
                         {
                             if (mp != null) {
+                                play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
                                 mp.reset();
 
 
@@ -256,10 +279,12 @@ public class LayoutSS extends AppCompatActivity {
                             play();
 
                         }
-                        else if(music_name.equals("slow2"))
+                        else if(media.getMusic_name().equals("slow2"))
 
                         {
                             if (mp != null) {
+                                play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
                                 mp.reset();
 
 
@@ -290,6 +315,7 @@ public class LayoutSS extends AppCompatActivity {
                             }
 
                         });
+
 
 
 
