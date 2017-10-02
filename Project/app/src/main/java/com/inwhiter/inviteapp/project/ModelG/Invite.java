@@ -1,5 +1,7 @@
 package com.inwhiter.inviteapp.project.ModelG;
 
+import java.util.Date;
+
 /**
  * Created by gamze on 05/09/2017.
  */
@@ -12,16 +14,18 @@ public class Invite {
     private String view;
     private String mood;
     private int numberOfAnswers;
+    private Date createdDate;
 
 
 
-    public Invite(String userId, Info info, int status, String view, String mood) {
+    public Invite(String userId, Info info, int status, String view, String mood, Date createdDate) {
         this.userId = userId;
         this.info = info;
         this.status = status;
         this.view = view;
         this.mood = mood;
         this.numberOfAnswers =0;
+        this.createdDate =createdDate;
     }
 
     public String getInviteId() {
@@ -78,5 +82,13 @@ public class Invite {
 
     public void setNumberOfAnswers(int numberOfAnswers) {
         this.numberOfAnswers = numberOfAnswers;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 }

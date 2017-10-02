@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.inwhiter.inviteapp.project.ActivityH.MenuActivity;
 import com.inwhiter.inviteapp.project.ActivityH.TemplateActivity;
 import com.inwhiter.inviteapp.project.BusinessG.InviteeListAdapter;
 import com.inwhiter.inviteapp.project.BusinessG.SendSMS;
@@ -165,8 +164,7 @@ public class InviteeActivity extends AppCompatActivity {
                                     new SendSMS().execute(checkedInvitees);
                                     Toast.makeText(getBaseContext(), "Davetiyeleriniz seçilen davetlilere SMS ile iletilmiştir.", Toast.LENGTH_LONG).show();
                                     dialog.cancel();
-                                    Intent intent = new Intent(InviteeActivity.this, MenuActivity.class);
-                                    startActivity(intent);
+
                                 }
                             });
 

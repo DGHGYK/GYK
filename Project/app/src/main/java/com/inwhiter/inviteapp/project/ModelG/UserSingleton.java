@@ -6,12 +6,14 @@ package com.inwhiter.inviteapp.project.ModelG;
 
 public class UserSingleton {
     private static UserSingleton user = new UserSingleton();
+    private String token;
 
 
     public static UserSingleton getInstance() {
 
         if(user == null)
         {
+
             user = new UserSingleton();
         }
 

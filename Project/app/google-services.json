@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "444661735156",
-    "firebase_url": "https://inwhiter-c3dfa.firebaseio.com",
-    "project_id": "inwhiter-c3dfa",
-    "storage_bucket": "inwhiter-c3dfa.appspot.com"
+    "project_number": "99718439273",
+    "firebase_url": "https://inwhiter-14bc8.firebaseio.com",
+    "project_id": "inwhiter-14bc8",
+    "storage_bucket": "inwhiter-14bc8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:444661735156:android:403916dc82b7ae41",
+        "mobilesdk_app_id": "1:99718439273:android:403916dc82b7ae41",
         "android_client_info": {
           "package_name": "com.inwhiter.inviteapp.project"
         }
       },
       "oauth_client": [
         {
-          "client_id": "444661735156-h3h5uidauglbhllfr2iood6askoqbe83.apps.googleusercontent.com",
+          "client_id": "99718439273-kle6b27td1eipi1dq780d08508soubt7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.inwhiter.inviteapp.project",
@@ -23,13 +23,13 @@
           }
         },
         {
-          "client_id": "444661735156-2v3jnl82o9kq4p1v95tu0itkalfebg2q.apps.googleusercontent.com",
+          "client_id": "99718439273-kpnsq733t8s778lbikvhfvr9mktiijqd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDjr1JMybbFNqpjo2zWEOiZ84y_D3XJHVA"
+          "current_key": "AIzaSyACA6MttmkNrljKwMs_XfuMsRQFFQFEDSE"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "444661735156-2v3jnl82o9kq4p1v95tu0itkalfebg2q.apps.googleusercontent.com",
+              "client_id": "99718439273-kpnsq733t8s778lbikvhfvr9mktiijqd.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
