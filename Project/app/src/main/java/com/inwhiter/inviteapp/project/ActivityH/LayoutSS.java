@@ -365,15 +365,7 @@ public class LayoutSS extends AppCompatActivity {
 
                         mp.pause();
                     }
-
-
-
-
-
-
-
-
-                });dialog.show();
+                 });dialog.show();
 
             }
 
