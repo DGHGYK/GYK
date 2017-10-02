@@ -46,11 +46,12 @@ public class CustomAdaptorMediaplayer extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View satirView;
 
-        satirView = Inflater.inflate(R.layout.h_satir_mediaplayer, null);
+
+        View satirView = Inflater.inflate(R.layout.h_satir_mediaplayer, null);
+
         TextView textView = (TextView) satirView.findViewById(R.id.textView);
-        ImageView imageView = (ImageView) satirView.findViewById(R.id.simge);
+        ImageView imageView = (ImageView) satirView.findViewById(R.id.media_simge);
 
 
 
@@ -59,23 +60,44 @@ public class CustomAdaptorMediaplayer extends BaseAdapter {
 
 
         if(music.equals("dm")){
-            imageView.setImageResource(R.mipmap.ic_launcher);
+           // imageView.setImageResource(R.drawable.icon_music_play);
             textView.setText("Düğün Marşı");
 
 
         }
         else if(music.equals("happy1")){
-            imageView.setImageResource(R.mipmap.ic_launcher_round);
+           // imageView.setImageResource(R.drawable.icon_music_play);
             textView.setText("happy1");
 
         }
         else if(music.equals("happy2")){
-            imageView.setImageResource(R.mipmap.ic_launcher);
+           // imageView.setImageResource(R.drawable.icon_music_play);
             textView.setText("happy2");
 
 
 
        }
+        else if(music.equals("happy3")){
+            // imageView.setImageResource(R.drawable.icon_music_play);
+            textView.setText("happy3");
+
+
+
+        }
+        else if(music.equals("slow1")){
+            // imageView.setImageResource(R.drawable.icon_music_play);
+            textView.setText("slow1");
+
+
+
+        }
+        else if(music.equals("slow2")){
+            // imageView.setImageResource(R.drawable.icon_music_play);
+            textView.setText("slow2");
+
+
+
+        }
 
         return satirView;
 

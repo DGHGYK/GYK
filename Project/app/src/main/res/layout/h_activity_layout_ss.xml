@@ -16,11 +16,4 @@
         app:srcCompat="@mipmap/catalog"
         android:layout_weight="0.68" />
 
-    <Button
-        android:id="@+id/music"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.15"
-        android:text="Button" />
-
 </LinearLayout>

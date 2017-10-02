@@ -8,12 +8,23 @@
         android:id="@+id/btn_actionbarSS_addInvitees"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
         android:background="@drawable/buttonshape"
         android:text="Davetlileri Ekle"
-        android:textColor="#F3F3F3" />
+        android:textColor="#F3F3F3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/btn_actionbarSS_addMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:text="Müzik ekle"
+        android:textColor="#F3F3F3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

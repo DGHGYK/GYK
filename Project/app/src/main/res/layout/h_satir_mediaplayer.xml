@@ -6,11 +6,11 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/simge"
+        android:id="@+id/media_simge"
         android:layout_width="48dp"
         android:layout_height="61dp"
         android:paddingRight="10dp"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@drawable/icon_music_pause" />
 
     <TextView
         android:id="@+id/textView"
