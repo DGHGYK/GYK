@@ -18,6 +18,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.inwhiter.inviteapp.project.ActivityH.MenuActivity;
 import com.inwhiter.inviteapp.project.R;
 
@@ -72,6 +75,9 @@ public class LoginActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         Log.d("Fire", "signInWithEmail:success");
                                         currentUser = mAuth.getCurrentUser();
+                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                        DatabaseReference userRef = database.getReference("user");
+                                        userRef.child(currentUser.getUid()).child("token").setValue(FirebaseInstanceId.getInstance().getToken());
                                         Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
                                         startActivity(intent);
                                     } else {

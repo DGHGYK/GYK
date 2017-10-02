@@ -14,9 +14,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -42,6 +39,7 @@ import com.inwhiter.inviteapp.project.R;
 import com.rajasharan.layout.RearrangeableLayout;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -167,7 +165,7 @@ public class TemplateActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        Invite invite = new Invite(currentUser.getUid(),info, 1, "", getIntent().getExtras().getString("menu") );
+        Invite invite = new Invite(currentUser.getUid(),info, 1, "", getIntent().getExtras().getString("menu"),  Calendar.getInstance().getTime() );
         if(inviteId==null || inviteId.equals("")) {
             inviteId = inviteRef.push().getKey();
         }

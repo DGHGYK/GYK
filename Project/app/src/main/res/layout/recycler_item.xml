@@ -7,14 +7,12 @@
     <ImageView
         android:id="@+id/iv_recycler_item_image"
         android:layout_width="match_parent"
-        android:layout_height="218dp"
-        app:srcCompat="@drawable/giris" />
+        android:layout_height="218dp" />
 
     <TextView
         android:id="@+id/tv_recycler_item_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
-        android:text="TextView"
-        android:visibility="invisible" />
+        android:textAlignment="center" />
 </LinearLayout>
