@@ -18,6 +18,7 @@ public class Invite {
 
 
 
+
     public Invite(String userId, Info info, int status, String view, String mood, Date createdDate) {
         this.userId = userId;
         this.info = info;

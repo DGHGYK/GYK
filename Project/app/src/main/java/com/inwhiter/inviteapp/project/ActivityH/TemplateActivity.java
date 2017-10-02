@@ -481,6 +481,7 @@ public class TemplateActivity extends AppCompatActivity {
     /*layout screenshot*/
     public void registerLayout() {
         Intent intent=new Intent(TemplateActivity.this,LayoutSS.class);
+        intent.putExtra("inviteId", inviteId);
         byte[] encoded=takeScreenshot();
         Toast.makeText(TemplateActivity.this, "Tebrikler Davetiyeniz Oluşturuldu.", Toast.LENGTH_SHORT).show();
        intent.putExtra("ss",encoded);

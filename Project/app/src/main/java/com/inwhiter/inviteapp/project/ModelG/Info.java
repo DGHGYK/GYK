@@ -8,7 +8,7 @@ import android.os.Parcelable;
  */
 
 public class Info implements Parcelable{
-    private String title, text, family1, family2, address, hashtag, date, time;
+    private String title, text, family1, family2, address, hashtag, date, time, music;
 
 
     protected Info(Parcel in) {
@@ -20,6 +20,7 @@ public class Info implements Parcelable{
         hashtag = in.readString();
         date = in.readString();
         time = in.readString();
+        music= in.readString();
     }
 
     public static final Creator<Info> CREATOR = new Creator<Info>() {
@@ -112,6 +113,14 @@ public class Info implements Parcelable{
         this.time = time;
     }
 
+    public String getMusic() {
+        return music;
+    }
+
+    public void setMusic(String music) {
+        this.music = music;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -127,5 +136,6 @@ public class Info implements Parcelable{
         dest.writeString(hashtag);
         dest.writeString(date);
         dest.writeString(time);
+        dest.writeString(music);
     }
 }

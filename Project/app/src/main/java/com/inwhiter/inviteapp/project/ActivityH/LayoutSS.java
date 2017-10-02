@@ -5,20 +5,13 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -26,25 +19,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.StorageReference;
 import com.inwhiter.inviteapp.project.ActivityG.InviteeActivity;
 import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptorMediaplayer;
+<<<<<<< HEAD
 import com.inwhiter.inviteapp.project.ModelG.Invite;
 import com.inwhiter.inviteapp.project.ModelH.Media;
+=======
+>>>>>>> 1b8718ae32edaa40943a8a689cded808139fb9a1
 import com.inwhiter.inviteapp.project.R;
-import com.rajasharan.layout.RearrangeableLayout;
 
-import java.io.IOException;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Calendar;
 import java.util.List;
+=======
+>>>>>>> 1b8718ae32edaa40943a8a689cded808139fb9a1
 import java.util.concurrent.TimeUnit;
-
-import static com.inwhiter.inviteapp.project.R.drawable.icon_music_play;
 
 public class LayoutSS extends AppCompatActivity {
     ImageView ss;
@@ -79,6 +71,11 @@ public class LayoutSS extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.h_activity_layout_ss);
+
+        Bundle bundle= getIntent().getExtras();
+        if(bundle!=null){
+            inviteId = bundle.getString("inviteId");
+        }
 
 
         /*custom action bar*//////////////////////////////////////////////////////////
@@ -176,6 +173,7 @@ public class LayoutSS extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
 
+<<<<<<< HEAD
 
                                 String firebase_music_name=media.getMusic_name();//bu isim gönderilecek firebase e
                              //firebase e gönderme/sanırım burayı yapamam gamze :)su invitee içine neleri koyacağım bilemedim
@@ -190,6 +188,9 @@ public class LayoutSS extends AppCompatActivity {
                                 }
                                 inviteRef.child(inviteId).setValue(invite);*/
                                 Toast.makeText(LayoutSS.this,media.getMusic_name()+ " seçildi", Toast.LENGTH_SHORT).show();
+=======
+                                Toast.makeText(LayoutSS.this,music_name+ " seçildi", Toast.LENGTH_SHORT).show();
+>>>>>>> 1b8718ae32edaa40943a8a689cded808139fb9a1
                              mp.stop();
 
                              dialog.dismiss();
