@@ -4,15 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.inwhiter.inviteapp.project.ActivityH.LayoutSS">
-
-
 
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
 
-        app:srcCompat="@mipmap/catalog" />
+        app:srcCompat="@mipmap/catalog"
+        android:layout_weight="0.68" />
+
+    <Button
+        android:id="@+id/music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
+        android:text="Button" />
+
 </LinearLayout>
