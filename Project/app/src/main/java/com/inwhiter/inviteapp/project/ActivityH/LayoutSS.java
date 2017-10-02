@@ -23,14 +23,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.inwhiter.inviteapp.project.ActivityG.InviteeActivity;
 import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptorMediaplayer;
-
-import com.inwhiter.inviteapp.project.ModelG.Invite;
 import com.inwhiter.inviteapp.project.ModelH.Media;
-
 import com.inwhiter.inviteapp.project.R;
 
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 

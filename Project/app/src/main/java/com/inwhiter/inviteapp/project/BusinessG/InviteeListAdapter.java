@@ -95,7 +95,7 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
 
 
         CheckBox check = (CheckBox) convertView.findViewById(R.id.cb_item_check);
-        check.setChecked(false);
+        check.setChecked(true);
 
         ImageView inviteeColor = (ImageView) convertView.findViewById(R.id.iv_item_inviteeStatus);
         if(listTitle.getStatus()!=null && listTitle.getStatus().getAnswer()!=null) {
