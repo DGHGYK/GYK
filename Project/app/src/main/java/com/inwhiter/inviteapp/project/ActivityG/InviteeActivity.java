@@ -1,5 +1,6 @@
 package com.inwhiter.inviteapp.project.ActivityG;
 
+import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,11 +16,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.inwhiter.inviteapp.project.ActivityH.MenuActivity;
 import com.inwhiter.inviteapp.project.ActivityH.TemplateActivity;
 import com.inwhiter.inviteapp.project.BusinessG.InviteeListAdapter;
 import com.inwhiter.inviteapp.project.BusinessG.SendSMS;
@@ -54,6 +57,19 @@ public class InviteeActivity extends AppCompatActivity {
         SpannableString s = new SpannableString(titlem);
         s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getSupportActionBar().setTitle(s);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_actionbar_invite);
+        View customSS =getSupportActionBar().getCustomView();
+        ImageButton home=(ImageButton)customSS.findViewById(R.id.ib_actionbarInvite_home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InviteeActivity.this, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         invitee_expandable = (ExpandableListView) findViewById(R.id.lv_invitee_expandable);

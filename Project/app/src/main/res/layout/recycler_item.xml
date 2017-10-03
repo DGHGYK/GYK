@@ -7,12 +7,12 @@
     <ImageView
         android:id="@+id/iv_recycler_item_image"
         android:layout_width="match_parent"
-        android:layout_height="218dp" />
+        android:layout_height="218sp" />
 
     <TextView
         android:id="@+id/tv_recycler_item_id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30sp"
         android:paddingLeft="20dp"
         android:textAlignment="center" />
 </LinearLayout>
