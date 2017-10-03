@@ -10,36 +10,42 @@
         android:id="@+id/spnr_paper_type"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="10dp"
         android:paddingLeft="20dp"/>
 
     <Spinner
         android:id="@+id/spnr_paper_size"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="10dp"
         android:paddingLeft="20dp"/>
 
     <Spinner
         android:id="@+id/spnr_card_unit_price"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="10dp"
         android:paddingLeft="20dp"/>
 
     <Spinner
         android:id="@+id/spnr_envelope_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="10dp"
         android:paddingLeft="20dp"/>
 
     <Spinner
         android:id="@+id/spnr_envelope_price"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="10dp"
         android:paddingLeft="20dp"/>
 
     <Spinner
         android:id="@+id/spnr_zarf_astar_price"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="10dp"
         android:paddingLeft="20dp"/>
 
     <EditText
@@ -48,8 +54,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Davetli Adi:"
-        android:paddingLeft="20dp"/>
+        android:hint="Davetli Adi:"
+        android:paddingTop="10dp"
+        android:paddingLeft="30dp"/>
 
     <EditText
         android:id="@+id/txt_adress"
@@ -57,8 +64,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Adres:"
-        android:paddingLeft="20dp"/>
+        android:hint="Adres:"
+        android:paddingTop="10dp"
+        android:paddingLeft="30dp"/>
 
     <EditText
         android:id="@+id/txt_order_note"
@@ -68,8 +76,9 @@
         android:layout_centerVertical="true"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Siparis Notu:"
-        android:paddingLeft="20dp"/>
+        android:hint="Siparis Notu:"
+        android:paddingTop="10dp"
+        android:paddingLeft="30dp"/>
 
     <TextView
         android:id="@+id/txt_cargo"
@@ -89,8 +98,9 @@
         android:layout_marginRight="115dp"
         android:layout_marginTop="184dp"
         android:background="@drawable/buttonshape"
+        android:onClick="sepeteEkle"
         android:text="SEPETE EKLE"
-        android:textColor="@color/colorLogin"
-        />
+        android:paddingLeft="10dp"
+        android:textColor="@color/colorLogin" />
 
 </LinearLayout>
