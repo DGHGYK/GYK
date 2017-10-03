@@ -102,7 +102,7 @@ public class InfoActivity extends AppCompatActivity {
                             et_bilgi_family2.getText().toString(),et_bilgi_adress.getText().toString(),et_bilgi_tag.getText().toString(),tv_bilgi_date.getText().toString(), tv_bilgi_time.getText().toString());
 
                     Intent intent = new Intent(InfoActivity.this, TemplateActivity.class);
-                    Toast.makeText(InfoActivity.this, "hazır şablon davetiye  sayfası yükleniyor", Toast.LENGTH_SHORT).show();
+
                     intent.putExtra("info", info);
                     intent.putExtra("menu", "template");/*şablon ekranında hazır şablon menüsü oluşsun diye*/
                     startActivity(intent);
@@ -125,7 +125,7 @@ public class InfoActivity extends AppCompatActivity {
                             et_bilgi_family2.getText().toString(),et_bilgi_adress.getText().toString(),et_bilgi_tag.getText().toString(),tv_bilgi_date.getText().toString(), tv_bilgi_time.getText().toString());
 
                     Intent intent = new Intent(InfoActivity.this, TemplateActivity.class);
-                    Toast.makeText(InfoActivity.this, "foto davetiye sayfası yükleniyor", Toast.LENGTH_SHORT).show();
+
                     intent.putExtra("info", info);
                     intent.putExtra("foto", SimageUri);
                     intent.putExtra("menu", "camera");
@@ -148,7 +148,7 @@ public class InfoActivity extends AppCompatActivity {
                             et_bilgi_family2.getText().toString(),et_bilgi_adress.getText().toString(),et_bilgi_tag.getText().toString(),tv_bilgi_date.getText().toString(), tv_bilgi_time.getText().toString());
 
                     Intent intent = new Intent(InfoActivity.this, TemplateActivity.class);
-                    Toast.makeText(InfoActivity.this, "video davetiye sayfası yükleniyor", Toast.LENGTH_SHORT).show();
+
                     intent.putExtra("info", info);
                     intent.putExtra("menu", "video");
                     intent.putExtra("video", SvideoUri);
@@ -214,21 +214,21 @@ public class InfoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         et_bilgi_maintext.setText(maintext1.getText());
-                        Toast.makeText(InfoActivity.this, "Metin1 seçildi", Toast.LENGTH_SHORT).show();
+
                     }
                 });
                 maintext2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         et_bilgi_maintext.setText(maintext2.getText());
-                        Toast.makeText(InfoActivity.this, "Metin2 seçildi", Toast.LENGTH_SHORT).show();
+
                     }
                 });
                 maintext3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         et_bilgi_maintext.setText(maintext3.getText());
-                        Toast.makeText(InfoActivity.this, "Metin3 seçildi", Toast.LENGTH_SHORT).show();
+
                     }
                 });
                 ok.setOnClickListener(new View.OnClickListener() {
@@ -364,7 +364,7 @@ public class InfoActivity extends AppCompatActivity {
                             foto.setImageURI(imageUri);
 
                           // String fotoname=String.valueOf(foto.getTag()) ;
-                            Toast.makeText(InfoActivity.this, "seçim yapıldı", Toast.LENGTH_SHORT).show();
+
 
                         }
 

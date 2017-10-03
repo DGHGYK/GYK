@@ -64,13 +64,13 @@ public class PrintActivity extends AppCompatActivity implements AdapterView.OnIt
 
 
 
-        giveorder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        //giveorder.setOnClickListener(new View.OnClickListener() {
+         //   @Override
+         //   public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 //giveorder.setText("Davetiyeniz Sepete Eklendi!");
                 // if(giveorder.get()==null || recipient.getText().toString().equals("")){
-                Toast.makeText(getApplicationContext(),"Davetiyenizin Siparisi alinmistir.", Toast.LENGTH_LONG).show();
+           //     Toast.makeText(getApplicationContext(),"Davetiyenizin Siparisi alinmistir.", Toast.LENGTH_LONG).show();
              //  Toast.makeText(PrintActivity.this, "Davetiyenizin Siparisi alinmistir.", Toast.LENGTH_SHORT).show();
               //  System.out.println("Button Clicked");
 
@@ -85,8 +85,8 @@ public class PrintActivity extends AppCompatActivity implements AdapterView.OnIt
                     toastMsg("Hello how are you today!!");
 
                 }*/
-            }
-        });
+           // }
+       // });
 
 
 
@@ -129,14 +129,14 @@ public class PrintActivity extends AppCompatActivity implements AdapterView.OnIt
 
 
 
-        giveorder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(recipient.getText()==null || recipient.getText().toString().equals("")){
-                    Toast.makeText(getBaseContext(),"Davetiyenin kişiye özel gönderilmesi için davetli adını girmek zorunludur.", Toast.LENGTH_LONG).show();
-                }else{
-                    if(adress.getText()==null || adress.getText().toString().equals("")){
-                        Toast.makeText(getBaseContext(),"Davetiyenin kişiye özel gönderilmesi için davetlinin adresini girmek zorunludur.", Toast.LENGTH_LONG).show();
+     //   giveorder.setOnClickListener(new View.OnClickListener() {
+         //   @Override
+         //   public void onClick(View v) {
+          //      if(recipient.getText()==null || recipient.getText().toString().equals("")){
+                   // Toast.makeText(getBaseContext(),"Davetiyenin kişiye özel gönderilmesi için davetli adını girmek zorunludur.", Toast.LENGTH_LONG).show();
+          //      }else{
+          //          if(adress.getText()==null || adress.getText().toString().equals("")){
+                    //    Toast.makeText(getBaseContext(),"Davetiyenin kişiye özel gönderilmesi için davetlinin adresini girmek zorunludur.", Toast.LENGTH_LONG).show();
 
                            /*(InviteeListSingleton.getInst().isSameNumber( phoneNumber.getText().toString()))
                    {
@@ -164,25 +164,37 @@ public class PrintActivity extends AppCompatActivity implements AdapterView.OnIt
                        startActivity(intent);
                        }*/
 
-                    }
-                }
-            }
-        });
-    }
+          //          }
+
+         //           else {
+
+                      //  Toast.makeText(PrintActivity.this, "Davetiyenizin Siparisi alinmistir.", Toast.LENGTH_LONG).show();
+        //            }
+         //       }
+        //    }
+    //    });
+   }
 
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         TextView mytext= (TextView) view;
        // Toast.makeText(this, mytext.getText() + " " + "Secildi", Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, mytext.getText() + " ", Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(this, mytext.getText() + " ", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+//    Toast.makeText(getBaseContext(), "İstenen bilgileri eksiksiz giriniz.", Toast.LENGTH_LONG).show();
+    }
 
+    public void sepeteEkle(View view) {
+
+        Toast.makeText(PrintActivity.this, "Davetiyenizin Siparisi alinmistir.", Toast.LENGTH_LONG).show();
     }
 }
+
+
 
 
 

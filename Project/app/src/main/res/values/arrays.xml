@@ -31,12 +31,11 @@
 
         <string-array name="spnr_card_unit_price_array">
             <item>Davetiye adedi ve fiyatini seciniz</item>
-            <item>1 davetiye = 0.90 tl</item>
-            <item>50 davetiye = 40 tl</item>
-            <item>100 davetiye = 85 tl</item>
-            <item>150 davetiye = 100 tl</item>
-            <item>500 davetiye = 250 tl</item>
-            <item>1000 davetiye = 500tl</item>
+            <item>10 davetiye = 29.90 tl</item>
+            <item>50 davetiye = 49.90 tl</item>
+            <item>100 davetiye = 59.90 tl</item>
+            <item>250 davetiye = 149.90 tl</item>
+            <item>500 davetiye = 289.90 tl</item>
         </string-array>
 
 
@@ -55,26 +54,22 @@
 
         <string-array name="spnr_envelope_price_array">
             <item>Zarfi adedi ve fiyatini seciniz</item>
-            <item>1 davetiye zarfi = 0.60 tl</item>
+            <item>10 davetiye zarfi = 13 tl</item>
             <item>50 davetiye zarfi = 25 tl</item>
             <item>100 davetiye zarfi = 55 tl</item>
             <item>150 davetiye zarfi = 85 tl</item>
             <item>500 davetiye zarfi = 150 tl</item>
-            <item>1000 davetiye zarfi = 300 tl</item>
-
         </string-array>
 
 
 
         <string-array name="spnr_zarf_astar_price_array">
             <item>Davetiye zarf astari adedi ve fiyatini seciniz</item>
-            <item>1 davetiye zarf astari = 0.30 tl</item>
-            <item>1 davetiye zarf astari = 0.30 tl</item>
+            <item>10 davetiye zarf astari = 6 tl</item>
             <item>50 davetiye zarf astari = 15 tl</item>
             <item>100 davetiye zarf astari = 30 tl</item>
             <item>150 davetiye zarf astari = 45 tl</item>
             <item>500 davetiye zarf astari = 120 tl</item>
-            <item>1000 davetiye zarf astari = 250 tl</item>
         </string-array>
 
 

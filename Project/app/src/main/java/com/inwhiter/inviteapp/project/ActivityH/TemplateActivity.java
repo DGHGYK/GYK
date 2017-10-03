@@ -208,7 +208,7 @@ public class TemplateActivity extends AppCompatActivity {
             s1_tag = (TextView) findViewById(R.id.tv_sablon1_tag);
             s1_tag.setText(tag);
 
-            Toast.makeText(TemplateActivity.this, "şablon1 seçildi", Toast.LENGTH_SHORT).show();
+
 
         }
 
@@ -483,7 +483,7 @@ public class TemplateActivity extends AppCompatActivity {
         Intent intent=new Intent(TemplateActivity.this,LayoutSS.class);
         intent.putExtra("inviteId", inviteId);
         byte[] encoded=takeScreenshot();
-        Toast.makeText(TemplateActivity.this, "Tebrikler Davetiyeniz Oluşturuldu.", Toast.LENGTH_SHORT).show();
+
        intent.putExtra("ss",encoded);
         startActivity(intent);
 
@@ -517,19 +517,7 @@ public class TemplateActivity extends AppCompatActivity {
 
     public byte[] takeScreenshot() {
         View rootView = null;
-       /* switch(id){
-            case R.layout.h_sablon1: rootView = findViewById(R.id.sablon1);
-                break;
-            case R.layout.h_sablon2: rootView = findViewById(R.id.sablon2);
-                break;
-            case R.layout.h_sablon3: rootView = findViewById(R.id.sablon3);
-                break;
-            case R.layout.h_camera1: rootView = findViewById(R.id.camera1);
-                break;
-            case R.layout.h_video1: rootView = findViewById(R.id.video1);
 
-                break;
-        }*/
        if(id==R.layout.h_sablon1) rootView=findViewById(R.id.sablon1);
        else if(id==R.layout.h_sablon2) rootView=findViewById(R.id.sablon2);
        else if(id==R.layout.h_sablon3) rootView=findViewById(R.id.sablon3);
@@ -583,7 +571,7 @@ public class TemplateActivity extends AppCompatActivity {
         c1_foto = (ImageView) findViewById(R.id.iv_camera_foto);
         c1_foto.setImageURI(foto);
 
-        Toast.makeText(TemplateActivity.this, "foto yerleşim sayfası oluşturuldu", Toast.LENGTH_SHORT).show();
+
 
 
     }
@@ -623,7 +611,7 @@ public class TemplateActivity extends AppCompatActivity {
         v1_video.setVideoURI(video);
         v1_video.start();
 
-        Toast.makeText(TemplateActivity.this, "video yerleşim sayfası oluşturuldu", Toast.LENGTH_SHORT).show();
+
 
 
     }
@@ -674,7 +662,7 @@ public class TemplateActivity extends AppCompatActivity {
                 s1_tag = (TextView) findViewById(R.id.tv_sablon1_tag);
                 s1_tag.setText(tag);
 
-                Toast.makeText(TemplateActivity.this, "şablon1 seçildi", Toast.LENGTH_SHORT).show();
+
 
             }
         });
@@ -713,7 +701,7 @@ public class TemplateActivity extends AppCompatActivity {
                 s2_tag = (TextView) findViewById(R.id.tv_sablon2_tag);
                 s2_tag.setText(tag);
 
-                Toast.makeText(TemplateActivity.this, "şablon2 seçildi", Toast.LENGTH_SHORT).show();
+
 
             }
         });
@@ -750,7 +738,7 @@ public class TemplateActivity extends AppCompatActivity {
 
                 s3_tag = (TextView) findViewById(R.id.tv_sablon3_tag);
                 s3_tag.setText(tag);
-                Toast.makeText(TemplateActivity.this, "şablon3 seçildi", Toast.LENGTH_SHORT).show();
+
 
             }
         });

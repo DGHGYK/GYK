@@ -14,7 +14,7 @@
         android:layout_width="194dp"
         android:layout_height="33dp"
         android:text="title"
-        android:textSize="20dp"
+
 
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_sablon3_maintext"
