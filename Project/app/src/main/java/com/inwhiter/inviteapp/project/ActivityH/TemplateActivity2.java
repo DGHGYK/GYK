@@ -1,20 +1,29 @@
 package com.inwhiter.inviteapp.project.ActivityH;
 
-import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
@@ -33,20 +42,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.inwhiter.inviteapp.project.BusineesH.MainFragment;
+//import com.inwhiter.inviteapp.project.R;
+//import com.yalantis.contextmenu.R;
 import com.inwhiter.inviteapp.project.ModelG.Info;
 import com.inwhiter.inviteapp.project.ModelG.Invite;
 import com.inwhiter.inviteapp.project.R;
 import com.rajasharan.layout.RearrangeableLayout;
+import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
+import com.yalantis.contextmenu.lib.MenuObject;
+import com.yalantis.contextmenu.lib.MenuParams;
 import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
 import com.yalantis.contextmenu.lib.interfaces.OnMenuItemLongClickListener;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-public class TemplateActivity extends AppCompatActivity implements OnMenuItemClickListener, OnMenuItemLongClickListener {
-
+public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemClickListener, OnMenuItemLongClickListener {
     private static final String TAG = "DEMO-REARRANGEABLE-LOUT";
     public static String inviteId;
     private RearrangeableLayout root;
@@ -89,68 +105,22 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
 
 
 
+    private FragmentManager fragmentManager;
+    private ContextMenuDialogFragment mMenuDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.h_activity_template);
+        setContentView(R.layout.activity_template2);
 
+        fragmentManager = getSupportFragmentManager();
+        initToolbar();
+        initMenuFragment();
 
-
-
+          /* context menu*/
 
         root = (RearrangeableLayout) findViewById(R.id.rearrangeable_layout);
-
-       /*custom action bar*/
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.h_custom_actionbar_sablon);
-        View mCustomView =getSupportActionBar().getCustomView();
-
-        Button template_select=(Button)mCustomView.findViewById(R.id.btn_actionbar_sablon);
-        final Button color_select=(Button)mCustomView.findViewById(R.id.btn_actionbar_color);
-        Button font_select=(Button)mCustomView.findViewById(R.id.btn_actionbar_font);
-        Button save=(Button)mCustomView.findViewById(R.id.btn_actionbar_save);
-
-        if (getIntent().getExtras().get("menu").equals("video") || getIntent().getExtras().get("menu").equals("camera") ) {
-            View video = findViewById(R.id.btn_actionbar_sablon);
-            video.setVisibility(View.INVISIBLE);
-
-        }
-
-        template_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                themeSelected();
-            }
-        });
-
-        color_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                    colorSelected();
-
-            }
-        });
-
-        font_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fontSelected();
-            }
-        });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerLayout();
-
-            }
-        });
-
-         /* cunstom action bar finish */
-
-        /*info sayfasından gelen bilgiler*/
+          /*info sayfasından gelen bilgiler*/
         info = getIntent().getExtras().getParcelable("info");
         title = info.getTitle();
         maintext = info.getText();
@@ -174,22 +144,36 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
         }
         inviteRef.child(inviteId).setValue(invite);
 
+         /*seçeneğe göre layoutların çağırımı*/
+
+       if (getIntent().getExtras().get("menu").equals("template")) {
+           Toast.makeText(this, "template seçildiii "+title , Toast.LENGTH_SHORT).show();
+           Log.v("Testing",title);
+           setContentView(R.layout.activity_template2);
+           id = R.layout.h_sablon1;
+          // Layout l=findViewById(R.layout.sab)
+           View v=findViewById(R.id.sablon1);
+           s1_title = (TextView)v.findViewById(R.id.tv_sablon1_title);
+           s1_title.setText(title);
+
+           s1_date = (TextView) findViewById(R.id.tv_sablon1_date);
+           s1_date.setText(date);
+
+
+       }
 
 
 
-        /*seçeneğe göre layoutların çağırımı*/
-        if (getIntent().getExtras().get("menu").equals("template")) {
-            id=R.layout.h_sablon1;
-
-            setContentView(R.layout.h_sablon1);
-
-            s1_title = (TextView) findViewById(R.id.tv_sablon1_title);
-            s1_title.setText(title);
-               if(color_select.isClickable()){
-
-               }
 
 
+       /* addFragment(new MainFragment(), true, R.id.container);*/
+
+
+        //setContentView(R.layout.h_sablon1);
+
+
+
+/*
             s1_maintext = (TextView) findViewById(R.id.tv_sablon1_maintext);
             s1_maintext.setText(maintext);
 
@@ -205,15 +189,14 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
             s1_time = (TextView) findViewById(R.id.tv_sablon1_time);
             s1_time.setText(time);
 
-            s1_date = (TextView) findViewById(R.id.tv_sablon1_date);
-            s1_date.setText(date);
+
 
             s1_tag = (TextView) findViewById(R.id.tv_sablon1_tag);
             s1_tag.setText(tag);
 
 
 
-        }
+        }/*
 
         else if (getIntent().getExtras().get("menu").equals("camera")) {
 
@@ -223,11 +206,14 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
         } else if (getIntent().getExtras().get("menu").equals("video")) {
 
             videoLayoutSelected();}
-            //id=R.layout.h_video1;
+        //id=R.layout.h_video1;
 
 
+*/
 
-        /*REARREGENABLE LAYOUT FUNCTION*/
+
+       /* /*REARREGENABLE LAYOUT FUNCTION*/
+       /*
         root.setChildPositionListener(new RearrangeableLayout.ChildPositionListener() {
             @Override
             public void onChildMoved(View childView, Rect oldPosition, Rect newPosition) {
@@ -251,20 +237,15 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
                 //Log.d(TAG, root.toString());
                 return true;
             }
-        });
+        });*/
+
+
+
+
     }
 
-        /* ***************************************************************/
-
-
-
-
-
-
-
-
-        /*fontSelected function*/
-      public void fontSelected() {
+    /*fontSelected function*/
+    public void fontSelected() {
         final Dialog dialog = new Dialog(context);
 
         dialog.setContentView(R.layout.h_custom_dialog_font);
@@ -287,33 +268,34 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
         face4 = Typeface.createFromAsset(getAssets(), "fonts/Gecko.ttf");
         rb_geckofont.setTypeface(face4);
 
-          final Button ok = (Button) dialog.findViewById(R.id.btn_cdfont_ok);
-            ok.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (rb_bonbonRegularfont.isChecked()) {
-                        font_edit(face);
-                    } else if (rb_solenafont.isChecked()) {
-                        font_edit(face2);
+        final Button ok = (Button) dialog.findViewById(R.id.btn_cdfont_ok);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rb_bonbonRegularfont.isChecked()) {
+                    font_edit(face);
+                } else if (rb_solenafont.isChecked()) {
+                    font_edit(face2);
 
-                    } else if (rb_glaresomefont.isChecked()) {
-                        font_edit(face3);
+                } else if (rb_glaresomefont.isChecked()) {
+                    font_edit(face3);
 
-                    } else if (rb_geckofont.isChecked()) {
-                        font_edit(face4);
-
-                    }
-
-                    dialog.dismiss();
+                } else if (rb_geckofont.isChecked()) {
+                    font_edit(face4);
 
                 }
-            });
+
+                dialog.dismiss();
+
+            }
+        });
 
 
         dialog.show();
 
 
     }
+
     /* ******************************************************************/
     public void font_edit(Typeface tf) {
         if (getIntent().getExtras().get("menu").equals("template")) {
@@ -387,7 +369,6 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
 
 
     }
-
     /*colorSelected function*/
     public void colorSelected() {
         OpenColorPickerDialog(false);
@@ -396,7 +377,7 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
 
     public void OpenColorPickerDialog(boolean AlphaSupport) {
 
-        AmbilWarnaDialog ambilWarnaDialog = new AmbilWarnaDialog(TemplateActivity.this, DefaultColor, AlphaSupport, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+        AmbilWarnaDialog ambilWarnaDialog = new AmbilWarnaDialog(TemplateActivity2.this, DefaultColor, AlphaSupport, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onOk(AmbilWarnaDialog ambilWarnaDialog, int color) {
 
@@ -408,14 +389,14 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
 
 
                            /*sadece şablon1 in elemanlarını yapabildim */
-                            s1_title.setTextColor(color);
-                            s1_maintext.setTextColor(color);
-                            s1_family1.setTextColor(color);
-                            s1_family2.setTextColor(color);
-                            s1_adress.setTextColor(color);
-                            s1_tag.setTextColor(color);
-                            s1_time.setTextColor(color);
-                            s1_date.setTextColor(color);
+                        s1_title.setTextColor(color);
+                        s1_maintext.setTextColor(color);
+                        s1_family1.setTextColor(color);
+                        s1_family2.setTextColor(color);
+                        s1_adress.setTextColor(color);
+                        s1_tag.setTextColor(color);
+                        s1_time.setTextColor(color);
+                        s1_date.setTextColor(color);
                     /*SpannableString ss=  new SpannableString(title);
                 ss.setSpan(new ForegroundColorSpan(color), 0, 5, 0);*/}
                     else if(id==R.layout.h_sablon2){
@@ -445,27 +426,27 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
                 }
                 else if (getIntent().getExtras().get("menu").equals("camera")) {
 
-                            c1_title.setTextColor(color);
-                            c1_maintext.setTextColor(color);
-                            c1_family1.setTextColor(color);
-                            c1_family2.setTextColor(color);
-                            c1_adress.setTextColor(color);
-                            c1_tag.setTextColor(color);
-                            c1_time.setTextColor(color);
-                            c1_date.setTextColor(color);
+                    c1_title.setTextColor(color);
+                    c1_maintext.setTextColor(color);
+                    c1_family1.setTextColor(color);
+                    c1_family2.setTextColor(color);
+                    c1_adress.setTextColor(color);
+                    c1_tag.setTextColor(color);
+                    c1_time.setTextColor(color);
+                    c1_date.setTextColor(color);
 
 
                 }
                 else if (getIntent().getExtras().get("menu").equals("video")) {
 
-                            v1_title.setTextColor(color);
-                            v1_maintext.setTextColor(color);
-                            v1_family1.setTextColor(color);
-                            v1_family2.setTextColor(color);
-                            v1_adress.setTextColor(color);
-                            v1_tag.setTextColor(color);
-                            v1_time.setTextColor(color);
-                            v1_date.setTextColor(color);
+                    v1_title.setTextColor(color);
+                    v1_maintext.setTextColor(color);
+                    v1_family1.setTextColor(color);
+                    v1_family2.setTextColor(color);
+                    v1_adress.setTextColor(color);
+                    v1_tag.setTextColor(color);
+                    v1_time.setTextColor(color);
+                    v1_date.setTextColor(color);
 
 
                 }
@@ -474,7 +455,7 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
             @Override
             public void onCancel(AmbilWarnaDialog ambilWarnaDialog) {
 
-                Toast.makeText(TemplateActivity.this, "Color Picker Closed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TemplateActivity2.this, "Color Picker Closed", Toast.LENGTH_SHORT).show();
             }
         });
         ambilWarnaDialog.show();
@@ -483,11 +464,11 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
 
     /*layout screenshot*/
     public void registerLayout() {
-        Intent intent=new Intent(TemplateActivity.this,LayoutSS.class);
+        Intent intent=new Intent(TemplateActivity2.this,LayoutSS.class);
         intent.putExtra("inviteId", inviteId);
         byte[] encoded=takeScreenshot();
 
-       intent.putExtra("ss",encoded);
+        intent.putExtra("ss",encoded);
         startActivity(intent);
 
 
@@ -521,11 +502,11 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
     public byte[] takeScreenshot() {
         View rootView = null;
 
-       if(id==R.layout.h_sablon1) rootView=findViewById(R.id.sablon1);
-       else if(id==R.layout.h_sablon2) rootView=findViewById(R.id.sablon2);
-       else if(id==R.layout.h_sablon3) rootView=findViewById(R.id.sablon3);
-       else if(id==R.layout.h_camera1) rootView=findViewById(R.id.camera1);
-       //else if(id==R.layout.h_video1) rootView=findViewById(R.id.video1);
+        if(id==R.layout.h_sablon1) rootView=findViewById(R.id.sablon1);
+        else if(id==R.layout.h_sablon2) rootView=findViewById(R.id.sablon2);
+        else if(id==R.layout.h_sablon3) rootView=findViewById(R.id.sablon3);
+        else if(id==R.layout.h_camera1) rootView=findViewById(R.id.camera1);
+        //else if(id==R.layout.h_video1) rootView=findViewById(R.id.video1);
 
         View v1=rootView;
         v1.setDrawingCacheEnabled(true);
@@ -539,6 +520,7 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
         return byteArray;
 
     }
+
     /*fotoLayoutSelected function*/
     public void fotoLayoutSelected(){
 
@@ -578,7 +560,7 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
 
 
     }
-/*videoLayoutSelected*/
+    /*videoLayoutSelected*/
     public void videoLayoutSelected(){
 
         setContentView(R.layout.h_video1);
@@ -761,17 +743,155 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
     }
 
 
+
+
+
+    private void initMenuFragment() {
+        MenuParams menuParams = new MenuParams();
+        menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.tool_bar_height));
+        menuParams.setMenuObjects(getMenuObjects());
+        menuParams.setClosableOutside(false);
+        mMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
+        mMenuDialogFragment.setItemClickListener(this);
+        mMenuDialogFragment.setItemLongClickListener(this);
+    }
+
+    private List<MenuObject> getMenuObjects() {
+        // You can use any [resource, bitmap, drawable, color] as image:
+        // item.setResource(...)
+        // item.setBitmap(...)
+        // item.setDrawable(...)
+        // item.setColor(...)
+        // You can set image ScaleType:
+        // item.setScaleType(ScaleType.FIT_XY)
+        // You can use any [resource, drawable, color] as background:
+        // item.setBgResource(...)
+        // item.setBgDrawable(...)
+        // item.setBgColor(...)
+        // You can use any [color] as text color:
+        // item.setTextColor(...)
+        // You can set any [color] as divider color:
+        // item.setDividerColor(...)
+
+        List<MenuObject> menuObjects = new ArrayList<>();
+
+        MenuObject close = new MenuObject();
+        close.setResource(R.drawable.book);
+
+        MenuObject template = new MenuObject("Şablon");
+        template.setResource(R.mipmap.ic_launcher);
+
+        MenuObject color = new MenuObject("Renk");
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        color.setBitmap(b);
+
+        MenuObject font = new MenuObject("Yazı Tipi");
+        BitmapDrawable bd = new BitmapDrawable(getResources(),
+                BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher));
+        font.setDrawable(bd);
+
+       /* MenuObject music = new MenuObject("Müzik");
+        music.setResource(R.mipmap.ic_launcher);*/
+
+        MenuObject save= new MenuObject("Kaydet");
+        save.setResource(R.mipmap.ic_launcher);
+
+
+        menuObjects.add(close);
+        menuObjects.add(template);
+        menuObjects.add(color);
+        menuObjects.add(font);
+        //menuObjects.add(music);
+        menuObjects.add(save);
+
+
+
+        return menuObjects;
+    }
+
+    private void initToolbar() {
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        TextView mToolBarTextView = (TextView) findViewById(R.id.text_view_toolbar_title);
+        setSupportActionBar(mToolbar);
+        if (getSupportActionBar() != null) {
+
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+        mToolbar.setNavigationIcon(R.mipmap.ic_launcher_round);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                onBackPressed();
+            }
+        });
+        mToolBarTextView.setText("InWhiter");
+    }
+
+    protected void addFragment(Fragment fragment, boolean addToBackStack, int containerId) {
+        invalidateOptionsMenu();
+        String backStackName = fragment.getClass().getName();
+        boolean fragmentPopped = fragmentManager.popBackStackImmediate(backStackName, 0);
+        if (!fragmentPopped) {
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.add(containerId, fragment, backStackName)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            if (addToBackStack)
+                transaction.addToBackStack(backStackName);
+            transaction.commit();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.context_menu:
+                if (fragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
+                    mMenuDialogFragment.show(fragmentManager, ContextMenuDialogFragment.TAG);
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mMenuDialogFragment != null && mMenuDialogFragment.isAdded()) {
+            mMenuDialogFragment.dismiss();
+        } else {
+            finish();
+        }
+    }
+
     @Override
     public void onMenuItemClick(View clickedView, int position) {
+        if(position==1){
 
+            themeSelected();
+        }
+        else if(position==2){
+            colorSelected();
+        }
+        else if(position==3){
+            fontSelected();
+        }
+        else if(position==4){
+            registerLayout();
+        }
+        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onMenuItemLongClick(View clickedView, int position) {
-
+        Toast.makeText(this, "Long clicked on position: " + position, Toast.LENGTH_SHORT).show();
     }
 }
-
-
-
-

@@ -19,7 +19,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/icooon"
@@ -51,20 +50,22 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".BusinessG.FirebaseToken">
+        <service android:name=".BusinessG.FirebaseToken">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name=".BusinessG.FirebaseMessaging" android:enabled="true"
+            android:name=".BusinessG.FirebaseMessaging"
+            android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
+        <activity android:name=".ActivityH.TemplateActivity2"
+            android:theme="@style/PageTheme"></activity>
     </application>
 
 </manifest>
