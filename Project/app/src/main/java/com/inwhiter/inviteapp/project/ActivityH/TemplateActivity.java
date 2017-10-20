@@ -46,7 +46,7 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 public class TemplateActivity extends AppCompatActivity {
 
     private static final String TAG = "DEMO-REARRANGEABLE-LOUT";
-    public static String inviteId;
+    public String inviteId;
     private RearrangeableLayout root;
     private FirebaseAuth mAuth;
     private StorageReference mStorageRef;
@@ -490,7 +490,7 @@ public class TemplateActivity extends AppCompatActivity {
 
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference isRef = mStorageRef.child("invites/"+TemplateActivity.inviteId+".jpg");
+        StorageReference isRef = mStorageRef.child("invites/"+inviteId+".jpg");
 
         UploadTask uploadTask = isRef.putBytes(encoded);
         uploadTask.addOnFailureListener(new OnFailureListener() {

@@ -10,6 +10,7 @@ public class Invitation {
 
     private String imageText;
     private Uri imageURI;
+    private String details;
 
 
     public Invitation() {
@@ -34,5 +35,13 @@ public class Invitation {
 
     public void setImageURI(Uri imageURI) {
         this.imageURI = imageURI;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 }

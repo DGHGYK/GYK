@@ -27,11 +27,13 @@ import java.util.List;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView inviteId;
         public ImageView inviteImage;
+        public TextView details;
 
         public MyViewHolder(View view) {
             super(view);
             inviteId = (TextView) view.findViewById(R.id.tv_recycler_item_id);
             inviteImage = (ImageView) view.findViewById(R.id.iv_recycler_item_image);
+            details = (TextView) view.findViewById(R.id.tv_recycler_item_details);
 
         }
     }
@@ -53,7 +55,7 @@ import java.util.List;
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-
+        holder.details.setText(horizontalList.get(position).getDetails());
         holder.inviteId.setText(horizontalList.get(position).getImageText());
         Glide
                 .with(context)
@@ -62,11 +64,10 @@ import java.util.List;
                 .placeholder(R.drawable.giris)
                 .into(holder.inviteImage);
 
-
         holder.inviteId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("bisey", "bisey");
+                Log.d("Recyler", "bisey");
             }
         });
     }

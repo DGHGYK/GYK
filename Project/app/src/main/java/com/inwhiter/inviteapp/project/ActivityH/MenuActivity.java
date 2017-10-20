@@ -9,9 +9,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.format.DateFormat;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,10 +29,15 @@ import com.inwhiter.inviteapp.project.ActivityD.PrintActivity;
 import com.inwhiter.inviteapp.project.ActivityG.InviteeActivity;
 import com.inwhiter.inviteapp.project.ActivityG.LoginActivity;
 import com.inwhiter.inviteapp.project.BusinessG.AllInvitesRecyclerAdapter;
+import com.inwhiter.inviteapp.project.BusinessG.RecyclerItemClickListener;
 import com.inwhiter.inviteapp.project.ModelG.Invitation;
 import com.inwhiter.inviteapp.project.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import android.text.format.DateFormat;
+
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -90,6 +98,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
 
+
  //DUYGUUUUU DAVETIYEMI BASKIYA GONDER
         btn_menu_copy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +109,27 @@ public class MenuActivity extends AppCompatActivity {
 
             }
         });
+
+
+        //recycleview içindeki eski davetiye imajlarına basılınca devetlilerine gitmek için
+
+        invite_recycler_view.addOnItemTouchListener(
+                new RecyclerItemClickListener(getBaseContext(), invite_recycler_view ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        TextView tv_inviteId= (TextView) view.findViewById(R.id.tv_recycler_item_id);
+                        String inviteId= (String) tv_inviteId.getText();
+                        Intent intent=new Intent(MenuActivity.this, InviteeActivity.class);
+                        intent.putExtra("inviteId", inviteId);
+                        startActivity(intent);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
+
+
 
     }
 
@@ -118,12 +148,26 @@ public class MenuActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String inviteId = snapshot.getKey();
                     String userId = snapshot.child("userId").getValue().toString();
+                    String title="";
+                    String fDate="";
+                    if(snapshot.child("info/title").exists()) {
+                        title = snapshot.child("info/title").getValue().toString();
+                    }
+
+                    if(snapshot.child("createdDate/time").exists()) {
+                        Long time = snapshot.child("createdDate/time").getValue(Long.class);
+                        Date date = new Date(time);
+                        fDate = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(date);
+                        //DateFormat df = new DateFormat();
+                        //df.format("dd--MM--yyyy hh:mm", date);
+
+                    }
+
                     if (mAuth.getCurrentUser().getUid().equals(userId)) {
                         final Invitation inv = new Invitation();
                         storage.getReference().child("invites/" + inviteId + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-
                                 inv.setImageURI(uri);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -132,12 +176,13 @@ public class MenuActivity extends AppCompatActivity {
                                 inv.setImageURI(Uri.parse("android.resource://com.inwhiter.inviteapp.project/" + R.drawable.giris));
                             }
                         });
-                       // inv.setImageText(snapshot.child("info").child("title").getValue().toString() + " / " + snapshot.child("createdDate").getValue().toString());
+                        inv.setImageText(inviteId);
+                        inv.setDetails(title + " - "+fDate);
                         horizontalList.add(inv);
                     }
                 }
                 if (horizontalList.size() == 0) {
-                    Invitation inv = new Invitation("asfsdf", Uri.parse("android.resource://com.inwhiter.inviteapp.project/" + R.drawable.giris));
+                    Invitation inv = new Invitation("", Uri.parse("android.resource://com.inwhiter.inviteapp.project/" + R.drawable.giris));
                     horizontalList.add(inv);
                 }
                 recyclerAdapter=new AllInvitesRecyclerAdapter(horizontalList, MenuActivity.this);
@@ -148,6 +193,7 @@ public class MenuActivity extends AppCompatActivity {
                 invite_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
                 invite_recycler_view.setAdapter(recyclerAdapter);
+
 
             }
 

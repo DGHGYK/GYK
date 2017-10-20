@@ -46,6 +46,7 @@ public class InviteeActivity extends AppCompatActivity {
     CheckBox checkAll;
     Button deleteInvitee;
     Button addManually;
+    String inviteId;
     final int CONTACT_PICK_REQUEST = 1000;
 
     @Override
@@ -53,6 +54,12 @@ public class InviteeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invitee);
         String titlem=getSupportActionBar().getTitle().toString();
+
+        Bundle bundle= getIntent().getExtras();
+        if(bundle!=null){
+            inviteId = bundle.getString("inviteId");
+        }
+
 
         SpannableString s = new SpannableString(titlem);
         s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -126,6 +133,7 @@ public class InviteeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(InviteeActivity.this, AddManuallyActivity.class);
+                intent.putExtra("inviteId", inviteId);
                 startActivity(intent);
             }
         });
@@ -312,7 +320,7 @@ public class InviteeActivity extends AppCompatActivity {
                 DatabaseReference inviteeRef = database.getReference("invitee");
 
                 String inviteeId = inviteeRef.push().getKey();
-                Invitee in = new Invitee(inviteeId, TemplateActivity.inviteId, 0, c.getName(), c.getPhoneNumber(), new InviteeStatus());
+                Invitee in = new Invitee(inviteeId, inviteId, 0, c.getName(), c.getPhoneNumber(), new InviteeStatus());
                 //Singleton listeye yeni kişi eklenir
                 InviteeListSingleton.getInst().getInviteeList().add(in);
 

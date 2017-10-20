@@ -28,6 +28,7 @@ public class AddManuallyActivity extends AppCompatActivity {
     EditText name;
     EditText phoneNumber;
     Button addManually;
+    String inviteId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,11 @@ public class AddManuallyActivity extends AppCompatActivity {
         SpannableString s = new SpannableString(titlem);
         s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getSupportActionBar().setTitle(s);
+
+        Bundle bundle= getIntent().getExtras();
+        if(bundle!=null){
+            inviteId = bundle.getString("inviteId");
+        }
 
         explanation = (TextView) findViewById(R.id.tv_addManually_explanation);
         name = (EditText) findViewById(R.id.et_addManually_name);
@@ -65,7 +71,7 @@ public class AddManuallyActivity extends AppCompatActivity {
                         DatabaseReference inviteeRef = database.getReference("invitee");
 
                         String inviteeId = inviteeRef.push().getKey();
-                        Invitee in = new Invitee(inviteeId, TemplateActivity.inviteId, 0, name.getText().toString(), phoneNumber.getText().toString(), new InviteeStatus());
+                        Invitee in = new Invitee(inviteeId, inviteId, 0, name.getText().toString(), phoneNumber.getText().toString(), new InviteeStatus());
                         //Singleton listeye yeni kişi eklenir
                         InviteeListSingleton.getInst().getInviteeList().add(in);
 

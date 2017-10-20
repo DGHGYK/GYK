@@ -79,6 +79,7 @@ public class LayoutSS extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LayoutSS.this, InviteeActivity.class);
+                intent.putExtra("inviteId", inviteId);
                 startActivity(intent);
             }
         });

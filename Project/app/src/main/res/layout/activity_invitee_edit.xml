@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Ad Soyad"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:text="Ad Soyad" />
 
     <EditText
         android:id="@+id/et_inviteeEdit_name"
@@ -29,8 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
         android:layout_weight="1"
-        android:text="Telefon Numarası"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:text="Telefon Numarası" />
 
     <EditText
         android:id="@+id/et_inviteeEdit_phoneNumber"
@@ -46,8 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
         android:layout_weight="1"
-        android:text="Yanıtı"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:text="Yanıtı" />
 
     <Spinner
         android:id="@+id/sp_inviteeEdit_answer"
@@ -61,8 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
         android:layout_weight="1"
-        android:text="Gelecek Kişi Sayısı"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:text="Gelecek Kişi Sayısı" />
 
     <Spinner
         android:id="@+id/sp_inviteeEdit_numberOfPeople"
@@ -76,8 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
         android:layout_weight="1"
-        android:text="Baskı Davetiye Gönder"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:text="Baskı Davetiye Gönder"/>
 
     <CheckBox
         android:id="@+id/cb_inviteeEdit_softcopy"
@@ -85,8 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
         android:layout_weight="1"
-        android:text="Mobil Davetiye Gönder"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:text="Mobil Davetiye Gönder"/>
 
     <Button
         android:id="@+id/bt_inviteeEdit_edit"
