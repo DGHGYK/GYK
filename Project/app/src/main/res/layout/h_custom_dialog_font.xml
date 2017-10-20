@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLogin"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -19,12 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
+            android:textColor="@color/text_color"
             android:text="Bonbon Font" />
 
 
         <RadioButton
             android:id="@+id/rb_bilgi_geckofont"
             android:layout_width="match_parent"
+            android:textColor="@color/text_color"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:text="Gecko Font" />
@@ -39,6 +40,7 @@
         <RadioButton
             android:id="@+id/rb_bilgi_solenafont"
             android:layout_width="match_parent"
+            android:textColor="@color/text_color"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:text="Solena Font" />
@@ -46,6 +48,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/text_color"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
             android:weightSum="1">
@@ -55,6 +58,7 @@
                 android:layout_width="95dp"
                 android:layout_height="35dp"
                 android:layout_marginBottom="10dp"
+
                 android:layout_marginLeft="110dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"

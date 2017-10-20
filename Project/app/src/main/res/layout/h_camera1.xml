@@ -22,21 +22,24 @@
         android:id="@+id/tv_camera_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
         android:ems="10"
-        android:textSize="20dp"
         android:inputType="textPersonName"
-        android:text="başlık" />
+        android:paddingLeft="20dp"
+        android:text="başlık"
+        android:textAllCaps="true"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_camera_maintext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
         android:ems="10"
         android:inputType="textMultiLine"
+        android:paddingLeft="20dp"
 
-        android:text="ana metin" />
+        android:text="ana metin"
+        android:textAlignment="center" />
 
 
     <TextView

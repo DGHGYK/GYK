@@ -1,5 +1,6 @@
 package com.inwhiter.inviteapp.project.ActivityH;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +10,11 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -20,15 +23,21 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -42,11 +51,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptorMediaplayer;
 import com.inwhiter.inviteapp.project.BusineesH.MainFragment;
 //import com.inwhiter.inviteapp.project.R;
 //import com.yalantis.contextmenu.R;
 import com.inwhiter.inviteapp.project.ModelG.Info;
 import com.inwhiter.inviteapp.project.ModelG.Invite;
+import com.inwhiter.inviteapp.project.ModelH.Media;
 import com.inwhiter.inviteapp.project.R;
 import com.rajasharan.layout.RearrangeableLayout;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
@@ -59,6 +70,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -67,9 +79,23 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
     public static String inviteId;
     private RearrangeableLayout root;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+
     private StorageReference mStorageRef;
 
     int id;//hangi layouttayız ?
+    public List<Media> playlist=new ArrayList<Media>();
+    public ListView lv_playlist;
+    public ImageView icon_play;
+    public MediaPlayer mp = null;
+    public double startTime = 0;
+    public double finalTime = 0;
+    public int oneTimeOnly = 0;
+    public Handler myHandler = new Handler() ;
+    public SeekBar seekBar;
+    public ImageView play_pause,on_off;
+    public TextView current_duration,total_duration,current_music;
+    Button btn_ok;
 
 
 
@@ -112,12 +138,11 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_template2);
+        contextMenu();
 
-        fragmentManager = getSupportFragmentManager();
-        initToolbar();
-        initMenuFragment();
 
-          /* context menu*/
+
+
 
         root = (RearrangeableLayout) findViewById(R.id.rearrangeable_layout);
           /*info sayfasından gelen bilgiler*/
@@ -147,69 +172,53 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
          /*seçeneğe göre layoutların çağırımı*/
 
        if (getIntent().getExtras().get("menu").equals("template")) {
-           Toast.makeText(this, "template seçildiii "+title , Toast.LENGTH_SHORT).show();
-           Log.v("Testing",title);
-           setContentView(R.layout.activity_template2);
-           id = R.layout.h_sablon1;
-          // Layout l=findViewById(R.layout.sab)
+           //Toast.makeText(this, "template seçildiii "+title , Toast.LENGTH_SHORT).show();
+           id = R.layout.h_sablonbir;
+           setContentView(R.layout.h_sablonbir);
+           contextMenu();
+
            View v=findViewById(R.id.sablon1);
+
            s1_title = (TextView)v.findViewById(R.id.tv_sablon1_title);
            s1_title.setText(title);
 
-           s1_date = (TextView) findViewById(R.id.tv_sablon1_date);
+           s1_date = (TextView)v. findViewById(R.id.tv_sablon1_date);
            s1_date.setText(date);
 
-
-       }
-
-
-
-
-
-       /* addFragment(new MainFragment(), true, R.id.container);*/
-
-
-        //setContentView(R.layout.h_sablon1);
-
-
-
-/*
-            s1_maintext = (TextView) findViewById(R.id.tv_sablon1_maintext);
+           s1_maintext = (TextView) v.findViewById(R.id.tv_sablon1_maintext);
             s1_maintext.setText(maintext);
 
-            s1_family1 = (TextView) findViewById(R.id.tv_sablon1_family1);
+            s1_family1 = (TextView)v. findViewById(R.id.tv_sablon1_family1);
             s1_family1.setText(family1);
 
-            s1_family2 = (TextView) findViewById(R.id.tv_sablon1_family2);
+            s1_family2 = (TextView)v. findViewById(R.id.tv_sablon1_family2);
             s1_family2.setText(family2);
 
-            s1_adress = (TextView) findViewById(R.id.tv_sablon1_adress);
+            s1_adress = (TextView)v. findViewById(R.id.tv_sablon1_adress);
             s1_adress.setText(adress);
 
-            s1_time = (TextView) findViewById(R.id.tv_sablon1_time);
+            s1_time = (TextView)v. findViewById(R.id.tv_sablon1_time);
             s1_time.setText(time);
 
-
-
-            s1_tag = (TextView) findViewById(R.id.tv_sablon1_tag);
+            s1_tag = (TextView)v. findViewById(R.id.tv_sablon1_tag);
             s1_tag.setText(tag);
 
 
 
-        }/*
+        }
 
         else if (getIntent().getExtras().get("menu").equals("camera")) {
 
             fotoLayoutSelected();
-            id=R.layout.h_camera1;
+            id=R.layout.h_camerabir;
 
-        } else if (getIntent().getExtras().get("menu").equals("video")) {
+      /*  } else if (getIntent().getExtras().get("menu").equals("video")) {
 
             videoLayoutSelected();}
-        //id=R.layout.h_video1;
+        //id=R.layout.h_video1;*/
 
 
-*/
+
 
 
        /* /*REARREGENABLE LAYOUT FUNCTION*/
@@ -242,11 +251,19 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
 
 
+    }}
+    public void contextMenu(){
+        /* context menu*/
+        fragmentManager = getSupportFragmentManager();
+        initToolbar();
+        initMenuFragment();
+
+
     }
 
     /*fontSelected function*/
     public void fontSelected() {
-        final Dialog dialog = new Dialog(context);
+        final Dialog dialog = new Dialog(context,R.style.dialogTheme);
 
         dialog.setContentView(R.layout.h_custom_dialog_font);
         dialog.setTitle("Font");
@@ -299,7 +316,7 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
     /* ******************************************************************/
     public void font_edit(Typeface tf) {
         if (getIntent().getExtras().get("menu").equals("template")) {
-            if(id==R.layout.h_sablon1){
+            if(id==R.layout.h_sablonbir){
 
 
 
@@ -314,7 +331,7 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
                 s1_date.setTypeface(tf);
                     /*SpannableString ss=  new SpannableString(title);
                 ss.setSpan(new ForegroundColorSpan(color), 0, 5, 0);*/}
-            else if(id==R.layout.h_sablon2){
+            else if(id==R.layout.h_sabloniki){
                 s2_title.setTypeface(tf);
                 s2_maintext.setTypeface(tf);
                 s2_family1.setTypeface(tf);
@@ -326,7 +343,7 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
             }
 
-            else if(id==R.layout.h_sablon3){
+            else if(id==R.layout.h_sablonuc){
                 s3_title.setTypeface(tf);
                 s3_maintext.setTypeface(tf);
                 s3_family1.setTypeface(tf);
@@ -384,7 +401,8 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
                 DefaultColor = color;
                 /*burada rengni değiştirecekleri yaz*//*çözüm bulamadım amele gibi hepsini tek tek yazacağim*/
                 if (getIntent().getExtras().get("menu").equals("template")) {
-                    if(id==R.layout.h_sablon1){
+                    if(id==R.layout.h_sablonbir){
+
 
 
 
@@ -399,7 +417,7 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
                         s1_date.setTextColor(color);
                     /*SpannableString ss=  new SpannableString(title);
                 ss.setSpan(new ForegroundColorSpan(color), 0, 5, 0);*/}
-                    else if(id==R.layout.h_sablon2){
+                    else if(id==R.layout.h_sabloniki){
                         s2_title.setTextColor(color);
                         s2_maintext.setTextColor(color);
                         s2_family1.setTextColor(color);
@@ -411,7 +429,7 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
                     }
 
-                    else if(id==R.layout.h_sablon3){
+                    else if(id==R.layout.h_sablonuc){
                         s3_title.setTextColor(color);
                         s3_maintext.setTextColor(color);
                         s3_family1.setTextColor(color);
@@ -502,10 +520,10 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
     public byte[] takeScreenshot() {
         View rootView = null;
 
-        if(id==R.layout.h_sablon1) rootView=findViewById(R.id.sablon1);
-        else if(id==R.layout.h_sablon2) rootView=findViewById(R.id.sablon2);
-        else if(id==R.layout.h_sablon3) rootView=findViewById(R.id.sablon3);
-        else if(id==R.layout.h_camera1) rootView=findViewById(R.id.camera1);
+        if(id==R.layout.h_sablonbir) rootView=findViewById(R.id.sablon1);
+        else if(id==R.layout.h_sabloniki) rootView=findViewById(R.id.sablon2);
+        else if(id==R.layout.h_sablonuc) rootView=findViewById(R.id.sablon3);
+        else if(id==R.layout.h_camerabir) rootView=findViewById(R.id.camera1);
         //else if(id==R.layout.h_video1) rootView=findViewById(R.id.video1);
 
         View v1=rootView;
@@ -524,7 +542,8 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
     /*fotoLayoutSelected function*/
     public void fotoLayoutSelected(){
 
-        setContentView(R.layout.h_camera1);
+        setContentView(R.layout.h_camerabir);
+        contextMenu();
 
         fotoS=getIntent().getExtras().getString("foto");
         foto=Uri.parse(fotoS);//GAMZE FIRABASE E ATACAĞIN RESİM
@@ -605,7 +624,7 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
     /*themeSelected function*/
     public void themeSelected() {
-        final Dialog dialog_theme = new Dialog(context);
+        final Dialog dialog_theme = new Dialog(context,R.style.dialogTheme);
 
         dialog_theme.setContentView(R.layout.h_custom_dilaog_sablon_choose);
         dialog_theme.setTitle("şablon");
@@ -620,8 +639,9 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
             @Override
             public void onClick(View v) {
-                id=R.layout.h_sablon1;
-                setContentView(R.layout.h_sablon1);
+                id=R.layout.h_sablonbir;
+                setContentView(R.layout.h_sablonbir);
+                contextMenu();
                 s1_title = (TextView) findViewById(R.id.tv_sablon1_title);
                 s1_title.setText(title);
 
@@ -658,9 +678,10 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
             @Override
             public void onClick(View v) {
-                id=R.layout.h_sablon2;
+                id=R.layout.h_sabloniki;
 
-                setContentView(R.layout.h_sablon2);
+                setContentView(R.layout.h_sabloniki);
+                contextMenu();
                 s2_title = (TextView) findViewById(R.id.tv_sablon2_title);
                 s2_title.setText(title);
 
@@ -696,9 +717,10 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
             @Override
             public void onClick(View v) {
-                id=R.layout.h_sablon3;
+                id=R.layout.h_sablonuc;
 
-                setContentView(R.layout.h_sablon3);
+                setContentView(R.layout.h_sablonuc);
+                contextMenu();
                 s3_title = (TextView) findViewById(R.id.tv_sablon3_title);
                 s3_title.setText(title);
 
@@ -741,12 +763,268 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
 
     }
+    public void MusicAdd(){
+        final Dialog dialog = new Dialog(context,R.style.dialogTheme);
+
+        dialog.setContentView(R.layout.h_mediaplayer_custom_dialog);
+        dialog.setTitle("Media player");
 
 
 
 
 
-    private void initMenuFragment() {
+
+        //layout_media_player=(Layout) findViewById(R.layout.h_satir_mediaplayer);
+        seekBar=(SeekBar)dialog.findViewById(R.id.seek_bar);
+        lv_playlist=(ListView)dialog.findViewById(R.id.lv_playlist);
+        current_duration=(TextView)dialog.findViewById(R.id.txt_current_duration);
+        current_music=(TextView)dialog.findViewById(R.id.txt_current_music);
+        total_duration=(TextView)dialog.findViewById(R.id.txt_total_duration);
+        play_pause=(ImageView)dialog.findViewById(R.id.btn_play_pause);
+        btn_ok=(Button)dialog.findViewById(R.id.btn_ok);
+
+        // icon_play= (ImageView)findViewById(R.id.media_simge);
+
+
+        play_pause.setVisibility(View.INVISIBLE);
+
+
+
+        playlist.add(new Media("dm",false));
+        playlist.add(new Media("happy1",false));
+        playlist.add(new Media("happy2",false));
+        playlist.add(new Media("happy3",false));
+        playlist.add(new Media("slow1",false));
+        playlist.add(new Media("slow2",false));
+
+        final CustomAdaptorMediaplayer adp=new CustomAdaptorMediaplayer((Activity) context, playlist);
+        lv_playlist.setAdapter(adp);
+
+        lv_playlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                final Media media = playlist.get(position);
+                media.setIs_play(true);
+                adp.notifyDataSetChanged();
+
+                btn_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String firebase_music_name=media.getMusic_name();
+                        database = FirebaseDatabase.getInstance();
+                        DatabaseReference musicRef = database.getReference("invite").child(inviteId).child("info").child("music");
+                        musicRef.setValue(firebase_music_name);
+                        Toast.makeText(TemplateActivity2.this,media.getMusic_name()+ " seçildi", Toast.LENGTH_SHORT).show();
+
+                        mp.stop();
+
+                        dialog.dismiss();
+
+                    }
+                });
+
+                //play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+                play_pause.setVisibility(View.VISIBLE);
+                if (media.getMusic_name().equals("dm")) {
+
+
+                    if (mp != null) {
+
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+                        mp.reset();
+
+                    }
+
+                    mp = MediaPlayer.create(TemplateActivity2.this, R.raw.dm);
+                    // icon_play.setImageDrawable(getResources().getDrawable(R.drawable.icon_music_play));
+
+                    current_music.setText("Düğün Marşı");
+                    play();
+
+
+
+
+                }
+                else if(media.getMusic_name().equals("happy1"))
+
+                {
+                    if (mp != null) {
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
+                        mp.reset();
+
+                    }
+                    mp = MediaPlayer.create(TemplateActivity2.this, R.raw.happy1);
+                    // icon_play.setImageDrawable(getResources().getDrawable(R.drawable.icon_music_play));
+                    current_music.setText("Happy 1");
+                    play();
+
+                }
+                else if(media.getMusic_name().equals("happy2"))
+
+                {
+                    if (mp != null) {
+
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+                        mp.reset();
+
+
+                    }
+                    mp = MediaPlayer.create(TemplateActivity2.this, R.raw.happy2);
+                    current_music.setText("Happy2");
+                    play();
+
+                }
+                else if(media.getMusic_name().equals("happy3"))
+
+                {
+                    if (mp != null) {
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
+                        mp.reset();
+
+
+                    }
+                    mp = MediaPlayer.create(TemplateActivity2.this, R.raw.happy3);
+                    current_music.setText("Happy3");
+                    play();
+
+                }
+                else if(media.getMusic_name().equals("slow1"))
+
+                {
+                    if (mp != null) {
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
+                        mp.reset();
+
+
+                    }
+                    mp = MediaPlayer.create(TemplateActivity2.this, R.raw.slow1);
+                    current_music.setText("slow1");
+                    play();
+
+                }
+                else if(media.getMusic_name().equals("slow2"))
+
+                {
+                    if (mp != null) {
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
+                        mp.reset();
+
+
+                    }
+                    mp = MediaPlayer.create(TemplateActivity2.this, R.raw.slow2);
+                    current_music.setText("slow2");
+                    play();
+
+                }
+
+                play_pause.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(mp.isPlaying()){
+                            play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_black));
+                            pause();
+                        }
+
+                        else{
+
+                            play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
+                            play();
+
+
+                        }
+
+                    }
+
+                });
+
+
+
+
+            }
+
+            private void play() {
+                seekBar.setClickable(false);
+                mp.start();
+
+
+                finalTime = mp.getDuration();
+                startTime = mp.getCurrentPosition();
+                if (oneTimeOnly == 0) {
+                    seekBar.setMax((int) finalTime);
+                    oneTimeOnly = 1;
+                }
+                //Muziğin toplamda ne kadar süre oldugunu  endTimeField controller ına yazdırıyoruz...
+                total_duration.setText(String.format("%d min, %d sec",
+                        TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
+                        TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                        toMinutes((long) finalTime)))
+                );
+                //Muziğin başladıgı andan itibaren gecen süreyi ,startTimeField controller ına yazdırıyoruz...
+                current_duration.setText(String.format("%d min, %d sec",
+                        TimeUnit.MILLISECONDS.toMinutes((long) startTime),
+                        TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                        toMinutes((long) startTime)))
+                );
+                //Muziğin hangi sürede oldugunu gostermek icin, seekbar kullarak gosteriyoruz...
+                seekBar.setProgress((int) startTime);
+                myHandler.postDelayed(UpdateSongTime, 100);
+                //pause.setImageDrawable(getResources().getDrawable(R.mipmap.ic_pause));
+                //pause.setEnabled(true);
+                //play.setEnabled(false);
+
+
+            }
+            Runnable UpdateSongTime = new Runnable() {
+                public void run() {
+                    startTime = mp.getCurrentPosition();
+                    total_duration.setText(String.format("%d min, %d sec",
+                            TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
+                            TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
+                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                            toMinutes((long) finalTime)))
+                    );
+                    current_duration.setText(String.format("%d min, %d sec",
+                            TimeUnit.MILLISECONDS.toMinutes((long) startTime),
+                            TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
+                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                            toMinutes((long) startTime)))
+                    );
+                    //Muziğin hangi sürede oldugunu gostermek icin, seekbar kullarak gosteriyoruz...
+                    seekBar.setProgress((int)startTime);
+                    myHandler.postDelayed(this, 100);
+                }
+            };
+
+            public  void pause(){
+
+                mp.pause();
+            }
+
+        });dialog.show();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+            private void initMenuFragment() {
         MenuParams menuParams = new MenuParams();
         menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.tool_bar_height));
         menuParams.setMenuObjects(getMenuObjects());
@@ -776,33 +1054,35 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
         List<MenuObject> menuObjects = new ArrayList<>();
 
         MenuObject close = new MenuObject();
-        close.setResource(R.drawable.book);
+        close.setResource(R.drawable.cancelm);
 
         MenuObject template = new MenuObject("Şablon");
-        template.setResource(R.mipmap.ic_launcher);
+        template.setResource(R.drawable.boook);
 
         MenuObject color = new MenuObject("Renk");
-        Bitmap b = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.paintbucket);
         color.setBitmap(b);
 
         MenuObject font = new MenuObject("Yazı Tipi");
         BitmapDrawable bd = new BitmapDrawable(getResources(),
-                BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher));
+                BitmapFactory.decodeResource(getResources(),R.drawable.text));
         font.setDrawable(bd);
 
-       /* MenuObject music = new MenuObject("Müzik");
-        music.setResource(R.mipmap.ic_launcher);*/
+        MenuObject music = new MenuObject("Müzik");
+        music.setResource(R.drawable.musicplayer);
 
         MenuObject save= new MenuObject("Kaydet");
-        save.setResource(R.mipmap.ic_launcher);
+        save.setResource(R.drawable.save);
 
 
-        menuObjects.add(close);
-        menuObjects.add(template);
-        menuObjects.add(color);
-        menuObjects.add(font);
-        //menuObjects.add(music);
-        menuObjects.add(save);
+           menuObjects.add(close);
+           menuObjects.add(template);
+           menuObjects.add(color);
+           menuObjects.add(font);
+           menuObjects.add(music);
+           menuObjects.add(save);
+
+
 
 
 
@@ -819,15 +1099,18 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
-        mToolbar.setNavigationIcon(R.mipmap.ic_launcher_round);
+      /*  mToolbar.setNavigationIcon(R.mipmap.ic_launcher_round);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 onBackPressed();
             }
-        });
-        mToolBarTextView.setText("InWhiter");
+        });*/
+           String titlem="InWhiter";
+        SpannableString s = new SpannableString(titlem);
+        s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        mToolBarTextView.setText(s);
     }
 
     protected void addFragment(Fragment fragment, boolean addToBackStack, int containerId) {
@@ -885,13 +1168,16 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
             fontSelected();
         }
         else if(position==4){
+            MusicAdd();
+        }
+        else if(position==5){
             registerLayout();
         }
-        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onMenuItemLongClick(View clickedView, int position) {
-        Toast.makeText(this, "Long clicked on position: " + position, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Long clicked on position: " + position, Toast.LENGTH_SHORT).show();
     }
 }
