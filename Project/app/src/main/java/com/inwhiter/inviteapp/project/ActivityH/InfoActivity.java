@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.inwhiter.inviteapp.project.BusineesH.DatePickerFragment;
+import com.inwhiter.inviteapp.project.BusineesH.MainFragment;
 import com.inwhiter.inviteapp.project.ModelG.Info;
 import com.inwhiter.inviteapp.project.R;
 import com.inwhiter.inviteapp.project.BusineesH.TimePickerFragment;
@@ -45,6 +46,7 @@ public class InfoActivity extends AppCompatActivity {
 
     String SimageUri = null;
     String SvideoUri = null;
+    String data;
 
     Info info;
 
@@ -101,9 +103,15 @@ public class InfoActivity extends AppCompatActivity {
                     info = new Info( et_bilgi_title.getText().toString(),et_bilgi_maintext.getText().toString(),et_bilgi_family1.getText().toString(),
                             et_bilgi_family2.getText().toString(),et_bilgi_adress.getText().toString(),et_bilgi_tag.getText().toString(),tv_bilgi_date.getText().toString(), tv_bilgi_time.getText().toString());
 
-                    Intent intent = new Intent(InfoActivity.this, TemplateActivity.class);
+                    Intent intent = new Intent(InfoActivity.this, TemplateActivity2.class);
+                  //   data= getIntent().getExtras().get("mood").toString();
+
+                   //Intent intent2 = new Intent(InfoActivity.this, MainFragment.class);
+                    //intent2.putExtra("menu","template");
+                    //startActivityFromFragment(MainFragment,);
 
                     intent.putExtra("info", info);
+
                     intent.putExtra("menu", "template");/*şablon ekranında hazır şablon menüsü oluşsun diye*/
                     startActivity(intent);
                 }
@@ -124,7 +132,7 @@ public class InfoActivity extends AppCompatActivity {
                     info = new Info( et_bilgi_title.getText().toString(),et_bilgi_maintext.getText().toString(),et_bilgi_family1.getText().toString(),
                             et_bilgi_family2.getText().toString(),et_bilgi_adress.getText().toString(),et_bilgi_tag.getText().toString(),tv_bilgi_date.getText().toString(), tv_bilgi_time.getText().toString());
 
-                    Intent intent = new Intent(InfoActivity.this, TemplateActivity.class);
+                    Intent intent = new Intent(InfoActivity.this, TemplateActivity2.class);
 
                     intent.putExtra("info", info);
                     intent.putExtra("foto", SimageUri);
@@ -147,7 +155,7 @@ public class InfoActivity extends AppCompatActivity {
                     info = new Info( et_bilgi_title.getText().toString(),et_bilgi_maintext.getText().toString(),et_bilgi_family1.getText().toString(),
                             et_bilgi_family2.getText().toString(),et_bilgi_adress.getText().toString(),et_bilgi_tag.getText().toString(),tv_bilgi_date.getText().toString(), tv_bilgi_time.getText().toString());
 
-                    Intent intent = new Intent(InfoActivity.this, TemplateActivity.class);
+                    Intent intent = new Intent(InfoActivity.this, TemplateActivity2.class);
 
                     intent.putExtra("info", info);
                     intent.putExtra("menu", "video");
@@ -289,6 +297,9 @@ public class InfoActivity extends AppCompatActivity {
 
             }
         });}
+    /*public String getMyData() {
+        return data;
+    }*/
                 public Intent resimSecimiIntent() {
 
                     Uri outputFileUri = getCaptureImageOutputUri();

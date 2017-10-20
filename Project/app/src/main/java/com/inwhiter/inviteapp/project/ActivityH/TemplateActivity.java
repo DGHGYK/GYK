@@ -37,13 +37,15 @@ import com.inwhiter.inviteapp.project.ModelG.Info;
 import com.inwhiter.inviteapp.project.ModelG.Invite;
 import com.inwhiter.inviteapp.project.R;
 import com.rajasharan.layout.RearrangeableLayout;
+import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
+import com.yalantis.contextmenu.lib.interfaces.OnMenuItemLongClickListener;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-public class TemplateActivity extends AppCompatActivity {
+public class TemplateActivity extends AppCompatActivity implements OnMenuItemClickListener, OnMenuItemLongClickListener {
 
     private static final String TAG = "DEMO-REARRANGEABLE-LOUT";
     public String inviteId;
@@ -92,6 +94,7 @@ public class TemplateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.h_activity_template);
+
 
 
 
@@ -758,6 +761,15 @@ public class TemplateActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onMenuItemClick(View clickedView, int position) {
+
+    }
+
+    @Override
+    public void onMenuItemLongClick(View clickedView, int position) {
+
+    }
 }
 
 

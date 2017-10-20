@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptor;
+import com.inwhiter.inviteapp.project.BusineesH.MainFragment;
 import com.inwhiter.inviteapp.project.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,6 +58,12 @@ public class TopicActivity extends AppCompatActivity {
 
                     Intent intent=new Intent(TopicActivity.this,InfoActivity.class);
                     intent.putExtra("mood","template");
+                  /*  Bundle bundle = new Bundle();
+                    bundle.putString("mood", "template");
+                    MainFragment mainfragment = new MainFragment();
+                    mainfragment.setArguments(bundle);
+                    //transaction.replace(R.id.fragment_single, fragInfo);
+                   // transaction.commit();*/
                     startActivity(intent);
                     // finish();
                 }
