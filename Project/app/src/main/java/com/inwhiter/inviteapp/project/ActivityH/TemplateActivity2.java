@@ -492,7 +492,7 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference isRef = mStorageRef.child("invites/"+TemplateActivity.inviteId+".jpg");
+        StorageReference isRef = mStorageRef.child("invites/"+inviteId+".jpg");
 
         UploadTask uploadTask = isRef.putBytes(encoded);
         uploadTask.addOnFailureListener(new OnFailureListener() {
