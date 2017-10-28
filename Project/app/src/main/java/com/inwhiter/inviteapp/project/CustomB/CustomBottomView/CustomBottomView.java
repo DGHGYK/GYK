@@ -25,7 +25,7 @@ import com.inwhiter.inviteapp.project.R;
 public class CustomBottomView extends View {
 
     private static final String TAG = CustomBottomView.class.getSimpleName();
-    private static final int padding = 8;
+    private static final int padding = 16;
     private static final float maxScale = 1.2f;
     private static final float defaultScale = 1.0f;
     private static final long animationDuration = 75;
@@ -39,7 +39,7 @@ public class CustomBottomView extends View {
     private ValueAnimator animatorZoomIn = null;
     private int width, height, barheight, radius;
     private float currentScale = defaultScale;
-    private boolean isAnimated = false, isReached = false;
+    private boolean isAnimated = false, isReached = false, isShowing = true;
 
     public CustomBottomView(Context context) {
         super(context);
@@ -87,16 +87,16 @@ public class CustomBottomView extends View {
         switch (customBottomViewLocation)
         {
             case BOTTOM:
-                canvas.drawCircle(width/2,height-radius,radius,paint);
+                canvas.drawCircle(width/2,height-radius-padding,radius+padding,paint);
                 canvas.drawRect(0,height-barheight,width,height,paint);
-                canvas.drawBitmap(add,width/2-(add.getWidth()/2),height-((add.getHeight()/2)+radius),bitmapPaint);
+                canvas.drawBitmap(add,width/2-(add.getWidth()/2),height-((add.getHeight()/2)+radius+padding),bitmapPaint);
                 canvas.drawBitmap(home, width/5-home.getWidth()/2,height-(home.getHeight()+padding),bitmapPaint);
                 canvas.drawBitmap(user,4*width/5-user.getWidth()/2,height-(user.getHeight()+padding),bitmapPaint);
                 break;
             case TOP:
-                canvas.drawCircle(width/2,radius,radius,paint);
+                canvas.drawCircle(width/2,radius+padding,radius+padding,paint);
                 canvas.drawRect(0,barheight,width,0,paint);
-                canvas.drawBitmap(add,width/2-(add.getWidth()/2),radius-(add.getHeight()/2),bitmapPaint);
+                canvas.drawBitmap(add,width/2-(add.getWidth()/2),padding+radius-(add.getHeight()/2),bitmapPaint);
                 canvas.drawBitmap(home, width/4-home.getWidth(),padding,bitmapPaint);
                 canvas.drawBitmap(user,width-width/4,padding,bitmapPaint);
                 break;
@@ -115,7 +115,7 @@ public class CustomBottomView extends View {
             {
                 case BOTTOM:
                     if (cX > width/2-(add.getWidth()/2) && cX < width/2+(add.getWidth()/2)
-                            && cY > height-((add.getHeight()/2)+radius) && cY < height+((add.getHeight()/2)-radius))
+                            && cY > height-((add.getHeight()/2)+radius+padding) && cY < height+((add.getHeight()/2)-radius-padding))
                     {
                         Log.d(TAG, "onTouchEvent: ADD BOTTOM imajına tıklandı.");
                         customBottomViewOption = CustomBottomViewOption.ADD;
@@ -186,9 +186,10 @@ public class CustomBottomView extends View {
 
     private void initBitmap()
     {
-        add = BitmapFactory.decodeResource(resources, R.drawable.ic_add);
+        add = BitmapFactory.decodeResource(resources, R.drawable.ic_invite_add);
         home = BitmapFactory.decodeResource(resources, R.drawable.ic_home);
         user = BitmapFactory.decodeResource(resources, R.drawable.ic_user);
+
     }
 
     private void startAnimation()
@@ -231,7 +232,7 @@ public class CustomBottomView extends View {
 
                     if (currentScale < maxScale && !isReached)
                     {
-                        currentScale += 0.005f;
+                        currentScale += 0.007f;
                     }
                     else if (currentScale > maxScale && !isReached)
                     {
@@ -260,5 +261,36 @@ public class CustomBottomView extends View {
             isAnimated = true;
         }
         invalidate();
+    }
+
+    public void hide()
+    {
+        if (isShowing == true)
+        {
+            CustomBottomView.this.setVisibility(GONE);
+            isShowing = false;
+        }
+    }
+
+    public boolean isShowing(){ return isShowing; }
+
+    public void setShowing(boolean showState)
+    {
+        if (showState)
+        {
+            if (isShowing == false)
+            {
+                CustomBottomView.this.setVisibility(VISIBLE);
+                isShowing = true;
+            }
+        }
+        else
+        {
+            if (isShowing == true)
+            {
+                CustomBottomView.this.setVisibility(GONE);
+                isShowing = false;
+            }
+        }
     }
 }

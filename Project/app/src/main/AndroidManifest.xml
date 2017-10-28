@@ -43,11 +43,7 @@
         <activity
             android:name=".ActivityG.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service android:name=".BusinessG.FirebaseToken">
@@ -64,8 +60,19 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".ActivityH.TemplateActivity2"
-            android:theme="@style/PageTheme"></activity>
+        <activity
+            android:name=".ActivityH.TemplateActivity2"
+            android:theme="@style/PageTheme" />
+
+        <activity
+            android:name=".ActivityB.MainActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
