@@ -7,11 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.format.DateFormat;
-import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,7 +31,6 @@ import com.inwhiter.inviteapp.project.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import android.text.format.DateFormat;
 
 
 public class MenuActivity extends AppCompatActivity {
@@ -56,12 +50,12 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.h_activity_menu);
-        String titlem=getSupportActionBar().getTitle().toString();
+//        String titlem=getSupportActionBar().getTitle().toString();
         mAuth = FirebaseAuth.getInstance();
 
-        SpannableString s = new SpannableString(titlem);
-        s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getSupportActionBar().setTitle(s);
+//        SpannableString s = new SpannableString(titlem);
+//        s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        getSupportActionBar().setTitle(s);
 
         btn_menu_create=(Button)findViewById(R.id.btn_menu_create);
         btn_menu_view=(Button)findViewById(R.id.btn_menu_view);
