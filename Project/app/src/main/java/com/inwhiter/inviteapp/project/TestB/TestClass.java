@@ -6,7 +6,7 @@ import android.util.Log;
  * Created by bthnorhan on 9.09.2017.
  */
 
-public class TestClass {
+public class   TestClass {
 
     public TestClass() {
     }

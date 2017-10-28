@@ -2,6 +2,7 @@ package com.inwhiter.inviteapp.project.ActivityH;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -464,7 +465,6 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
                     v1_adress.setTextColor(color);
                     v1_tag.setTextColor(color);
                     v1_time.setTextColor(color);
-                    v1_date.setTextColor(color);
 
 
                 }
@@ -492,7 +492,7 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference isRef = mStorageRef.child("invites/"+TemplateActivity.inviteId+".jpg");
+        StorageReference isRef = mStorageRef.child("invites/"+     inviteId+".jpg");
 
         UploadTask uploadTask = isRef.putBytes(encoded);
         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -768,6 +768,7 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
         dialog.setContentView(R.layout.h_mediaplayer_custom_dialog);
         dialog.setTitle("Media player");
+
 
 
 
