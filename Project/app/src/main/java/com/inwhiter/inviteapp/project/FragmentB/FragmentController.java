@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.inwhiter.inviteapp.project.FragmentB.Fragments.MainFragment;
+import com.inwhiter.inviteapp.project.FragmentH.ProfileFragment;
 
 /**
  * Created by bthnorhan on 27.10.2017.
@@ -12,6 +13,7 @@ import com.inwhiter.inviteapp.project.FragmentB.Fragments.MainFragment;
 public class FragmentController {
     private static FragmentController instance = null;
     public static final String MAIN= "fragment_main";
+    public static final String PROFILE="fragment_profile";
 
     private FragmentController() { }
 
@@ -31,6 +33,11 @@ public class FragmentController {
         {
             return new MainFragment();
         }
+        else if(fragment == PROFILE){
+            return new ProfileFragment();
+
+        }
+
         else
         {
             return null;
