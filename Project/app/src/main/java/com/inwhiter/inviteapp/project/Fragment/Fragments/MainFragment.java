@@ -1,11 +1,13 @@
-package com.inwhiter.inviteapp.project.FragmentB.Fragments;
+package com.inwhiter.inviteapp.project.Fragment.Fragments;
 
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,7 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.inwhiter.inviteapp.project.CustomB.GridMarginDecoration;
 import com.inwhiter.inviteapp.project.CustomB.MainInviteAdapter;
-import com.inwhiter.inviteapp.project.FragmentB.BaseFragment;
+import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
+import com.inwhiter.inviteapp.project.Fragment.FragmentController;
 import com.inwhiter.inviteapp.project.ModelG.Invitation;
 import com.inwhiter.inviteapp.project.R;
 
@@ -54,7 +57,7 @@ public class MainFragment extends BaseFragment {
         invitationList = new ArrayList<>();
 
         recyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view);
-        invitationList.add(new Invitation("Yükleniyor.", Uri.parse("")));
+        invitationList.add(new Invitation("Yükleniyor.", Uri.parse(""),""));
         mAdapter = new MainInviteAdapter(getActivity(), invitationList);
         recyclerView.setHasFixedSize(true);
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
@@ -69,7 +72,11 @@ public class MainFragment extends BaseFragment {
         mAdapter.SetOnItemClickListener(new MainInviteAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position, Invitation model) {
-
+                TextView tv_inviteId= (TextView) view.findViewById(R.id.tv_mainiviterow_title);
+                String inviteId= (String) tv_inviteId.getText();
+                Bundle bundle = new Bundle();
+                bundle.putString("inviteId", inviteId);
+                listener.changeFragment(FragmentController.GUEST, bundle);
             }
         });
 
@@ -114,7 +121,7 @@ public class MainFragment extends BaseFragment {
                         }
                     }
                     if (invitationList.size() == 0) {
-                        Invitation inv = new Invitation("Davetiyeniz bulunmamaktadır.", Uri.parse("android.resource://com.inwhiter.inviteapp.project/" + R.drawable.giris));
+                        Invitation inv = new Invitation("Davetiyeniz bulunmamaktadır.", Uri.parse("android.resource://com.inwhiter.inviteapp.project/" + R.drawable.giris),"");
                         invitationList.add(inv);
                     }
                     mAdapter.notifyDataSetChanged();
@@ -126,4 +133,7 @@ public class MainFragment extends BaseFragment {
             }
         });
     }
+
+
+
 }

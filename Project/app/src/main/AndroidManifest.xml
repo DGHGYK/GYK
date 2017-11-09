@@ -26,7 +26,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityG.LoginActivity" />
+        <activity android:name=".ActivityG.LoginActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
         <activity android:name=".ActivityG.SignUpActivity" />
         <activity android:name=".ActivityH.MenuActivity" />
@@ -36,8 +43,8 @@
         <activity android:name=".ActivityH.LayoutSS" />
         <activity android:name=".ActivityG.AddManuallyActivity" />
         <activity android:name=".ActivityG.ContactsPickerActivity" />
-        <activity android:name=".ActivityG.InviteeActivity" />
-        <activity android:name=".ActivityG.InviteeEditActivity" />
+        <activity android:name=".ActivityG.GuestActivity" />
+        <activity android:name=".ActivityG.GuestEditActivity" />
         <activity android:name=".ActivityH.StartActivity" />
         <activity android:name=".ActivityD.PrintActivity" />
         <activity
@@ -67,11 +74,7 @@
         <activity
             android:name=".ActivityB.MainActivity"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

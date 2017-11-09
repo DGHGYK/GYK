@@ -41,6 +41,7 @@ import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
 import com.yalantis.contextmenu.lib.interfaces.OnMenuItemLongClickListener;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
@@ -168,7 +169,7 @@ public class TemplateActivity extends AppCompatActivity implements OnMenuItemCli
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        Invite invite = new Invite(currentUser.getUid(),info, 1, "", getIntent().getExtras().getString("menu"),  Calendar.getInstance().getTime() );
+        Invite invite = new Invite(currentUser.getUid(),info, 1, "", getIntent().getExtras().getString("menu"),  Calendar.getInstance().getTime(), new ArrayList<String>());
         if(inviteId==null || inviteId.equals("")) {
             inviteId = inviteRef.push().getKey();
         }

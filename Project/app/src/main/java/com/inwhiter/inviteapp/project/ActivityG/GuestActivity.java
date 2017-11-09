@@ -23,28 +23,27 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.inwhiter.inviteapp.project.ActivityH.MenuActivity;
-import com.inwhiter.inviteapp.project.ActivityH.TemplateActivity;
-import com.inwhiter.inviteapp.project.BusinessG.InviteeListAdapter;
+import com.inwhiter.inviteapp.project.BusinessG.GuestListAdapter;
 import com.inwhiter.inviteapp.project.BusinessG.SendSMS;
 import com.inwhiter.inviteapp.project.ModelG.Contact;
 import com.inwhiter.inviteapp.project.ModelG.ContactListSingleton;
-import com.inwhiter.inviteapp.project.ModelG.Invitee;
-import com.inwhiter.inviteapp.project.ModelG.InviteeListSingleton;
-import com.inwhiter.inviteapp.project.ModelG.InviteeStatus;
+import com.inwhiter.inviteapp.project.ModelG.Guest;
+import com.inwhiter.inviteapp.project.ModelG.GuestListSingleton;
+import com.inwhiter.inviteapp.project.ModelG.GuestStatus;
 import com.inwhiter.inviteapp.project.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InviteeActivity extends AppCompatActivity {
+public class GuestActivity extends AppCompatActivity {
 
-    ExpandableListView invitee_expandable;
-    InviteeListAdapter invitee_adapter;
+    ExpandableListView guest_expandable;
+    GuestListAdapter guest_adapter;
 
     Button pickContacts;
     Button sendSMS;
     CheckBox checkAll;
-    Button deleteInvitee;
+    Button deleteguest;
     Button addManually;
     String inviteId;
     final int CONTACT_PICK_REQUEST = 1000;
@@ -52,7 +51,7 @@ public class InviteeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_invitee);
+        setContentView(R.layout.activity_guest);
         String titlem=getSupportActionBar().getTitle().toString();
 
         Bundle bundle= getIntent().getExtras();
@@ -73,20 +72,20 @@ public class InviteeActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InviteeActivity.this, MenuActivity.class);
+                Intent intent = new Intent(GuestActivity.this, MenuActivity.class);
                 startActivity(intent);
             }
         });
 
 
-        invitee_expandable = (ExpandableListView) findViewById(R.id.lv_invitee_expandable);
-        pickContacts = (Button) findViewById(R.id.iv_invitee_pickContacts);
-        sendSMS = (Button) findViewById(R.id.bt_invitee_send);
-        checkAll = (CheckBox) findViewById(R.id.cb_invitee_checkAll);
-        deleteInvitee = (Button) findViewById(R.id.bt_invitee_delete);
-        addManually = (Button) findViewById(R.id.bt_invitee_addManually);
+        guest_expandable = (ExpandableListView) findViewById(R.id.lv_guest_expandable);
+        pickContacts = (Button) findViewById(R.id.iv_guest_pickContacts);
+        sendSMS = (Button) findViewById(R.id.bt_guest_send);
+        checkAll = (CheckBox) findViewById(R.id.cb_guest_checkAll);
+        deleteguest = (Button) findViewById(R.id.bt_guest_delete);
+        addManually = (Button) findViewById(R.id.bt_guest_addManually);
 
-        if(invitee_expandable.getChildCount()>0){
+        if(guest_expandable.getChildCount()>0){
             checkAll.setVisibility(View.VISIBLE);
         }else{
             checkAll.setVisibility(View.INVISIBLE);
@@ -94,36 +93,36 @@ public class InviteeActivity extends AppCompatActivity {
 
 
 
-        invitee_expandable.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+        guest_expandable.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
             @Override
             public void onGroupExpand(int groupPosition) {
                 Toast.makeText(getApplicationContext(),
-                        ((Invitee)invitee_adapter.getGroup(groupPosition)).getName()+ " List Expanded.",
+                        ((Guest)guest_adapter.getGroup(groupPosition)).getName()+ " List Expanded.",
                         Toast.LENGTH_SHORT).show();
             }
         });
 
-        invitee_expandable.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+        guest_expandable.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
                 Toast.makeText(getApplicationContext(),
-                        ((Invitee)invitee_adapter.getGroup(groupPosition)).getName() + " List Collapsed.",
+                        ((Guest)guest_adapter.getGroup(groupPosition)).getName() + " List Collapsed.",
                         Toast.LENGTH_SHORT).show();
 
             }
         });
 
-        invitee_expandable.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        guest_expandable.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 Toast.makeText(
                         getApplicationContext(),
-                        ((Invitee)invitee_adapter.getGroup(groupPosition)).getName()
+                        ((Guest)guest_adapter.getGroup(groupPosition)).getName()
                                 + " -> "
-                                + ((InviteeStatus)invitee_adapter.getChild(groupPosition,childPosition)).isAnswered(), Toast.LENGTH_SHORT
+                                + ((GuestStatus)guest_adapter.getChild(groupPosition,childPosition)).isAnswered(), Toast.LENGTH_SHORT
                 ).show();
                 return false;
             }
@@ -132,7 +131,7 @@ public class InviteeActivity extends AppCompatActivity {
         addManually.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InviteeActivity.this, AddManuallyActivity.class);
+                Intent intent = new Intent(GuestActivity.this, AddManuallyActivity.class);
                 intent.putExtra("inviteId", inviteId);
                 startActivity(intent);
             }
@@ -144,8 +143,8 @@ public class InviteeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intentContactPick = new Intent(InviteeActivity.this,ContactsPickerActivity.class);
-                InviteeActivity.this.startActivityForResult(intentContactPick,CONTACT_PICK_REQUEST);
+                Intent intentContactPick = new Intent(GuestActivity.this,ContactsPickerActivity.class);
+                GuestActivity.this.startActivityForResult(intentContactPick,CONTACT_PICK_REQUEST);
             }
         });
 
@@ -153,8 +152,8 @@ public class InviteeActivity extends AppCompatActivity {
         checkAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                for(int i=0; i < invitee_expandable.getChildCount(); i++){
-                    ConstraintLayout itemLayout = (ConstraintLayout) invitee_expandable.getChildAt(i);
+                for(int i=0; i < guest_expandable.getChildCount(); i++){
+                    ConstraintLayout itemLayout = (ConstraintLayout) guest_expandable.getChildAt(i);
                     CheckBox cb = (CheckBox)itemLayout.findViewById(R.id.cb_item_check);
                     cb.setChecked(isChecked);
                 }
@@ -166,26 +165,26 @@ public class InviteeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 final List<String> checkedIdList=new ArrayList<>();
-                final List<Invitee> checkedInvitees = new ArrayList<>();
-                for(int i=0; i < invitee_expandable.getChildCount(); i++) {
-                    ConstraintLayout itemLayout = (ConstraintLayout) invitee_expandable.getChildAt(i);
+                final List<Guest> checkedguests = new ArrayList<>();
+                for(int i=0; i < guest_expandable.getChildCount(); i++) {
+                    ConstraintLayout itemLayout = (ConstraintLayout) guest_expandable.getChildAt(i);
                     CheckBox cb = (CheckBox) itemLayout.findViewById(R.id.cb_item_check);
 
                     if (cb.isChecked()) {
-                        checkedInvitees.add(InviteeListSingleton.getInst().getInviteeList().get(i));
+                        checkedguests.add(GuestListSingleton.getInst().getguestList().get(i));
                     }
                 }
 
-                if(checkedInvitees!=null && checkedInvitees.size()>0){
+                if(checkedguests!=null && checkedguests.size()>0){
 
-                    AlertDialog.Builder sendCheckedListDialog = new AlertDialog.Builder(InviteeActivity.this);
+                    AlertDialog.Builder sendCheckedListDialog = new AlertDialog.Builder(GuestActivity.this);
                     sendCheckedListDialog.setMessage("Seçili davetlilere davetiye göndermek istediğinizden emin misiniz?");
                     sendCheckedListDialog.setCancelable(true);
                     sendCheckedListDialog.setPositiveButton(
                             "Evet",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    new SendSMS().execute(checkedInvitees);
+                                    new SendSMS().execute(checkedguests);
                                     Toast.makeText(getBaseContext(), "Davetiyeleriniz seçilen davetlilere SMS ile iletilmiştir.", Toast.LENGTH_LONG).show();
                                     dialog.cancel();
 
@@ -196,7 +195,7 @@ public class InviteeActivity extends AppCompatActivity {
                             "Hayır",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    Log.d(InviteeActivity.this.getLocalClassName(), "Davetiyeler gönderilmedi");
+                                    Log.d(GuestActivity.this.getLocalClassName(), "Davetiyeler gönderilmedi");
                                     dialog.cancel();
                                 }
                             });
@@ -213,34 +212,34 @@ public class InviteeActivity extends AppCompatActivity {
         });
 
 
-        deleteInvitee.setOnClickListener(new View.OnClickListener() {
+        deleteguest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final List<Invitee> checkedInvitees = new ArrayList<>();
-                for(int i=0; i < invitee_expandable.getChildCount(); i++) {
-                    ConstraintLayout itemLayout = (ConstraintLayout) invitee_expandable.getChildAt(i);
+                final List<Guest> checkedguests = new ArrayList<>();
+                for(int i=0; i < guest_expandable.getChildCount(); i++) {
+                    ConstraintLayout itemLayout = (ConstraintLayout) guest_expandable.getChildAt(i);
                     CheckBox cb = (CheckBox) itemLayout.findViewById(R.id.cb_item_check);
                     TextView tv = (TextView) itemLayout.findViewById(R.id.tv_item_id);
 
                     if (cb.isChecked()) {
-                        checkedInvitees.add(InviteeListSingleton.getInst().getInviteeList().get(i));
+                        checkedguests.add(GuestListSingleton.getInst().getguestList().get(i));
 
                     }
                 }
 
-                    if(checkedInvitees!=null && checkedInvitees.size()>0){
+                    if(checkedguests!=null && checkedguests.size()>0){
 
-                            AlertDialog.Builder removeCheckedDialog = new AlertDialog.Builder(InviteeActivity.this);
+                            AlertDialog.Builder removeCheckedDialog = new AlertDialog.Builder(GuestActivity.this);
                             removeCheckedDialog.setMessage("Seçili davetlileri silmek istediğinizden emin misiniz?");
                             removeCheckedDialog.setCancelable(true);
                             removeCheckedDialog.setPositiveButton(
                                     "Evet",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            ContactListSingleton.getInst().getSelectedContactsList().removeContactsByPhoneNumbers(checkedInvitees);
-                                            InviteeListSingleton.getInst().removeAllInvitees(checkedInvitees);
-                                            invitee_adapter.notifyDataSetChanged();
+                                            ContactListSingleton.getInst().getSelectedContactsList().removeContactsByPhoneNumbers(checkedguests);
+                                            GuestListSingleton.getInst().removeAllguests(checkedguests);
+                                            guest_adapter.notifyDataSetChanged();
 
                                             // initList();
                                             dialog.cancel();
@@ -251,7 +250,7 @@ public class InviteeActivity extends AppCompatActivity {
                                     "Hayır",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            Log.d(InviteeActivity.this.getLocalClassName(), "Davetli silinmedi");
+                                            Log.d(GuestActivity.this.getLocalClassName(), "Davetli silinmedi");
                                             dialog.cancel();
                                         }
                                     });
@@ -266,8 +265,8 @@ public class InviteeActivity extends AppCompatActivity {
         });
 
         /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference inviteeRef = database.getReference("invitee");
-        Query q =inviteeRef.orderByChild("inviteId").equalTo(TemplateActivity.inviteId);
+        DatabaseReference guestRef = database.getReference("guest");
+        Query q =guestRef.orderByChild("inviteId").equalTo(TemplateActivity.inviteId);
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -275,10 +274,10 @@ public class InviteeActivity extends AppCompatActivity {
                     // dataSnapshot is the "issue" node with all children with id 0
                     for (DataSnapshot i : dataSnapshot.getChildren()) {
                         // do something with the individual "issues"
-                        for (Invitee in: InviteeListSingleton.getInst().getInviteeList())
-                            if(in.getName().equals(i.getValue(Invitee.class).getName()) )
+                        for (Guest in: GuestListSingleton.getInst().getguestList())
+                            if(in.getName().equals(i.getValue(Guest.class).getName()) )
                               {
-                                in.setStatus(i.child("status").getValue(InviteeStatus.class));
+                                in.setStatus(i.child("status").getValue(GuestStatus.class));
                                 initList();
                               }
 
@@ -304,29 +303,35 @@ public class InviteeActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == CONTACT_PICK_REQUEST && resultCode == RESULT_OK){
-            convertContactsToInvitees();
+            convertContactsToguests();
         }
 
     }
 
-    private void convertContactsToInvitees() {
+    private void convertContactsToguests() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference guestRef = database.getReference("guest");
+        List<String> guestIds = new ArrayList<>();
+
         //for (Contact c: contacts) {
         for (Contact c: ContactListSingleton.getInst().getLastSelectedContactsList().contactArrayList) {
-            if(InviteeListSingleton.getInst().isSameNumber(c.getPhoneNumber())){
+            if(GuestListSingleton.getInst().isSameNumber(c.getPhoneNumber())){
                 Toast.makeText(getBaseContext(),c.getName()+" isimli davetli zaten davetli listenizde",Toast.LENGTH_LONG).show();
             }else {
                 //davetli kişi verisi veritabanına kaydedilir
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference inviteeRef = database.getReference("invitee");
 
-                String inviteeId = inviteeRef.push().getKey();
-                Invitee in = new Invitee(inviteeId, inviteId, 0, c.getName(), c.getPhoneNumber(), new InviteeStatus());
+
+                String guestId = guestRef.push().getKey();
+                Guest in = new Guest(guestId, inviteId, 0, c.getName(), c.getPhoneNumber(), new GuestStatus());
                 //Singleton listeye yeni kişi eklenir
-                InviteeListSingleton.getInst().getInviteeList().add(in);
-
-                inviteeRef.child(inviteeId).setValue(in);
+                GuestListSingleton.getInst().getguestList().add(in);
+                guestIds.add(guestId);
+                guestRef.child(guestId).setValue(in);
 
             }
+            DatabaseReference inviteRef = database.getReference("invite");
+            inviteRef.child(inviteId).child("guestIds").setValue(guestIds);
+
         }
     }
 
@@ -338,10 +343,10 @@ public class InviteeActivity extends AppCompatActivity {
 
     private void initList()
     {
-       // InviteeListSingleton.getInst().getInviteeList().clear();
-        //convertContactsToInvitees();
-        invitee_adapter = new InviteeListAdapter(getApplicationContext(),this);
-        invitee_expandable.setAdapter(invitee_adapter);
+       // GuestListSingleton.getInst().getguestList().clear();
+        //convertContactsToguests();
+        guest_adapter = new GuestListAdapter(this);
+        guest_expandable.setAdapter(guest_adapter);
 
 
 

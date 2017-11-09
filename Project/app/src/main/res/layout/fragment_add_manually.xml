@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorLogin"
+        tools:context=".Fragment.Fragments.AddManuallyFragment">
+
+        <TextView
+            android:id="@+id/tv_addManually_explanation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:layout_weight="1"
+            android:padding="8sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <EditText
+            android:id="@+id/et_addManually_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:layout_margin="8sp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Ad Soyad"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/et_addManually_phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:layout_margin="8sp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Telefon Numarası"
+            android:inputType="phone" />
+
+        <Button
+            android:id="@+id/bt_addManually_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8sp"
+            android:layout_marginRight="8sp"
+            android:layout_marginTop="30sp"
+            android:layout_weight="1"
+            android:background="@drawable/buttonshape"
+            android:text="Davetli Listesine Ekle"
+            android:textColor="@color/background" />
+
+    </LinearLayout>

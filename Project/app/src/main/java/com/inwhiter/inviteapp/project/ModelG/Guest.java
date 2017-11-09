@@ -4,20 +4,20 @@ package com.inwhiter.inviteapp.project.ModelG;
  * Created by gncal on 8/3/2017.
  */
 
-public class Invitee {
+public class Guest {
 
-    private String inviteeId;
+    private String guestId;
     private String inviteId;
 
     private int lastProcess;
     private String name, phoneNumber;
-    private InviteeStatus status;
+    private GuestStatus status;
 
-    public Invitee() {
+    public Guest() {
     }
 
-    public Invitee(String inviteeId, String inviteId, int lastProcess, String name, String phoneNumber, InviteeStatus status) {
-        this.inviteeId = inviteeId;
+    public Guest(String guestId, String inviteId, int lastProcess, String name, String phoneNumber, GuestStatus status) {
+        this.guestId = guestId;
         this.inviteId = inviteId;
         this.lastProcess = lastProcess;
         this.name = name;
@@ -25,12 +25,12 @@ public class Invitee {
         this.status = status;
     }
 
-    public String getInviteeId() {
-        return inviteeId;
+    public String getGuestId() {
+        return guestId;
     }
 
-    public void setInviteeId(String inviteeId) {
-        this.inviteeId = inviteeId;
+    public void setGuestId(String guestId) {
+        this.guestId = guestId;
     }
 
     public String getInviteId() {
@@ -65,14 +65,14 @@ public class Invitee {
         this.phoneNumber = phoneNumber;
     }
 
-    public InviteeStatus getStatus() {
+    public GuestStatus getStatus() {
         if(status==null){
-            status = new InviteeStatus(false, false, false, null,null,"",0,false,true);
+            status = new GuestStatus(false, false, false, null,null,"",0,false,true);
         }
         return status;
     }
 
-    public void setStatus(InviteeStatus status) {
+    public void setStatus(GuestStatus status) {
         this.status = status;
     }
 }

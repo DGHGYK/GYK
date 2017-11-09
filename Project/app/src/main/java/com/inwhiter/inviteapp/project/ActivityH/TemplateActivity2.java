@@ -2,12 +2,10 @@ package com.inwhiter.inviteapp.project.ActivityH;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -23,16 +21,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -53,9 +48,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptorMediaplayer;
-import com.inwhiter.inviteapp.project.BusineesH.MainFragment;
-//import com.inwhiter.inviteapp.project.R;
-//import com.yalantis.contextmenu.R;
 import com.inwhiter.inviteapp.project.ModelG.Info;
 import com.inwhiter.inviteapp.project.ModelG.Invite;
 import com.inwhiter.inviteapp.project.ModelH.Media;
@@ -74,6 +66,9 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
+
+//import com.inwhiter.inviteapp.project.R;
+//import com.yalantis.contextmenu.R;
 
 public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemClickListener, OnMenuItemLongClickListener {
     private static final String TAG = "DEMO-REARRANGEABLE-LOUT";
@@ -164,7 +159,7 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        Invite invite = new Invite(currentUser.getUid(),info, 1, "", getIntent().getExtras().getString("menu"),  Calendar.getInstance().getTime() );
+        Invite invite = new Invite(currentUser.getUid(),info, 1, "", getIntent().getExtras().getString("menu"),  Calendar.getInstance().getTime(), new ArrayList<String>());
         if(inviteId==null || inviteId.equals("")) {
             inviteId = inviteRef.push().getKey();
         }
@@ -494,7 +489,10 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         StorageReference isRef = mStorageRef.child("invites/"+inviteId+".jpg");
+<<<<<<< HEAD
 
+=======
+>>>>>>> e8dc00f267664042c81e8ae0968d10ec76c500ff
 
         UploadTask uploadTask = isRef.putBytes(encoded);
         uploadTask.addOnFailureListener(new OnFailureListener() {

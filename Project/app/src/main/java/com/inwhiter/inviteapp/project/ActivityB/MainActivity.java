@@ -10,8 +10,8 @@ import android.widget.FrameLayout;
 import com.inwhiter.inviteapp.project.CustomB.CustomBottomView.CustomBottomView;
 import com.inwhiter.inviteapp.project.CustomB.CustomBottomView.CustomBottomViewListener;
 import com.inwhiter.inviteapp.project.CustomB.CustomBottomView.CustomBottomViewOption;
-import com.inwhiter.inviteapp.project.FragmentB.FragmentController;
-import com.inwhiter.inviteapp.project.FragmentB.FragmentListener;
+import com.inwhiter.inviteapp.project.Fragment.FragmentController;
+import com.inwhiter.inviteapp.project.Fragment.FragmentListener;
 import com.inwhiter.inviteapp.project.R;
 
 public class MainActivity extends AppCompatActivity implements FragmentListener {

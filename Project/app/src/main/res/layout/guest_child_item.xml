@@ -6,20 +6,20 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/bt_inviteeChild_resend"
+        android:id="@+id/bt_guestChild_resend"
         android:layout_width="87dp"
         android:layout_height="24dp"
         android:background="@drawable/buttonshape"
         android:text="Tekrar Gönder"
         android:textColor="@color/background"
         android:textSize="10sp"
-        app:layout_constraintRight_toLeftOf="@+id/bt_inviteeChild_delete"
+        app:layout_constraintRight_toLeftOf="@+id/bt_guestChild_delete"
         android:layout_marginRight="8dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp" />
 
     <TextView
-        android:id="@+id/tv_inviteeChild_phoneNumber"
+        android:id="@+id/tv_guestChild_phoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:layout_marginLeft="8dp"
@@ -32,20 +32,20 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Button
-        android:id="@+id/bt_inviteeChild_edit"
+        android:id="@+id/bt_guestChild_edit"
         android:layout_width="87dp"
         android:layout_height="24dp"
         android:background="@drawable/buttonshape"
         android:text="Düzenle"
         android:textColor="@color/background"
         android:textSize="10sp"
-        app:layout_constraintRight_toLeftOf="@+id/bt_inviteeChild_resend"
+        app:layout_constraintRight_toLeftOf="@+id/bt_guestChild_resend"
         android:layout_marginRight="8dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp" />
 
     <Button
-        android:id="@+id/bt_inviteeChild_delete"
+        android:id="@+id/bt_guestChild_delete"
         android:layout_width="57dp"
         android:layout_height="24dp"
         android:background="@drawable/buttonshape2"
@@ -69,10 +69,10 @@
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/bt_inviteeChild_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_guestChild_edit" />
 
     <TextView
-        android:id="@+id/tv_inviteeChild_sendDate"
+        android:id="@+id/tv_guestChild_sendDate"
         android:layout_width="wrap_content"
         android:layout_height="16sp"
         android:layout_marginLeft="8dp"
@@ -82,7 +82,7 @@
         android:text="gönderilme tarihi"
         android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/bt_inviteeChild_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_guestChild_edit" />
 
     <TextView
         android:id="@+id/textView13"
@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
-        android:id="@+id/tv_inviteeChild_answerDate"
+        android:id="@+id/tv_guestChild_answerDate"
         android:layout_width="wrap_content"
         android:layout_height="16sp"
         android:layout_marginLeft="8dp"
@@ -109,6 +109,6 @@
         android:text="yanitlanma tarihi"
         android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/tv_inviteeChild_sendDate" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_guestChild_sendDate" />
 
 </android.support.constraint.ConstraintLayout>

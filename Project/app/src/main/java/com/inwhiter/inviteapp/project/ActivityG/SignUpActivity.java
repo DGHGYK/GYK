@@ -3,7 +3,6 @@ package com.inwhiter.inviteapp.project.ActivityG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.inwhiter.inviteapp.project.ActivityH.MenuActivity;
+import com.inwhiter.inviteapp.project.ActivityB.MainActivity;
 import com.inwhiter.inviteapp.project.R;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -76,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                                         DatabaseReference userRef = database.getReference("user");
                                         userRef.child(currentUser.getUid()).child("token").setValue(FirebaseInstanceId.getInstance().getToken());
-                                        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(intent);
                                     } else {
                                         // If sign in fails, display a message to the user.

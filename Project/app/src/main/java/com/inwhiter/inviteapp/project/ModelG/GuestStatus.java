@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by gncal on 8/2/2017.
  */
 
-public class InviteeStatus {
+public class GuestStatus {
 
     private boolean sended, viewed, answered;
     private Date sendDate, answerDate;
@@ -15,7 +15,7 @@ public class InviteeStatus {
     private boolean hardcopy, softcopy;
 
 
-    public InviteeStatus(boolean sended, boolean viewed, boolean answered, Date sendDate, Date answerDate, String answer, int numberOfPeople, boolean hardcopy, boolean softcopy) {
+    public GuestStatus(boolean sended, boolean viewed, boolean answered, Date sendDate, Date answerDate, String answer, int numberOfPeople, boolean hardcopy, boolean softcopy) {
         this.sended = sended;
         this.viewed = viewed;
         this.answered = answered;
@@ -27,7 +27,7 @@ public class InviteeStatus {
         this.softcopy = softcopy;
     }
 
-    public InviteeStatus() {
+    public GuestStatus() {
         this.sended = false;
         this.viewed = false;
         this.answered = false;

@@ -16,10 +16,9 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.inwhiter.inviteapp.project.ActivityH.TemplateActivity;
-import com.inwhiter.inviteapp.project.ModelG.Invitee;
-import com.inwhiter.inviteapp.project.ModelG.InviteeListSingleton;
-import com.inwhiter.inviteapp.project.ModelG.InviteeStatus;
+import com.inwhiter.inviteapp.project.ModelG.Guest;
+import com.inwhiter.inviteapp.project.ModelG.GuestListSingleton;
+import com.inwhiter.inviteapp.project.ModelG.GuestStatus;
 import com.inwhiter.inviteapp.project.R;
 
 public class AddManuallyActivity extends AppCompatActivity {
@@ -57,7 +56,7 @@ public class AddManuallyActivity extends AppCompatActivity {
                 if(name.getText()==null || name.getText().toString().equals("")){
                     Toast.makeText(getBaseContext(),"Davetiyenin kişiye özel gönderilmesi için davetli adını girmek zorunludur.", Toast.LENGTH_LONG).show();
                 }else{
-                    if(InviteeListSingleton.getInst().isSameNumber( phoneNumber.getText().toString()))
+                    if(GuestListSingleton.getInst().isSameNumber( phoneNumber.getText().toString()))
                     {
                         InputMethodManager inputManager = (InputMethodManager)
                                 getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -68,16 +67,16 @@ public class AddManuallyActivity extends AppCompatActivity {
                     }else{
                         //davetli kişi verisi veritabanına kaydedilir
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference inviteeRef = database.getReference("invitee");
+                        DatabaseReference guestRef = database.getReference("guest");
 
-                        String inviteeId = inviteeRef.push().getKey();
-                        Invitee in = new Invitee(inviteeId, inviteId, 0, name.getText().toString(), phoneNumber.getText().toString(), new InviteeStatus());
+                        String guestId = guestRef.push().getKey();
+                        Guest in = new Guest(guestId, inviteId, 0, name.getText().toString(), phoneNumber.getText().toString(), new GuestStatus());
                         //Singleton listeye yeni kişi eklenir
-                        InviteeListSingleton.getInst().getInviteeList().add(in);
+                        GuestListSingleton.getInst().getguestList().add(in);
 
-                        inviteeRef.child(inviteeId).setValue(in);
+                        guestRef.child(guestId).setValue(in);
 
-                        Intent intent = new Intent(AddManuallyActivity.this, InviteeActivity.class);
+                        Intent intent = new Intent(AddManuallyActivity.this, GuestActivity.class);
                         startActivity(intent);
                     }
                 }
