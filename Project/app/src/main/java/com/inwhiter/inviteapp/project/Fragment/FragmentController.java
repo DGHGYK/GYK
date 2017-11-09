@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.AddManuallyFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.GuestFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateFragment;
 
 /**
  * Created by bthnorhan on 27.10.2017.
@@ -13,9 +14,10 @@ import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
 
 public class FragmentController {
     private static FragmentController instance = null;
-    public static final String MAIN= "fragment_main";
-    public static final String GUEST= "fragment_guest";
-    public static final String ADDMANUALLY= "fragment_add_manually";
+    public static final String MAIN = "fragment_main";
+    public static final String GUEST = "fragment_guest";
+    public static final String ADDMANUALLY = "fragment_add_manually";
+    public static final String TEMPLATE = "fragment_template";
 
     private FragmentController() { }
 
@@ -42,6 +44,10 @@ public class FragmentController {
         else if (fragment == ADDMANUALLY)
         {
             return new AddManuallyFragment().newInstance(bundle);
+        }
+        else if (fragment == TEMPLATE)
+        {
+            return new TemplateFragment().newInstance(bundle);
         }
         else
         {

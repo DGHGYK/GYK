@@ -28,7 +28,10 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
         cbv_main_bottombar.setCustomBottomViewListener(new CustomBottomViewListener() {
             @Override
             public void itemClickListener(CustomBottomViewOption customBottomViewOption) {
-
+                if (customBottomViewOption == CustomBottomViewOption.USER)
+                {
+                    
+                }
             }
         });
 
