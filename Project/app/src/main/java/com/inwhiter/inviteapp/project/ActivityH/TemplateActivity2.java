@@ -12,5 +12,4 @@ public class TemplateActivity2 extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_template2);
     }
-
 }
