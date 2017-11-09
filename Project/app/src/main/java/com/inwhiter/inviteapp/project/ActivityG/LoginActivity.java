@@ -3,7 +3,6 @@ package com.inwhiter.inviteapp.project.ActivityG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.inwhiter.inviteapp.project.ActivityH.MenuActivity;
+import com.inwhiter.inviteapp.project.ActivityB.MainActivity;
 import com.inwhiter.inviteapp.project.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -51,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
 
         if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(),MenuActivity.class);
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
         }
 
@@ -78,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                                         DatabaseReference userRef = database.getReference("user");
                                         userRef.child(currentUser.getUid()).child("token").setValue(FirebaseInstanceId.getInstance().getToken());
-                                        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(intent);
                                     } else {
                                         Toast.makeText(getBaseContext(), "Giriş başarısız oldu", Toast.LENGTH_LONG).show();

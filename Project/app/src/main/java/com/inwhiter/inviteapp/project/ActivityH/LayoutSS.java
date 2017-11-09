@@ -1,8 +1,6 @@
 package com.inwhiter.inviteapp.project.ActivityH;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -10,25 +8,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.inwhiter.inviteapp.project.ActivityG.InviteeActivity;
-import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptorMediaplayer;
+import com.inwhiter.inviteapp.project.ActivityG.GuestActivity;
 import com.inwhiter.inviteapp.project.ModelH.Media;
 import com.inwhiter.inviteapp.project.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class LayoutSS extends AppCompatActivity {
     ImageView ss;
@@ -73,12 +66,12 @@ public class LayoutSS extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.h_custom_actionbar_ss);
         View customSS =getSupportActionBar().getCustomView();
-        Button addInvitees=(Button)customSS.findViewById(R.id.btn_actionbarSS_addInvitees);
+        Button addguests=(Button)customSS.findViewById(R.id.btn_actionbarSS_addguests);
 
-        addInvitees.setOnClickListener(new View.OnClickListener() {
+        addguests.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LayoutSS.this, InviteeActivity.class);
+                Intent intent = new Intent(LayoutSS.this, GuestActivity.class);
                 intent.putExtra("inviteId", inviteId);
                 startActivity(intent);
             }

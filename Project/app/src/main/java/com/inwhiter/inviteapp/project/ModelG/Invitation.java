@@ -16,9 +16,10 @@ public class Invitation {
     public Invitation() {
     }
 
-    public Invitation(String imageText, Uri imageURI) {
+    public Invitation(String imageText, Uri imageURI, String details) {
         this.imageText = imageText;
         this.imageURI = imageURI;
+        this.details=details;
     }
 
     public String getImageText() {

@@ -14,11 +14,11 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.inwhiter.inviteapp.project.ActivityG.InviteeEditActivity;
+import com.inwhiter.inviteapp.project.ActivityG.GuestEditActivity;
 import com.inwhiter.inviteapp.project.ModelG.ContactListSingleton;
-import com.inwhiter.inviteapp.project.ModelG.Invitee;
-import com.inwhiter.inviteapp.project.ModelG.InviteeListSingleton;
-import com.inwhiter.inviteapp.project.ModelG.InviteeStatus;
+import com.inwhiter.inviteapp.project.ModelG.Guest;
+import com.inwhiter.inviteapp.project.ModelG.GuestListSingleton;
+import com.inwhiter.inviteapp.project.ModelG.GuestStatus;
 import com.inwhiter.inviteapp.project.R;
 
 import java.util.ArrayList;
@@ -33,20 +33,18 @@ import java.util.List;
  * bilgileri görüntülenir.
  */
 
-public class InviteeListAdapter extends BaseExpandableListAdapter {
-    //public List<Invitee> InviteeListSingleton.getInst().getInviteeList();
-    public Context context;
+public class GuestListAdapter extends BaseExpandableListAdapter {
+    //public List<Guest> GuestListSingleton.getInst().getguestList();
     public Activity activity;
 
-    public InviteeListAdapter(Context context, Activity activity) {
-        // this.InviteeListSingleton.getInst().getInviteeList() = InviteeListSingleton.getInst().getInviteeList();
-        this.context = context;
+    public GuestListAdapter(Activity activity) {
+        // this.GuestListSingleton.getInst().getguestList() = GuestListSingleton.getInst().getguestList();
         this.activity = activity;
     }
 
     @Override
     public int getGroupCount() {
-        return InviteeListSingleton.getInst().getInviteeList().size();
+        return GuestListSingleton.getInst().getguestList().size();
     }
 
     @Override
@@ -55,13 +53,13 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public Invitee getGroup(int groupPosition) {
-        return InviteeListSingleton.getInst().getInviteeList().get(groupPosition);
+    public Guest getGroup(int groupPosition) {
+        return GuestListSingleton.getInst().getguestList().get(groupPosition);
     }
 
     @Override
-    public InviteeStatus getChild(int groupPosition, int childPosition) {
-        return InviteeListSingleton.getInst().getInviteeList().get(groupPosition).getStatus();
+    public GuestStatus getChild(int groupPosition, int childPosition) {
+        return GuestListSingleton.getInst().getguestList().get(groupPosition).getStatus();
     }
 
     @Override
@@ -82,29 +80,29 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        Invitee listTitle = (Invitee) getGroup(groupPosition);
+        Guest listTitle = (Guest) getGroup(groupPosition);
         if (convertView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) this.context.
+            LayoutInflater layoutInflater = (LayoutInflater) this.activity.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.invitee_item, null);
+            convertView = layoutInflater.inflate(R.layout.guest_item, null);
         }
-        TextView inviteeName = (TextView) convertView
-                .findViewById(R.id.tv_item_inviteeName);
-        inviteeName.setTypeface(null, Typeface.BOLD);
-        inviteeName.setText(listTitle.getName());
+        TextView guestName = (TextView) convertView
+                .findViewById(R.id.tv_item_guestName);
+        guestName.setTypeface(null, Typeface.BOLD);
+        guestName.setText(listTitle.getName());
 
 
         CheckBox check = (CheckBox) convertView.findViewById(R.id.cb_item_check);
         check.setChecked(true);
 
-        ImageView inviteeColor = (ImageView) convertView.findViewById(R.id.iv_item_inviteeStatus);
+        ImageView guestColor = (ImageView) convertView.findViewById(R.id.iv_item_guestStatus);
         if(listTitle.getStatus()!=null && listTitle.getStatus().getAnswer()!=null) {
             if (listTitle.getStatus().getAnswer().equals("Geliyor")) {
-                inviteeColor.setBackgroundColor(Color.rgb(31, 120, 180));
+                guestColor.setBackgroundColor(Color.rgb(31, 120, 180));
             } else if (listTitle.getStatus().getAnswer().equals("Gelmiyor")) {
-                inviteeColor.setBackgroundColor(Color.rgb(186, 22, 63));
+                guestColor.setBackgroundColor(Color.rgb(186, 22, 63));
             } else if (listTitle.getStatus().getAnswer().equals("Belki")){
-                inviteeColor.setBackgroundColor(Color.rgb(153, 148, 194));
+                guestColor.setBackgroundColor(Color.rgb(153, 148, 194));
             }
         }
         return convertView;
@@ -112,61 +110,61 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final Invitee invitee =(Invitee) getGroup(groupPosition);
-        final InviteeStatus invitee_status = (InviteeStatus) getChild(groupPosition, childPosition);
+        final Guest guest =(Guest) getGroup(groupPosition);
+        final GuestStatus guest_status = (GuestStatus) getChild(groupPosition, childPosition);
         if (convertView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) this.context
+            LayoutInflater layoutInflater = (LayoutInflater) this.activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.invitee_child_item, null);
+            convertView = layoutInflater.inflate(R.layout.guest_child_item, null);
         }
 
         TextView sendDate = (TextView) convertView
-                .findViewById(R.id.tv_inviteeChild_sendDate);
-        if(invitee_status.getSendDate()!=null) {
-            sendDate.setText(invitee_status.getSendDate().toString());
+                .findViewById(R.id.tv_guestChild_sendDate);
+        if(guest_status.getSendDate()!=null) {
+            sendDate.setText(guest_status.getSendDate().toString());
         }else{
             sendDate.setText("--");
         }
 
         TextView answerDate = (TextView) convertView
-                .findViewById(R.id.tv_inviteeChild_answerDate);
-        if(invitee_status.getAnswerDate()!=null) {
-            answerDate.setText(invitee_status.getAnswerDate().toString());
+                .findViewById(R.id.tv_guestChild_answerDate);
+        if(guest_status.getAnswerDate()!=null) {
+            answerDate.setText(guest_status.getAnswerDate().toString());
         }else{
             answerDate.setText("--");
         }
 
         TextView phoneNumber = (TextView) convertView
-                .findViewById(R.id.tv_inviteeChild_phoneNumber);
-        phoneNumber.setText(invitee.getPhoneNumber());
+                .findViewById(R.id.tv_guestChild_phoneNumber);
+        phoneNumber.setText(guest.getPhoneNumber());
 
-        Button delete = (Button) convertView.findViewById(R.id.bt_inviteeChild_delete);
+        Button delete = (Button) convertView.findViewById(R.id.bt_guestChild_delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Invitee in= InviteeListSingleton.getInst().getInviteeList().get(groupPosition);
+                Guest in= GuestListSingleton.getInst().getguestList().get(groupPosition);
                 ContactListSingleton.getInst().getSelectedContactsList().removeContactByPhoneNumber(in.getPhoneNumber());
-                InviteeListSingleton.getInst().removeInvitee(in);
+                GuestListSingleton.getInst().removeguest(in);
                 notifyDataSetChanged();
             }
         });
 
-        Button resend =(Button) convertView.findViewById(R.id.bt_inviteeChild_resend);
+        Button resend =(Button) convertView.findViewById(R.id.bt_guestChild_resend);
         resend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Invitee in= InviteeListSingleton.getInst().getInviteeList().get(groupPosition);
-                List<Invitee> list = new ArrayList<>();
+                Guest in= GuestListSingleton.getInst().getguestList().get(groupPosition);
+                List<Guest> list = new ArrayList<>();
                 list.add(in);
                 new SendSMS().execute(list);
             }
         });
 
-        Button edit = (Button) convertView.findViewById(R.id.bt_inviteeChild_edit);
+        Button edit = (Button) convertView.findViewById(R.id.bt_guestChild_edit);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, InviteeEditActivity.class);
+                Intent intent = new Intent(activity, GuestEditActivity.class);
                 intent.putExtra("position", groupPosition);
                 activity.startActivity(intent);
             }

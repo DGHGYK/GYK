@@ -1,4 +1,4 @@
-package com.inwhiter.inviteapp.project.FragmentB;
+package com.inwhiter.inviteapp.project.Fragment;
 
 import android.os.Bundle;
 

@@ -38,11 +38,11 @@ public class ContactsList {
         contactArrayList.remove(contact);
     }
 
-    public void removeContactsByPhoneNumbers(List<Invitee> invitees){
+    public void removeContactsByPhoneNumbers(List<Guest> guests){
         for (Iterator<Contact> it = contactArrayList.iterator(); it.hasNext();) {
             Contact con = it.next();
-            for (int i = 0; i < invitees.size(); i++) {
-                if (PhoneNumberUtils.compare(con.getPhoneNumber(),invitees.get(i).getPhoneNumber())){
+            for (int i = 0; i < guests.size(); i++) {
+                if (PhoneNumberUtils.compare(con.getPhoneNumber(),guests.get(i).getPhoneNumber())){
                     it.remove();
 
                 }

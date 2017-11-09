@@ -138,7 +138,7 @@ public class PrintActivity extends AppCompatActivity implements AdapterView.OnIt
           //          if(adress.getText()==null || adress.getText().toString().equals("")){
                     //    Toast.makeText(getBaseContext(),"Davetiyenin kişiye özel gönderilmesi için davetlinin adresini girmek zorunludur.", Toast.LENGTH_LONG).show();
 
-                           /*(InviteeListSingleton.getInst().isSameNumber( phoneNumber.getText().toString()))
+                           /*(GuestListSingleton.getInst().isSameNumber( phoneNumber.getText().toString()))
                    {
                        InputMethodManager inputManager = (InputMethodManager)
                                getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -151,16 +151,16 @@ public class PrintActivity extends AppCompatActivity implements AdapterView.OnIt
                   /* else{
                            //davetli kişi verisi veritabanına kaydedilir
                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                       DatabaseReference inviteeRef = database.getReference("invitee");
+                       DatabaseReference guestRef = database.getReference("guest");
 
-                       String inviteeId = inviteeRef.push().getKey();
-                       Invitee in = new Invitee(inviteeId, TemplateActivity.inviteId, 0, name.getText().toString(), phoneNumber.getText().toString(), new InviteeStatus());
+                       String guestId = guestRef.push().getKey();
+                       Guest in = new Guest(guestId, TemplateActivity.inviteId, 0, name.getText().toString(), phoneNumber.getText().toString(), new guestStatus());
                        //Singleton listeye yeni kişi eklenir
-                       InviteeListSingleton.getInst().getInviteeList().add(in);
+                       GuestListSingleton.getInst().getguestList().add(in);
 
-                       inviteeRef.child(inviteeId).setValue(in);
+                       guestRef.child(guestId).setValue(in);
 
-                       Intent intent = new Intent(AddManuallyActivity.this, InviteeActivity.class);
+                       Intent intent = new Intent(AddManuallyActivity.this, GuestActivity.class);
                        startActivity(intent);
                        }*/
 

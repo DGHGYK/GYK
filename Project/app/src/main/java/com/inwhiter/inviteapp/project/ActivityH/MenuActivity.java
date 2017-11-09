@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.inwhiter.inviteapp.project.ActivityD.PrintActivity;
-import com.inwhiter.inviteapp.project.ActivityG.InviteeActivity;
+import com.inwhiter.inviteapp.project.ActivityG.GuestActivity;
 import com.inwhiter.inviteapp.project.ActivityG.LoginActivity;
 import com.inwhiter.inviteapp.project.BusinessG.AllInvitesRecyclerAdapter;
 import com.inwhiter.inviteapp.project.BusinessG.RecyclerItemClickListener;
@@ -72,7 +72,7 @@ public class MenuActivity extends AppCompatActivity {
         btn_menu_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//gamzenin davetlilerini ekleme buton kısmı
-                Intent intent=new Intent(MenuActivity.this,InviteeActivity.class);
+                Intent intent=new Intent(MenuActivity.this,GuestActivity.class);
                 startActivity(intent);
             }
         });
@@ -112,7 +112,7 @@ public class MenuActivity extends AppCompatActivity {
                     @Override public void onItemClick(View view, int position) {
                         TextView tv_inviteId= (TextView) view.findViewById(R.id.tv_recycler_item_id);
                         String inviteId= (String) tv_inviteId.getText();
-                        Intent intent=new Intent(MenuActivity.this, InviteeActivity.class);
+                        Intent intent=new Intent(MenuActivity.this, GuestActivity.class);
                         intent.putExtra("inviteId", inviteId);
                         startActivity(intent);
                     }
@@ -176,7 +176,7 @@ public class MenuActivity extends AppCompatActivity {
                     }
                 }
                 if (horizontalList.size() == 0) {
-                    Invitation inv = new Invitation("", Uri.parse("android.resource://com.inwhiter.inviteapp.project/" + R.drawable.giris));
+                    Invitation inv = new Invitation("", Uri.parse("android.resource://com.inwhiter.inviteapp.project/" + R.drawable.giris),"");
                     horizontalList.add(inv);
                 }
                 recyclerAdapter=new AllInvitesRecyclerAdapter(horizontalList, MenuActivity.this);

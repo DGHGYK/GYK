@@ -163,7 +163,7 @@ public class TemplateActivity2 extends AppCompatActivity implements OnMenuItemCl
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        Invite invite = new Invite(currentUser.getUid(),info, 1, "", getIntent().getExtras().getString("menu"),  Calendar.getInstance().getTime() );
+        Invite invite = new Invite(currentUser.getUid(),info, 1, "", getIntent().getExtras().getString("menu"),  Calendar.getInstance().getTime(), new ArrayList<String>());
         if(inviteId==null || inviteId.equals("")) {
             inviteId = inviteRef.push().getKey();
         }
