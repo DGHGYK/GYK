@@ -16,14 +16,14 @@ import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateFragment;
 
 public class FragmentController {
     private static FragmentController instance = null;
-<<<<<<< HEAD
-    public static final String MAIN= "fragment_main";
-    public static final String GUEST= "fragment_guest";
-    public static final String ADD_MANUALLY= "fragment_add_manually";
-    public static final String CONTACTS_PICKER= "fragment_add_manually";
-=======
 
->>>>>>> 70fafea23b04d4ca0d4c29c642189e92b8500597
+    public static final String MAIN = "fragment_main";
+    public static final String GUEST = "fragment_guest";
+    public static final String ADD_MANUALLY = "fragment_add_manually";
+    public static final String TEMPLATE = "fragment_template";
+    public static final String PROFILE="fragment_profile";
+    public static final String CONTACTS_PICKER="fragment_contacts_picker";
+
 
     private FragmentController() { }
 
@@ -43,6 +43,9 @@ public class FragmentController {
         {
             return new MainFragment();
         }
+        else if(fragment == PROFILE){
+            return new ProfileFragment();
+        }
         else if (fragment == GUEST)
         {
             return new GuestFragment().newInstance(bundle);
@@ -53,6 +56,10 @@ public class FragmentController {
         }else if (fragment == CONTACTS_PICKER)
         {
             return new ContactsPickerFragment().newInstance(bundle);
+        }
+        else if (fragment == TEMPLATE)
+        {
+            return new TemplateFragment().newInstance(bundle);
         }
         else
         {
