@@ -82,7 +82,7 @@ public class AddManuallyFragment extends BaseFragment {
                         String guestId = guestRef.push().getKey();
                         Guest in = new Guest(guestId, inviteId, 0, name.getText().toString(), phoneNumber.getText().toString(), new GuestStatus());
                         //Singleton listeye yeni kişi eklenir
-                        GuestListSingleton.getInst().getguestList().add(in);
+                        //GuestListSingleton.getInst().getGuestList().add(in);
 
                         guestRef.child(guestId).setValue(in);
 

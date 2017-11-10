@@ -49,14 +49,14 @@ public class GuestEditActivity extends AppCompatActivity {
         hardcopy = (CheckBox) findViewById(R.id.cb_guestEdit_hardcopy);
         edit = (Button) findViewById(R.id.bt_guestEdit_edit);
 
-        softcopy.setChecked(GuestListSingleton.getInst().getguestList().get(position).getStatus().isSoftcopy());
-        hardcopy.setChecked(GuestListSingleton.getInst().getguestList().get(position).getStatus().isHardcopy());
+        softcopy.setChecked(GuestListSingleton.getInst().getGuestList().get(position).getStatus().isSoftcopy());
+        hardcopy.setChecked(GuestListSingleton.getInst().getGuestList().get(position).getStatus().isHardcopy());
 
         final List<String> numberOfPeopleList = Arrays.asList("1","2","3","4","5","6","7","8","9","10");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, numberOfPeopleList);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         numberOfPeople.setAdapter(dataAdapter);
-        int nopSpinnerPosition = dataAdapter.getPosition(String.valueOf(GuestListSingleton.getInst().getguestList().get(position).getStatus().getNumberOfPeople()));
+        int nopSpinnerPosition = dataAdapter.getPosition(String.valueOf(GuestListSingleton.getInst().getGuestList().get(position).getStatus().getNumberOfPeople()));
         numberOfPeople.setSelection(nopSpinnerPosition);
 
 
@@ -64,30 +64,30 @@ public class GuestEditActivity extends AppCompatActivity {
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, answerList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         answer.setAdapter(dataAdapter2);
-        int answerSpinnerPosition = dataAdapter2.getPosition(GuestListSingleton.getInst().getguestList().get(position).getStatus().getAnswer());
+        int answerSpinnerPosition = dataAdapter2.getPosition(GuestListSingleton.getInst().getGuestList().get(position).getStatus().getAnswer());
         answer.setSelection(answerSpinnerPosition);
 
         softcopy.setChecked(true);
 
-        name.setText(GuestListSingleton.getInst().getguestList().get(position).getName());
-        phoneNumber.setText(GuestListSingleton.getInst().getguestList().get(position).getPhoneNumber());
+        name.setText(GuestListSingleton.getInst().getGuestList().get(position).getName());
+        phoneNumber.setText(GuestListSingleton.getInst().getGuestList().get(position).getPhoneNumber());
 
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GuestListSingleton.getInst().getguestList().get(position).setName(name.getText().toString());
-                GuestListSingleton.getInst().getguestList().get(position).setPhoneNumber(phoneNumber.getText().toString());
-                GuestListSingleton.getInst().getguestList().get(position).getStatus().setAnswer(answer.getSelectedItem().toString());
-                GuestListSingleton.getInst().getguestList().get(position).getStatus().setNumberOfPeople(Integer.parseInt(numberOfPeople.getSelectedItem().toString()));
-                GuestListSingleton.getInst().getguestList().get(position).getStatus().setHardcopy(hardcopy.isChecked());
-                GuestListSingleton.getInst().getguestList().get(position).getStatus().setSoftcopy(softcopy.isChecked());
+                GuestListSingleton.getInst().getGuestList().get(position).setName(name.getText().toString());
+                GuestListSingleton.getInst().getGuestList().get(position).setPhoneNumber(phoneNumber.getText().toString());
+                GuestListSingleton.getInst().getGuestList().get(position).getStatus().setAnswer(answer.getSelectedItem().toString());
+                GuestListSingleton.getInst().getGuestList().get(position).getStatus().setNumberOfPeople(Integer.parseInt(numberOfPeople.getSelectedItem().toString()));
+                GuestListSingleton.getInst().getGuestList().get(position).getStatus().setHardcopy(hardcopy.isChecked());
+                GuestListSingleton.getInst().getGuestList().get(position).getStatus().setSoftcopy(softcopy.isChecked());
 
 
                 //veritabanındaki davetli verilerini değiştirme
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference guestRef = database.getReference("guest");
-                guestRef.child(GuestListSingleton.getInst().getguestList().get(position).getGuestId()).setValue(GuestListSingleton.getInst().getguestList().get(position));
+                guestRef.child(GuestListSingleton.getInst().getGuestList().get(position).getGuestId()).setValue(GuestListSingleton.getInst().getGuestList().get(position));
 
 
                 Intent intent = new Intent(getBaseContext(), GuestActivity.class);

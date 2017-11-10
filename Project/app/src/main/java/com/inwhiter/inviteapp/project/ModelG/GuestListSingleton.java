@@ -34,11 +34,11 @@ public class GuestListSingleton {
     }
 
 
-    public void setguestList(List<Guest> guestList) {
+    public void setGuestList(List<Guest> guestList) {
         this.guestList = guestList;
     }
 
-    public List<Guest> getguestList() {
+    public List<Guest> getGuestList() {
         if(guestList!=null)
             return guestList;
         return new ArrayList<Guest>();
@@ -61,14 +61,15 @@ public class GuestListSingleton {
         guestRef.child(guest.getGuestId()).removeValue();
     }
 
-    public void removeAllguests(List<Guest> guests){
-        guestList.removeAll(guests);
+    public void removeAllguests(){
+        guestList.removeAll(guestList);
+      /*  guestList.removeAll(guests);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference guestRef = database.getReference("guest");
 
         for (Guest in: guests) {
             guestRef.child(in.getGuestId()).removeValue();
-        }
+        }*/
 
     }
 
@@ -82,6 +83,15 @@ public class GuestListSingleton {
             }*/
         }
         return false;
+    }
+
+    public int alreadyAdded(String guestId){
+        for (Guest g: guestList) {
+            if(g.getGuestId().equals(guestId)){
+                return guestList.indexOf(g);
+            }
+        }
+        return 0;
     }
 
 }

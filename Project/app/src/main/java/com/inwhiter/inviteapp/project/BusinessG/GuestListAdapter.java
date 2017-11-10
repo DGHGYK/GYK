@@ -34,17 +34,17 @@ import java.util.List;
  */
 
 public class GuestListAdapter extends BaseExpandableListAdapter {
-    //public List<Guest> GuestListSingleton.getInst().getguestList();
+    //public List<Guest> GuestListSingleton.getInst().getGuestList();
     public Activity activity;
 
     public GuestListAdapter(Activity activity) {
-        // this.GuestListSingleton.getInst().getguestList() = GuestListSingleton.getInst().getguestList();
+        // this.GuestListSingleton.getInst().getGuestList() = GuestListSingleton.getInst().getGuestList();
         this.activity = activity;
     }
 
     @Override
     public int getGroupCount() {
-        return GuestListSingleton.getInst().getguestList().size();
+        return GuestListSingleton.getInst().getGuestList().size();
     }
 
     @Override
@@ -54,12 +54,12 @@ public class GuestListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Guest getGroup(int groupPosition) {
-        return GuestListSingleton.getInst().getguestList().get(groupPosition);
+        return GuestListSingleton.getInst().getGuestList().get(groupPosition);
     }
 
     @Override
     public GuestStatus getChild(int groupPosition, int childPosition) {
-        return GuestListSingleton.getInst().getguestList().get(groupPosition).getStatus();
+        return GuestListSingleton.getInst().getGuestList().get(groupPosition).getStatus();
     }
 
     @Override
@@ -142,7 +142,7 @@ public class GuestListAdapter extends BaseExpandableListAdapter {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Guest in= GuestListSingleton.getInst().getguestList().get(groupPosition);
+                Guest in= GuestListSingleton.getInst().getGuestList().get(groupPosition);
                 ContactListSingleton.getInst().getSelectedContactsList().removeContactByPhoneNumber(in.getPhoneNumber());
                 GuestListSingleton.getInst().removeguest(in);
                 notifyDataSetChanged();
@@ -153,7 +153,7 @@ public class GuestListAdapter extends BaseExpandableListAdapter {
         resend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Guest in= GuestListSingleton.getInst().getguestList().get(groupPosition);
+                Guest in= GuestListSingleton.getInst().getGuestList().get(groupPosition);
                 List<Guest> list = new ArrayList<>();
                 list.add(in);
                 new SendSMS().execute(list);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.inwhiter.inviteapp.project.Fragment.Fragments.AddManuallyFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.ContactsPickerFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.GuestFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
 
@@ -15,7 +16,8 @@ public class FragmentController {
     private static FragmentController instance = null;
     public static final String MAIN= "fragment_main";
     public static final String GUEST= "fragment_guest";
-    public static final String ADDMANUALLY= "fragment_add_manually";
+    public static final String ADD_MANUALLY= "fragment_add_manually";
+    public static final String CONTACTS_PICKER= "fragment_add_manually";
 
     private FragmentController() { }
 
@@ -39,9 +41,12 @@ public class FragmentController {
         {
             return new GuestFragment().newInstance(bundle);
         }
-        else if (fragment == ADDMANUALLY)
+        else if (fragment == ADD_MANUALLY)
         {
             return new AddManuallyFragment().newInstance(bundle);
+        }else if (fragment == CONTACTS_PICKER)
+        {
+            return new ContactsPickerFragment().newInstance(bundle);
         }
         else
         {
