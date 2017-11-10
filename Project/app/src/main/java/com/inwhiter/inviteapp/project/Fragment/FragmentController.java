@@ -2,11 +2,13 @@ package com.inwhiter.inviteapp.project.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-
+import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.ProfileFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.AddManuallyFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.ContactsPickerFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.GuestFragment;
-import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateFragment;
+
 
 /**
  * Created by bthnorhan on 27.10.2017.
@@ -14,10 +16,14 @@ import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
 
 public class FragmentController {
     private static FragmentController instance = null;
+<<<<<<< HEAD
     public static final String MAIN= "fragment_main";
     public static final String GUEST= "fragment_guest";
     public static final String ADD_MANUALLY= "fragment_add_manually";
     public static final String CONTACTS_PICKER= "fragment_add_manually";
+=======
+
+>>>>>>> 70fafea23b04d4ca0d4c29c642189e92b8500597
 
     private FragmentController() { }
 
