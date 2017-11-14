@@ -1,9 +1,10 @@
-package com.inwhiter.inviteapp.project.ActivityG;
+package com.inwhiter.inviteapp.project.ActivityB;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,87 +20,87 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.inwhiter.inviteapp.project.ActivityB.MainActivity;
 import com.inwhiter.inviteapp.project.R;
 
-public class SignUpActivity extends AppCompatActivity {
-    EditText email, password, password2;
-    Button signup;
-    TextView login;
+public class LoginActivity extends AppCompatActivity {
 
+    EditText email, password;
+    Button login;
+    TextView signup;
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
+    //String email, sifre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
-        setContentView(R.layout.activity_signup);
-
-       /* ActionBar ab=getSupportActionBar();
+        /*ActionBar ab=getSupportActionBar();
         ab.hide();*/
+
+        email = (EditText) findViewById(R.id.et_login_email);
+        password = (EditText) findViewById(R.id.et_login_password);
+        login = (Button) findViewById(R.id.bt_login_login);
+        signup = (TextView) findViewById(R.id.tv_login_signup);
 
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        email=(EditText)findViewById(R.id.et_signup_email);
-        password =(EditText)findViewById(R.id.et_signup_password);
-        password2=(EditText)findViewById(R.id.et_signup_password2);
-        signup = (Button)findViewById(R.id.bt_signup_signup);
-        login = (TextView) findViewById(R.id.tv_signup_login);
+        if(currentUser != null){
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+        }
 
-        login.setOnClickListener(new View.OnClickListener() {
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(),SignUpActivity.class);
                 startActivity(intent);
             }
         });
 
-        signup.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(password.getText().toString().equals(password2.getText().toString())) {
-                    mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+
+                if (!TextUtils.isEmpty(email.getText().toString()) && !TextUtils.isEmpty(password.getText().toString())) {
+                    mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-
+                                        Log.d("Fire", "signInWithEmail:success");
                                         currentUser = mAuth.getCurrentUser();
-                                        Log.d("Fire", currentUser.getEmail());
-                                        //Notification gönderilebilmesi için kullanıcı telefonun tokenı firebasee kaydedilir.
-                                      
                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                                         DatabaseReference userRef = database.getReference("user");
                                         userRef.child(currentUser.getUid()).child("token").setValue(FirebaseInstanceId.getInstance().getToken());
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(intent);
                                     } else {
-                                        // If sign in fails, display a message to the user.
-                                        Log.w("Fire", "createUserWithEmail:failure");
+                                        Toast.makeText(getBaseContext(), "Giriş başarısız oldu", Toast.LENGTH_LONG).show();
+                                        Log.w("FA", "signInWithEmail:failure", task.getException());
 
                                     }
 
                                 }
                             });
-                }else{
-                    Toast.makeText(getBaseContext(),"Girdiğiniz şifreler aynı olmalıdır.", Toast.LENGTH_LONG).show();
+
+                } else {
+                    Toast.makeText(getBaseContext(), "İstenen bilgileri eksiksiz giriniz.", Toast.LENGTH_LONG).show();
                 }
+
+
                 String s = password.getText().toString();
 
-            /*    if(s.length() < 6){
+               /* if(s.length() < 6){
                     password.setError("Sifreyi en az 6 karakter giriniz!");
-                    password2.setError("Sifreyi en az 6 karakter giriniz!");
                 } else {
                     // ...
-                    Toast.makeText(getBaseContext(),"Kaydiniz Gerceklestirilmistir.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),"Girisiniz yapiliyor.", Toast.LENGTH_LONG).show();
                 }*/
             }
         });
-
     }
-
 }

@@ -2,11 +2,14 @@ package com.inwhiter.inviteapp.project.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
+import com.inwhiter.inviteapp.project.Fragment.Fragments.InfoFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.ProfileFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.AddManuallyFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.GuestFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.TopicFragment;
 
 
 /**
@@ -20,6 +23,9 @@ public class FragmentController {
     public static final String ADDMANUALLY = "fragment_add_manually";
     public static final String TEMPLATE = "fragment_template";
     public static final String PROFILE="fragment_profile";
+    public static final String TOPIC="fragment_topic";
+    public static final String INFO="fragment_info";
+
 
 
     private FragmentController() { }
@@ -56,6 +62,15 @@ public class FragmentController {
         {
             return new TemplateFragment().newInstance(bundle);
         }
+        else if (fragment == TOPIC)
+        {
+            return new TopicFragment();
+        }
+        else if (fragment == INFO)
+        {
+            return new InfoFragment().newInstance(bundle);
+        }
+
         else
         {
             return null;

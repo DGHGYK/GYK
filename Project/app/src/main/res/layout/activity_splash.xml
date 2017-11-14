@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:gravity="center_vertical|center_horizontal"
-    tools:context="com.inwhiter.inviteapp.project.ActivityG.SplashActivity">
+    tools:context="com.inwhiter.inviteapp.project.ActivityB.SplashActivity">
 
     <ImageView
         android:id="@+id/splashLogo"

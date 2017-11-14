@@ -1,4 +1,4 @@
-package com.inwhiter.inviteapp.project.ActivityG;
+package com.inwhiter.inviteapp.project.ActivityB;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.inwhiter.inviteapp.project.ActivityG.LoginActivity;
+import com.inwhiter.inviteapp.project.ActivityB.LoginActivity;
 import com.inwhiter.inviteapp.project.R;
 
 public class SplashActivity extends AppCompatActivity {
