@@ -64,91 +64,8 @@ public class GuestFragment extends BaseFragment {
         GuestFragment fragment = new GuestFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode,int resultCode,Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-       /* if(requestCode == CONTACT_PICK_REQUEST && resultCode == RESULT_OK){
-            convertContactsToguests();
-        }*/
 
     }
-
-
-    private void getOldGuests(){
-
-        final List<String> oldGuestIds = new ArrayList<String>();
-        inviteRef.child(inviteId).child("guestIds").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null) {
-                    for (DataSnapshot data : dataSnapshot.getChildren()){
-                        String g = data.getKey();
-                        oldGuestIds.add(g);
-
-                        guestRef.child(g).addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot guestSnapshot) {
-                                if(guestSnapshot!=null){
-                                    Guest g = guestSnapshot.getValue(Guest.class);
-                                    GuestListSingleton.getInst().addguest(g);
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        guest_adapter.notifyDataSetChanged();
-
-    }
-
-    private void convertContactsToguests() {
-
-
-        List<String> guestIds = new ArrayList<>();
-
-        //for (Contact c: contacts) {
-        for (Contact c: ContactListSingleton.getInst().getLastSelectedContactsList().contactArrayList) {
-            if(GuestListSingleton.getInst().isSameNumber(c.getPhoneNumber())){
-                Toast.makeText(getActivity(),c.getName()+" isimli davetli zaten davetli listenizde",Toast.LENGTH_LONG).show();
-            }else {
-                //davetli kişi verisi veritabanına kaydedilir
-
-
-                String guestId = guestRef.push().getKey();
-                Guest in = new Guest(guestId, inviteId, 0, c.getName(), c.getPhoneNumber(), new GuestStatus());
-                //Singleton listeye yeni kişi eklenir
-                GuestListSingleton.getInst().getguestList().add(in);
-                guestIds.add(guestId);
-                guestRef.child(guestId).setValue(in);
-
-            }
-
-            inviteRef.child(inviteId).child("guestIds").setValue(guestIds);
-
-        }
-    }
-
-   /* @Override
-    protected void onResume() {
-        super.onResume();
-        initList();
-    }*/
-
 
     @Override
     protected int getFID() {
@@ -172,7 +89,7 @@ public class GuestFragment extends BaseFragment {
 
         guest_adapter = new GuestListAdapter(getActivity());
         guest_expandable.setAdapter(guest_adapter);
-        getOldGuests();
+
 
         if(guest_expandable.getChildCount()>0){
             checkAll.setVisibility(View.VISIBLE);
@@ -184,7 +101,8 @@ public class GuestFragment extends BaseFragment {
 
     @Override
     protected void handlers() {
-
+        GuestListSingleton.getInst().removeAllguests();
+        getOldGuests();
 
 
         guest_expandable.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
@@ -227,7 +145,7 @@ public class GuestFragment extends BaseFragment {
             public void onClick(View v) {
                 Bundle bundle= new Bundle();
                 bundle.putString("inviteId", inviteId);
-                listener.changeFragment(FragmentController.ADDMANUALLY, bundle);
+                listener.changeFragment(FragmentController.ADD_MANUALLY, bundle);
             }
         });
 
@@ -265,7 +183,7 @@ public class GuestFragment extends BaseFragment {
                     CheckBox cb = (CheckBox) itemLayout.findViewById(R.id.cb_item_check);
 
                     if (cb.isChecked()) {
-                        checkedguests.add(GuestListSingleton.getInst().getguestList().get(i));
+                        checkedguests.add(GuestListSingleton.getInst().getGuestList().get(i));
                     }
                 }
 
@@ -317,7 +235,7 @@ public class GuestFragment extends BaseFragment {
                     TextView tv = (TextView) itemLayout.findViewById(R.id.tv_item_id);
 
                     if (cb.isChecked()) {
-                        checkedguests.add(GuestListSingleton.getInst().getguestList().get(i));
+                        checkedguests.add(GuestListSingleton.getInst().getGuestList().get(i));
 
                     }
                 }
@@ -332,7 +250,7 @@ public class GuestFragment extends BaseFragment {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     ContactListSingleton.getInst().getSelectedContactsList().removeContactsByPhoneNumbers(checkedguests);
-                                    GuestListSingleton.getInst().removeAllguests(checkedguests);
+                                    GuestListSingleton.getInst().removeAllguests();
                                     guest_adapter.notifyDataSetChanged();
 
                                     // initList();
@@ -358,4 +276,95 @@ public class GuestFragment extends BaseFragment {
             }
         });
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+       /* if(requestCode == CONTACT_PICK_REQUEST && resultCode == RESULT_OK){
+            convertContactsToguests();
+        }*/
+
+    }
+
+
+    private void getOldGuests(){
+
+        final List<String> oldGuestIds = new ArrayList<String>();
+        inviteRef.child(inviteId).child("guestIds").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null) {
+                    for (DataSnapshot data : dataSnapshot.getChildren()){
+                        String g = data.getKey();
+                        oldGuestIds.add(g);
+
+                        guestRef.child(g).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot guestSnapshot) {
+                                if(guestSnapshot!=null){
+                                    Guest g = guestSnapshot.getValue(Guest.class);
+                                    int addedId=GuestListSingleton.getInst().alreadyAdded(g.getGuestId());
+                                    if(addedId!=0){
+                                        GuestListSingleton.getInst().getGuestList().set(addedId,g);
+                                    }else {
+                                        GuestListSingleton.getInst().addguest(g);
+                                    }
+                                }
+                                guest_adapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+    }
+
+    private void convertContactsToguests() {
+
+
+        List<String> guestIds = new ArrayList<>();
+
+        //for (Contact c: contacts) {
+        for (Contact c: ContactListSingleton.getInst().getLastSelectedContactsList().contactArrayList) {
+            if(GuestListSingleton.getInst().isSameNumber(c.getPhoneNumber())){
+                Toast.makeText(getActivity(),c.getName()+" isimli davetli zaten davetli listenizde",Toast.LENGTH_LONG).show();
+            }else {
+                //davetli kişi verisi veritabanına kaydedilir
+
+
+                String guestId = guestRef.push().getKey();
+                Guest in = new Guest(guestId, inviteId, 0, c.getName(), c.getPhoneNumber(), new GuestStatus());
+                //Singleton listeye yeni kişi eklenir
+                GuestListSingleton.getInst().getGuestList().add(in);
+                guestIds.add(guestId);
+                guestRef.child(guestId).setValue(in);
+
+            }
+
+            inviteRef.child(inviteId).child("guestIds").setValue(guestIds);
+
+        }
+    }
+
+   /* @Override
+    protected void onResume() {
+        super.onResume();
+        initList();
+    }*/
+
+
 }

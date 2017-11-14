@@ -43,15 +43,15 @@ public class SendSMS extends AsyncTask<List<Guest>, Void, String> {
                 guest.getStatus().setSendDate(Calendar.getInstance().getTime());
                 guest.setLastProcess(1);
 
-                //veritabanındaki davetli verilerini değiştirme
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference guestRef = database.getReference("guest");
-                guestRef.child(guest.getGuestId()).setValue(guest);
-
                 //SMS gönderimi
                 String inviteUrl="inwhiter.com/invite.html?id="+guest.getGuestId();
                 String getUrl="https://api.iletimerkezi.com/v1/send-sms/get/?username=5333665570&password=azrazra&text="+guest.getName()+", bir davetiniz var. Görmek için tıklayın: "+inviteUrl+"&receipents="+formatPhoneNumber(guest.getPhoneNumber())+"&sender=inwhiter";
                 response += run(getUrl);
+
+                //veritabanındaki davetli verilerini değiştirme
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference guestRef = database.getReference("guest");
+                guestRef.child(guest.getGuestId()).setValue(guest);
 
 
             } catch (IOException e) {

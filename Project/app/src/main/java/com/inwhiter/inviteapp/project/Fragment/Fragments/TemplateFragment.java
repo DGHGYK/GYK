@@ -19,7 +19,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -1035,12 +1035,12 @@ public class TemplateFragment extends BaseFragment implements OnMenuItemClickLis
     private void initToolbar() {
         Toolbar mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         TextView mToolBarTextView = (TextView) getActivity().findViewById(R.id.text_view_toolbar_title);
-        ((ActionBarActivity) getActivity()).setSupportActionBar(mToolbar);
-        if (((ActionBarActivity) getActivity()).getSupportActionBar() != null) {
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+        if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
 
-            ((ActionBarActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-            ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
       /*  mToolbar.setNavigationIcon(R.mipmap.ic_launcher_round);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {

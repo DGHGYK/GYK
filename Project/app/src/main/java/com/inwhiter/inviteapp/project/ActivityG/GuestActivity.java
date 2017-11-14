@@ -171,7 +171,7 @@ public class GuestActivity extends AppCompatActivity {
                     CheckBox cb = (CheckBox) itemLayout.findViewById(R.id.cb_item_check);
 
                     if (cb.isChecked()) {
-                        checkedguests.add(GuestListSingleton.getInst().getguestList().get(i));
+                        checkedguests.add(GuestListSingleton.getInst().getGuestList().get(i));
                     }
                 }
 
@@ -223,7 +223,7 @@ public class GuestActivity extends AppCompatActivity {
                     TextView tv = (TextView) itemLayout.findViewById(R.id.tv_item_id);
 
                     if (cb.isChecked()) {
-                        checkedguests.add(GuestListSingleton.getInst().getguestList().get(i));
+                        checkedguests.add(GuestListSingleton.getInst().getGuestList().get(i));
 
                     }
                 }
@@ -238,7 +238,7 @@ public class GuestActivity extends AppCompatActivity {
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             ContactListSingleton.getInst().getSelectedContactsList().removeContactsByPhoneNumbers(checkedguests);
-                                            GuestListSingleton.getInst().removeAllguests(checkedguests);
+                                            GuestListSingleton.getInst().removeAllguests();
                                             guest_adapter.notifyDataSetChanged();
 
                                             // initList();
@@ -274,7 +274,7 @@ public class GuestActivity extends AppCompatActivity {
                     // dataSnapshot is the "issue" node with all children with id 0
                     for (DataSnapshot i : dataSnapshot.getChildren()) {
                         // do something with the individual "issues"
-                        for (Guest in: GuestListSingleton.getInst().getguestList())
+                        for (Guest in: GuestListSingleton.getInst().getGuestList())
                             if(in.getName().equals(i.getValue(Guest.class).getName()) )
                               {
                                 in.setStatus(i.child("status").getValue(GuestStatus.class));
@@ -324,7 +324,7 @@ public class GuestActivity extends AppCompatActivity {
                 String guestId = guestRef.push().getKey();
                 Guest in = new Guest(guestId, inviteId, 0, c.getName(), c.getPhoneNumber(), new GuestStatus());
                 //Singleton listeye yeni kişi eklenir
-                GuestListSingleton.getInst().getguestList().add(in);
+                GuestListSingleton.getInst().getGuestList().add(in);
                 guestIds.add(guestId);
                 guestRef.child(guestId).setValue(in);
 
@@ -343,7 +343,7 @@ public class GuestActivity extends AppCompatActivity {
 
     private void initList()
     {
-       // GuestListSingleton.getInst().getguestList().clear();
+       // GuestListSingleton.getInst().getGuestList().clear();
         //convertContactsToguests();
         guest_adapter = new GuestListAdapter(this);
         guest_expandable.setAdapter(guest_adapter);

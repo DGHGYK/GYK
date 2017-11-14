@@ -7,6 +7,7 @@ import com.inwhiter.inviteapp.project.Fragment.Fragments.InfoFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.ProfileFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.AddManuallyFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.ContactsPickerFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.GuestFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TopicFragment;
@@ -18,13 +19,16 @@ import com.inwhiter.inviteapp.project.Fragment.Fragments.TopicFragment;
 
 public class FragmentController {
     private static FragmentController instance = null;
+
     public static final String MAIN = "fragment_main";
     public static final String GUEST = "fragment_guest";
-    public static final String ADDMANUALLY = "fragment_add_manually";
+    public static final String ADD_MANUALLY = "fragment_add_manually";
     public static final String TEMPLATE = "fragment_template";
     public static final String PROFILE="fragment_profile";
+
     public static final String TOPIC="fragment_topic";
     public static final String INFO="fragment_info";
+    public static final String CONTACTS_PICKER="fragment_contacts_picker";
 
 
 
@@ -48,15 +52,17 @@ public class FragmentController {
         }
         else if(fragment == PROFILE){
             return new ProfileFragment();
-
         }
         else if (fragment == GUEST)
         {
             return new GuestFragment().newInstance(bundle);
         }
-        else if (fragment == ADDMANUALLY)
+        else if (fragment == ADD_MANUALLY)
         {
             return new AddManuallyFragment().newInstance(bundle);
+        }else if (fragment == CONTACTS_PICKER)
+        {
+            return new ContactsPickerFragment().newInstance(bundle);
         }
         else if (fragment == TEMPLATE)
         {
