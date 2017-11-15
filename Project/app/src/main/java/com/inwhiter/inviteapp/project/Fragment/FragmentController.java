@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.inwhiter.inviteapp.project.Fragment.Fragments.InfoFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.LayoutSSFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.ProfileFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.AddManuallyFragment;
@@ -29,6 +30,7 @@ public class FragmentController {
     public static final String TOPIC="fragment_topic";
     public static final String INFO="fragment_info";
     public static final String CONTACTS_PICKER="fragment_contacts_picker";
+    public static final String LAYOUTSS="fragment_layout_ss";
 
 
 
@@ -76,6 +78,11 @@ public class FragmentController {
         {
             return new InfoFragment().newInstance(bundle);
         }
+        else if (fragment == LAYOUTSS)
+        {
+            return new LayoutSSFragment().newInstance(bundle);
+        }
+
 
         else
         {

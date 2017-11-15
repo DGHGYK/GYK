@@ -64,7 +64,7 @@ public class InfoFragment extends BaseFragment {
     public InfoFragment() {
         // Required empty public constructor
     }
-    public static InfoFragment newInstance(Bundle args) {
+    public static InfoFragment newInstance(Bundle args) {//bundle ile topicten değer aldığı için
         InfoFragment fragment = new InfoFragment();
         fragment.setArguments(args);
         return fragment;
@@ -72,6 +72,7 @@ public class InfoFragment extends BaseFragment {
     }
     @Override
     protected int getFID() {
+
         return R.layout.fragment_info;
     }
 
@@ -123,11 +124,11 @@ public class InfoFragment extends BaseFragment {
                             et_bilgi_family2.getText().toString(),et_bilgi_adress.getText().toString(),et_bilgi_tag.getText().toString(),tv_bilgi_date.getText().toString(), tv_bilgi_time.getText().toString());
 
                     Bundle bundle=new Bundle();
-                    Bundle bundle2=new Bundle();
+                    //Bundle bundle2=new Bundle();
                     bundle.putParcelable("info",info);
-                    bundle2.putString("menu", "template");
-                    listener.changeFragment(FragmentController.TEMPLATE,bundle);
-                    listener.changeFragment(FragmentController.TEMPLATE,bundle2);
+                    bundle.putString("menu", "template");
+                    listener.changeFragment(FragmentController.TEMPLATE,bundle);//template e değerler gönderdik
+                   // listener.changeFragment(FragmentController.TEMPLATE,bundle2);
               //      Intent intent = new Intent(InfoActivity.this, TemplateActivity2.class);
                     //   data= getIntent().getExtras().get("mood").toString();
 
@@ -159,14 +160,14 @@ public class InfoFragment extends BaseFragment {
 
 
                     Bundle bundle=new Bundle();
-                    Bundle bundle2=new Bundle();
-                    Bundle bundle3=new Bundle();
+                   // Bundle bundle2=new Bundle();
+                   // Bundle bundle3=new Bundle();
                     bundle.putParcelable("info",info);
-                    bundle2.putString("menu", "camera");
-                    bundle3.putString("foto", SimageUri);
+                    bundle.putString("menu", "camera");
+                    bundle.putString("foto", SimageUri);
                     listener.changeFragment(FragmentController.TEMPLATE,bundle);
-                    listener.changeFragment(FragmentController.TEMPLATE,bundle2);
-                    listener.changeFragment(FragmentController.TEMPLATE,bundle3);
+                    //listener.changeFragment(FragmentController.TEMPLATE,bundle2);
+                    //listener.changeFragment(FragmentController.TEMPLATE,bundle3);
                     /* Intent intent = new Intent(InfoActivity.this, TemplateActivity2.class);
 
                     intent.putExtra("info", info);
@@ -192,14 +193,14 @@ public class InfoFragment extends BaseFragment {
 
                    
                     Bundle bundle=new Bundle();
-                    Bundle bundle2=new Bundle();
-                    Bundle bundle3=new Bundle();
+                   // Bundle bundle2=new Bundle();
+                   // Bundle bundle3=new Bundle();
                     bundle.putParcelable("info",info);
-                    bundle2.putString("menu", "video");
-                    bundle3.putString("foto", SimageUri);
+                    bundle.putString("menu", "video");
+                    bundle.putString("foto", SimageUri);
                     listener.changeFragment(FragmentController.TEMPLATE,bundle);
-                    listener.changeFragment(FragmentController.TEMPLATE,bundle2);
-                    listener.changeFragment(FragmentController.TEMPLATE,bundle3);
+                    //listener.changeFragment(FragmentController.TEMPLATE,bundle2);
+                    //listener.changeFragment(FragmentController.TEMPLATE,bundle3);
 
                 }
             });
@@ -355,7 +356,7 @@ public class InfoFragment extends BaseFragment {
         Uri outputFileUri = getCaptureImageOutputUri();
 
         List<Intent> allIntents = new ArrayList<>();
-        PackageManager packageManager = getPackageManager();// TODO: 14.11.2017  
+        PackageManager packageManager = getPackageManager();// TODO: 14.11.2017
 
         Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
@@ -447,15 +448,6 @@ public class InfoFragment extends BaseFragment {
 
 
 
-/* ********************************************************/
-/*
-
-
-        /* ****************************************************************************************/
-
-
-
-        /* ******************************************************************************************/
 
 
 

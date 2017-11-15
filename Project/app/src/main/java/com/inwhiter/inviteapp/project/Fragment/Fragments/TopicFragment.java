@@ -70,7 +70,7 @@ public class TopicFragment extends BaseFragment {
 
                     Bundle bundle=new Bundle();
                     bundle.putString("mood","template");
-                    listener.changeFragment(FragmentController.INFO,bundle);//buraya info gelicek
+                    listener.changeFragment(FragmentController.INFO,bundle);//infoys gidiyoruz bilgileri girmek için
 
                   /*  Intent intent=new Intent(TopicActivity.get,InfoActivity.class);
                     intent.putExtra("mood","template");

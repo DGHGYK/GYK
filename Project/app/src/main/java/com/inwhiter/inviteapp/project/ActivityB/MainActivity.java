@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
                if(customBottomViewOption==customBottomViewOption.USER){
                     FTransaction(FragmentController.PROFILE);
                 }
-                else if(customBottomViewOption==customBottomViewOption.ADD){// TODO: 14.11.2017 buraya ekledin ben il didiş menü diye  
+                else if(customBottomViewOption==customBottomViewOption.ADD){// TODO: 14.11.2017 buraya ekledin ben topic menü diye
                     FTransaction(FragmentController.TOPIC);
 
                 if (customBottomViewOption == CustomBottomViewOption.HOME)
