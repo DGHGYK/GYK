@@ -19,12 +19,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.inwhiter.inviteapp.project.ActivityG.ContactsPickerActivity;
 import com.inwhiter.inviteapp.project.BusinessG.GuestListAdapter;
 import com.inwhiter.inviteapp.project.BusinessG.SendSMS;
 import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.FragmentController;
-import com.inwhiter.inviteapp.project.ModelG.Contact;
 import com.inwhiter.inviteapp.project.ModelG.ContactListSingleton;
 import com.inwhiter.inviteapp.project.ModelG.Guest;
 import com.inwhiter.inviteapp.project.ModelG.GuestListSingleton;
@@ -49,7 +47,7 @@ public class GuestFragment extends BaseFragment {
     CheckBox checkAll;
     Button deleteguest;
     Button addManually;
-    String inviteId;
+    static String inviteId;
     final int CONTACT_PICK_REQUEST = 1000;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -63,6 +61,7 @@ public class GuestFragment extends BaseFragment {
     public static GuestFragment newInstance(Bundle args){
         GuestFragment fragment = new GuestFragment();
         fragment.setArguments(args);
+        inviteId= args.getString("inviteId");
         return fragment;
 
     }
@@ -74,11 +73,6 @@ public class GuestFragment extends BaseFragment {
 
     @Override
     protected void init() {
-
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            inviteId= bundle.getString("inviteId");
-        }
 
         guest_expandable = (ExpandableListView) getActivity().findViewById(R.id.lv_guest_expandable);
         pickContacts = (Button) getActivity().findViewById(R.id.iv_guest_pickContacts);
@@ -154,9 +148,9 @@ public class GuestFragment extends BaseFragment {
         pickContacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intentContactPick = new Intent(getActivity(),ContactsPickerActivity.class);
-                getActivity().startActivityForResult(intentContactPick,CONTACT_PICK_REQUEST);
+                Bundle bundle= new Bundle();
+                bundle.putString("inviteId", inviteId);
+                listener.changeFragment(FragmentController.CONTACTS_PICKER, bundle);
             }
         });
 
@@ -333,32 +327,7 @@ public class GuestFragment extends BaseFragment {
 
     }
 
-    private void convertContactsToguests() {
 
-
-        List<String> guestIds = new ArrayList<>();
-
-        //for (Contact c: contacts) {
-        for (Contact c: ContactListSingleton.getInst().getLastSelectedContactsList().contactArrayList) {
-            if(GuestListSingleton.getInst().isSameNumber(c.getPhoneNumber())){
-                Toast.makeText(getActivity(),c.getName()+" isimli davetli zaten davetli listenizde",Toast.LENGTH_LONG).show();
-            }else {
-                //davetli kişi verisi veritabanına kaydedilir
-
-
-                String guestId = guestRef.push().getKey();
-                Guest in = new Guest(guestId, inviteId, 0, c.getName(), c.getPhoneNumber(), new GuestStatus());
-                //Singleton listeye yeni kişi eklenir
-                GuestListSingleton.getInst().getGuestList().add(in);
-                guestIds.add(guestId);
-                guestRef.child(guestId).setValue(in);
-
-            }
-
-            inviteRef.child(inviteId).child("guestIds").setValue(guestIds);
-
-        }
-    }
 
    /* @Override
     protected void onResume() {

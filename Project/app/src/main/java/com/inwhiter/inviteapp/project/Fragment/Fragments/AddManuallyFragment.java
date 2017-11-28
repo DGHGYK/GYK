@@ -74,7 +74,7 @@ public class AddManuallyFragment extends BaseFragment {
 
                         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                                 InputMethodManager.HIDE_NOT_ALWAYS);*/
-                        Toast.makeText(getActivity(),"Bu numara zaten davetli listenizde", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),"Bu numara zaten davetli listenizdedir.", Toast.LENGTH_LONG).show();
                     }else{
                         //davetli kişi verisi veritabanına kaydedilir
                         FirebaseDatabase database = FirebaseDatabase.getInstance();

@@ -30,19 +30,19 @@ import java.util.ArrayList;
 public class ContactsListAdapter extends BaseAdapter {
 
     Context context;
-    public ContactsList contactsList,filteredContactsList,selectedContactsList,lastSelectedContectsList;
+    public ContactsList contactsList,filteredContactsList,selectedContactsList,lastSelectedContactsList;
     String filterContactName;
     ContactListSingleton contactListSingleton;
 
     public ContactsListAdapter(Context context){
-
         super();
         this.context = context;
-        this.contactsList = ContactListSingleton.getInst().getContactsList();
-        this.filteredContactsList=ContactListSingleton.getInst().getFilteredContactsList();
-        this.selectedContactsList = ContactListSingleton.getInst().getSelectedContactsList();
-        this.lastSelectedContectsList= new ContactsList();
         this.filterContactName = "";
+        filteredContactsList = new ContactsList();
+        selectedContactsList = ContactListSingleton.getInst().getSelectedContactsList();
+
+        lastSelectedContactsList= new ContactsList();
+        contactsList= new ContactsList();
     }
 
     public void filter(String filterContactName){
@@ -64,8 +64,6 @@ public class ContactsListAdapter extends BaseAdapter {
                     filteredContactsList.addContact(contactsList.contactArrayList.get(i));
             }
         }
-
-        ContactListSingleton.getInst().setFilteredContactsList(this.filteredContactsList);
 
     }
 
@@ -127,11 +125,11 @@ public class ContactsListAdapter extends BaseAdapter {
 
                 if(contact!=null && isChecked){
                     selectedContactsList.addContact(contact);
-                    lastSelectedContectsList.addContact(contact);
+                    lastSelectedContactsList.addContact(contact);
                 }
                 else if(contact!=null && !isChecked){
                     selectedContactsList.removeContact(contact);
-                    lastSelectedContectsList.removeContact(contact);
+                    lastSelectedContactsList.removeContact(contact);
                 }
             }
         });
@@ -140,7 +138,7 @@ public class ContactsListAdapter extends BaseAdapter {
         contactListSingleton.setContactsList(this.contactsList);
         contactListSingleton.setFilteredContactsList(this.filteredContactsList);
         contactListSingleton.setSelectedContactsList(this.selectedContactsList);
-        contactListSingleton.setLastSelectedContactsList(this.lastSelectedContectsList);
+        contactListSingleton.setLastSelectedContactsList(this.lastSelectedContactsList);
         return convertView;
     }
 
