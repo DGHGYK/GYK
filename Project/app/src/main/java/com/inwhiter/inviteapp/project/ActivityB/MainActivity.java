@@ -28,16 +28,19 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
         cbv_main_bottombar.setCustomBottomViewListener(new CustomBottomViewListener() {
             @Override
             public void itemClickListener(CustomBottomViewOption customBottomViewOption) {
+
+               if(customBottomViewOption==customBottomViewOption.USER){
+                    FTransaction(FragmentController.PROFILE);
+                }
+                else if(customBottomViewOption==customBottomViewOption.ADD){// TODO: 14.11.2017 buraya ekledin ben topic menü diye
+                    FTransaction(FragmentController.TOPIC);
+
                 if (customBottomViewOption == CustomBottomViewOption.HOME)
                 {
                     FTransaction(FragmentController.MAIN);
                 }
-                else if(customBottomViewOption==customBottomViewOption.USER){
-                   FTransaction(FragmentController.PROFILE);
-               }
-               else if (customBottomViewOption == CustomBottomViewOption.ADD)
-                {
-                    FTransaction(FragmentController.TEMPLATE);
+
+
                 }
             }
         });

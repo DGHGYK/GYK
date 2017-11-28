@@ -49,6 +49,7 @@ public class InfoActivity extends AppCompatActivity {
     String data;
 
     Info info;
+    String mood;
 
     private final static int REQUEST_SELECT_IMAGE = 200;
     ImageView foto;

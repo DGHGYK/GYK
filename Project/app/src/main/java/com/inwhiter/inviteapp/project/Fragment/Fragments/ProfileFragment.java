@@ -23,7 +23,7 @@ public class ProfileFragment extends BaseFragment {
     }
 
     @Override
-    protected void init() {
+    protected void init() {//ONCREATE İŞLEMLERİN BURADA OLACAK
 
     }
 

@@ -49,6 +49,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptorMediaplayer;
 import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
+import com.inwhiter.inviteapp.project.Fragment.FragmentController;
 import com.inwhiter.inviteapp.project.ModelG.Info;
 import com.inwhiter.inviteapp.project.ModelG.Invite;
 import com.inwhiter.inviteapp.project.ModelH.Media;
@@ -122,7 +123,7 @@ public class TemplateFragment extends BaseFragment implements OnMenuItemClickLis
     public TemplateFragment() {
     }
 
-    public static TemplateFragment newInstance(Bundle args) {
+    public static TemplateFragment newInstance(Bundle args) {//bundle ile infodan gelen bilgileri almak için
         TemplateFragment fragment = new TemplateFragment();
         fragment.setArguments(args);
         return fragment;
@@ -456,7 +457,7 @@ public class TemplateFragment extends BaseFragment implements OnMenuItemClickLis
         bundle.putString("inviteId", inviteId);
         bundle.putByteArray("ss", encoded);
         // TODO: 9.11.2017 Layoutss oluşturulduktan sonra burası değiştirilecek.
-        //listener.changeFragment(FragmentController.GUEST,bundle);
+        listener.changeFragment(FragmentController.LAYOUTSS,bundle);
 
 /*        intent.putExtra("ss",encoded);
         startActivity(intent);*/

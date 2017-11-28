@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.inwhiter.inviteapp.project.ActivityD.PrintActivity;
 import com.inwhiter.inviteapp.project.ActivityG.GuestActivity;
-import com.inwhiter.inviteapp.project.ActivityG.LoginActivity;
+import com.inwhiter.inviteapp.project.ActivityB.LoginActivity;
 import com.inwhiter.inviteapp.project.BusinessG.AllInvitesRecyclerAdapter;
 import com.inwhiter.inviteapp.project.BusinessG.RecyclerItemClickListener;
 import com.inwhiter.inviteapp.project.ModelG.Invitation;
