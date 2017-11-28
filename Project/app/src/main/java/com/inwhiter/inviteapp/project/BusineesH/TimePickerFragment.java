@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
-import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -16,6 +15,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.inwhiter.inviteapp.project.R;
+
+import java.util.Calendar;
 
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
     @RequiresApi(api = Build.VERSION_CODES.N)

@@ -1,12 +1,8 @@
 package com.inwhiter.inviteapp.project.Fragment.Fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.inwhiter.inviteapp.project.ActivityB.MainActivity;
-import com.inwhiter.inviteapp.project.ActivityH.InfoActivity;
-import com.inwhiter.inviteapp.project.ActivityH.TopicActivity;
 import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptor;
 import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.FragmentController;
@@ -49,11 +42,11 @@ public class TopicFragment extends BaseFragment {
         topiclist.add("Hazır şablon ile hazırlayın");
         topiclist.add("Fotoğraf yükleyerek hazırlayın");
         topiclist.add("Video yükleyerek hazırlayın");
-        String titlem=getActivity().getActionBar().getTitle().toString();
+//        String titlem=getActivity().getActionBar().getTitle().toString();
 
-        SpannableString s = new SpannableString(titlem);
-        s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getActivity().getActionBar().setTitle(s);
+//        SpannableString s = new SpannableString(titlem);
+//        s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        getActivity().getActionBar().setTitle(s);
 
 
         CustomAdaptor adp=new CustomAdaptor(getActivity(),topiclist);

@@ -3,13 +3,13 @@ package com.inwhiter.inviteapp.project.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import com.inwhiter.inviteapp.project.Fragment.Fragments.AddManuallyFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.ContactsPickerFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.GuestFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.InfoFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.LayoutSSFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.ProfileFragment;
-import com.inwhiter.inviteapp.project.Fragment.Fragments.AddManuallyFragment;
-import com.inwhiter.inviteapp.project.Fragment.Fragments.ContactsPickerFragment;
-import com.inwhiter.inviteapp.project.Fragment.Fragments.GuestFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TopicFragment;
 
@@ -68,7 +68,7 @@ public class FragmentController {
         }
         else if (fragment == TEMPLATE)
         {
-            return new TemplateFragment().newInstance(bundle);
+            return new TemplateFragment();
         }
         else if (fragment == TOPIC)
         {
