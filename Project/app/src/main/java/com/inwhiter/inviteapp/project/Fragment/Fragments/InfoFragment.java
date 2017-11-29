@@ -1,11 +1,9 @@
 package com.inwhiter.inviteapp.project.Fragment.Fragments;
 
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -14,9 +12,6 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +21,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.inwhiter.inviteapp.project.ActivityH.InfoActivity;
-import com.inwhiter.inviteapp.project.ActivityH.TemplateActivity2;
 import com.inwhiter.inviteapp.project.BusineesH.DatePickerFragment;
 import com.inwhiter.inviteapp.project.BusineesH.TimePickerFragment;
 import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
@@ -49,7 +42,6 @@ public class InfoFragment extends BaseFragment {
     ImageButton ibtn_bilgi_maintext, ibtn_bilgi_date, ibtn_bilgi_time;
     EditText et_bilgi_title, et_bilgi_maintext, et_bilgi_family1, et_bilgi_family2, et_bilgi_adress, et_bilgi_tag;
     TextView tv_bilgi_time, tv_bilgi_date;
-    Context context = getActivity();
 
     String SimageUri = null;
     String SvideoUri = null;
@@ -78,11 +70,11 @@ public class InfoFragment extends BaseFragment {
 
     @Override
     protected void init() {
-        String title=getActivity().getActionBar().getTitle().toString();
+/*        String title=getActivity().getActionBar().getTitle().toString();
 
         SpannableString s = new SpannableString(title);
         s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-       getActivity().getActionBar().setTitle(s);
+       getActivity().getActionBar().setTitle(s);*/
 
 
         Bundle bundle = this.getArguments();//topicten gelen mood değerini aldık
@@ -219,7 +211,7 @@ public class InfoFragment extends BaseFragment {
             public void onClick(View v) {
 
                 DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(getFragmentManager(), "TimePicker"); // TODO: 14.11.2017 bunları sor hocaya nasıl olcak  
+                newFragment.show(getActivity().getFragmentManager(), "TimePicker"); // TODO: 14.11.2017 bunları sor hocaya nasıl olcak
 
 
             }
@@ -235,7 +227,7 @@ public class InfoFragment extends BaseFragment {
                 DialogFragment dFragment = new DatePickerFragment();
 
                 // Show the date picker dialog fragment
-                dFragment.show(getFragmentManager(), "Date Picker");//// TODO: 14.11.2017  info  
+                dFragment.show(getActivity().getFragmentManager(), "Date Picker");//// TODO: 14.11.2017  info
 
             }
         });
@@ -247,7 +239,7 @@ public class InfoFragment extends BaseFragment {
         ibtn_bilgi_maintext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialog = new Dialog(context);
+                final Dialog dialog = new Dialog(getActivity());
 
                 dialog.setContentView(R.layout.h_customer_dialog_sablon_maintext);
                 dialog.setTitle("Hazır Ana Metin");
@@ -307,7 +299,7 @@ public class InfoFragment extends BaseFragment {
         btn_bilgi_imageload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog = new Dialog(context);
+                dialog = new Dialog(getActivity());
 
                 dialog.setContentView(R.layout.h_custom_dialog_fotoadd);
                 dialog.setTitle("Foto Ekle");
@@ -350,13 +342,13 @@ public class InfoFragment extends BaseFragment {
         return inflater.inflate(R.layout.fragment_info, container, false);
     }
 
-}
+
     public Intent resimSecimiIntent() {
 
         Uri outputFileUri = getCaptureImageOutputUri();
 
         List<Intent> allIntents = new ArrayList<>();
-        PackageManager packageManager = getPackageManager();// TODO: 14.11.2017
+        PackageManager packageManager = getActivity().getPackageManager();// TODO: 14.11.2017
 
         Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
@@ -398,7 +390,7 @@ public class InfoFragment extends BaseFragment {
 
     private Uri getCaptureImageOutputUri() {
         Uri outputFileUri = null;
-        File getImage = getExternalCacheDir();// TODO: 14.11.2017  
+        File getImage = getActivity().getExternalCacheDir();// TODO: 14.11.2017
         if (getImage != null) {
             outputFileUri = Uri.fromFile(new File(getImage.getPath(), "pickImageResult.jpeg"));
         }
@@ -442,23 +434,5 @@ public class InfoFragment extends BaseFragment {
         }
         return isCamera ? getCaptureImageOutputUri() : data.getData();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
