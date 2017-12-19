@@ -7,6 +7,8 @@ import android.os.Bundle;
  */
 
 public interface FragmentListener {
-    void changeFragment(String tag);
-    void changeFragment(String tag, Bundle bundle);
+    void changeFragment(String fragment);
+    void changeFragment(String fragment, Bundle bundle);
+    void selectTemplate(String fragment);
+    void selectTemplate(String fragment, Bundle bundle);
 }
