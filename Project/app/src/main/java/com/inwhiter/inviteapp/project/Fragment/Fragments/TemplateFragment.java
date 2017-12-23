@@ -6,6 +6,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
+import com.inwhiter.inviteapp.project.Fragment.FragmentController;
 import com.inwhiter.inviteapp.project.R;
 
 public class TemplateFragment extends BaseFragment {
@@ -21,7 +22,7 @@ public class TemplateFragment extends BaseFragment {
     @Override
     protected void init() {
         setHasOptionsMenu(true);
-
+        listener.selectTemplate(FragmentController.TEMPLATE1);
     }
 
     @Override
@@ -39,7 +40,6 @@ public class TemplateFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.context_menu:
-
                 break;
         }
         return super.onOptionsItemSelected(item);

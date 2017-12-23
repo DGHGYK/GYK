@@ -53,15 +53,11 @@ public class LayoutSSFragment extends BaseFragment {
     //public Layout layout_media_player;
     public TextView current_duration,total_duration,current_music;
 
-
-
-
-
-
     public LayoutSSFragment()
     {
 
     }
+
     public static LayoutSSFragment newInstance (Bundle args) {
         LayoutSSFragment fragment = new LayoutSSFragment();
         fragment.setArguments(args);

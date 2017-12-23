@@ -47,37 +47,29 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
 
             if(customBottomViewOption == CustomBottomViewOption.USER)
             {
-                FTransaction(FragmentController.PROFILE);
+                changeFragment(FragmentController.PROFILE);
             }
             else if(customBottomViewOption == CustomBottomViewOption.ADD)
             {// TODO: 14.11.2017 buraya ekledin ben topic menü diye
-                FTransaction(FragmentController.TOPIC);
+                changeFragment(FragmentController.TOPIC);
             }
             else if(customBottomViewOption == CustomBottomViewOption.HOME)
             {
-                FTransaction(FragmentController.MAIN);
+                changeFragment(FragmentController.MAIN);
             }
             }
         });
 
-        FTransaction(FragmentController.MAIN);
+        changeFragment(FragmentController.MAIN);
     }
 
     @Override
-    public void changeFragment(String tag) {
-        FTransaction(tag);
+    public void changeFragment(String fragment) {
+        changeFragment(fragment,null);
     }
 
     @Override
-    public void changeFragment(String tag, Bundle bundle) {
-        FTransaction(tag,bundle);
-    }
-
-    protected void FTransaction(String fragment) {
-        this.FTransaction(fragment, null);
-    }
-
-    protected void FTransaction(String fragment, Bundle bundle) {
+    public void changeFragment(String fragment, Bundle bundle) {
         if (fragment.equals(FragmentController.TEMPLATE))
         {
             contextMenu();
@@ -92,6 +84,23 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
         Fragment tFragment = fragmentController.getFragment(fragment, bundle);
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         fragmentTransaction.replace(R.id.fl_main_container, tFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void selectTemplate(String fragment) {
+        selectTemplate(fragment,null);
+    }
+
+    @Override
+    public void selectTemplate(String fragment, Bundle bundle) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentController fragmentController = FragmentController.getInstance();
+        Fragment tFragment = fragmentController.getFragment(fragment, bundle);
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        fragmentTransaction.replace(R.id.fl_template_container, tFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

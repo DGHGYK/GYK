@@ -10,6 +10,7 @@ import com.inwhiter.inviteapp.project.Fragment.Fragments.InfoFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.LayoutSSFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.ProfileFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateExample1Fragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TopicFragment;
 
@@ -32,6 +33,9 @@ public class FragmentController {
     public static final String CONTACTS_PICKER="fragment_contacts_picker";
     public static final String LAYOUTSS="fragment_layout_ss";
 
+
+    //Şablonlar
+    public static final String TEMPLATE1 ="fragment_template_example1";
 
 
     private FragmentController() { }
@@ -82,7 +86,10 @@ public class FragmentController {
         {
             return new LayoutSSFragment().newInstance(bundle);
         }
-
+        else if (fragment == TEMPLATE1)
+        {
+            return new TemplateExample1Fragment().newInstance(bundle);
+        }
 
         else
         {
