@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.inwhiter.inviteapp.project.ActivityG.GuestEditActivity;
-import com.inwhiter.inviteapp.project.ModelG.ContactListSingleton;
 import com.inwhiter.inviteapp.project.ModelG.Guest;
 import com.inwhiter.inviteapp.project.ModelG.GuestListSingleton;
 import com.inwhiter.inviteapp.project.ModelG.GuestStatus;
@@ -36,6 +35,7 @@ import java.util.List;
 public class GuestListAdapter extends BaseExpandableListAdapter {
     //public List<Guest> GuestListSingleton.getInst().getGuestList();
     public Activity activity;
+
 
     public GuestListAdapter(Activity activity) {
         // this.GuestListSingleton.getInst().getGuestList() = GuestListSingleton.getInst().getGuestList();
@@ -143,7 +143,6 @@ public class GuestListAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 Guest in= GuestListSingleton.getInst().getGuestList().get(groupPosition);
-                ContactListSingleton.getInst().getSelectedContactsList().removeContactByPhoneNumber(in.getPhoneNumber());
                 GuestListSingleton.getInst().removeguest(in);
                 notifyDataSetChanged();
             }

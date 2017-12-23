@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.FirebaseDatabase;
-import com.inwhiter.inviteapp.project.ActivityG.GuestActivity;
+import com.inwhiter.inviteapp.project.ActivityB.MainActivity;
 import com.inwhiter.inviteapp.project.ModelH.Media;
 import com.inwhiter.inviteapp.project.R;
 
@@ -71,7 +71,7 @@ public class LayoutSS extends AppCompatActivity {
         addguests.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LayoutSS.this, GuestActivity.class);
+                Intent intent = new Intent(LayoutSS.this, MainActivity.class);
                 intent.putExtra("inviteId", inviteId);
                 startActivity(intent);
             }

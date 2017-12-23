@@ -11,7 +11,6 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.inwhiter.inviteapp.project.ModelG.Contact;
-import com.inwhiter.inviteapp.project.ModelG.ContactListSingleton;
 import com.inwhiter.inviteapp.project.ModelG.ContactsList;
 import com.inwhiter.inviteapp.project.R;
 
@@ -32,14 +31,21 @@ public class ContactsListAdapter extends BaseAdapter {
     Context context;
     public ContactsList contactsList,filteredContactsList,selectedContactsList,lastSelectedContactsList;
     String filterContactName;
-    ContactListSingleton contactListSingleton;
+    AdapterCallback callback;
 
-    public ContactsListAdapter(Context context){
+    public interface AdapterCallback{
+            void onItemChecked(Contact position);
+    }
+
+
+
+    public ContactsListAdapter(Context context, ContactsList selected, AdapterCallback callback){
         super();
+        this.callback = callback;
         this.context = context;
         this.filterContactName = "";
         filteredContactsList = new ContactsList();
-        selectedContactsList = ContactListSingleton.getInst().getSelectedContactsList();
+        selectedContactsList = selected;
 
         lastSelectedContactsList= new ContactsList();
         contactsList= new ContactsList();
@@ -89,7 +95,7 @@ public class ContactsListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder viewHolder;
 
@@ -122,30 +128,21 @@ public class ContactsListAdapter extends BaseAdapter {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Contact contact = filteredContactsList.getContactById(buttonView.getId());
+                if(callback!=null){
+                    callback.onItemChecked(getItem(position));
+                }
 
-                if(contact!=null && isChecked){
-                    selectedContactsList.addContact(contact);
-                    lastSelectedContactsList.addContact(contact);
-                }
-                else if(contact!=null && !isChecked){
-                    selectedContactsList.removeContact(contact);
-                    lastSelectedContactsList.removeContact(contact);
-                }
             }
         });
 
-        contactListSingleton = ContactListSingleton.getInst();
-        contactListSingleton.setContactsList(this.contactsList);
-        contactListSingleton.setFilteredContactsList(this.filteredContactsList);
-        contactListSingleton.setSelectedContactsList(this.selectedContactsList);
-        contactListSingleton.setLastSelectedContactsList(this.lastSelectedContactsList);
+
         return convertView;
     }
 
     public boolean alreadySelected(Contact contact)
     {
-        ContactsList selected=   ContactListSingleton.getInst().getSelectedContactsList();
-        if(selected!=null && selected.getContactById(Integer.parseInt(contact.getId()))!=null)
+
+        if(selectedContactsList!=null && selectedContactsList.getContactById(Integer.parseInt(contact.getId()))!=null)
             return true;
 
         return false;

@@ -23,7 +23,6 @@ import com.inwhiter.inviteapp.project.BusinessG.GuestListAdapter;
 import com.inwhiter.inviteapp.project.BusinessG.SendSMS;
 import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.FragmentController;
-import com.inwhiter.inviteapp.project.ModelG.ContactListSingleton;
 import com.inwhiter.inviteapp.project.ModelG.Guest;
 import com.inwhiter.inviteapp.project.ModelG.GuestListSingleton;
 import com.inwhiter.inviteapp.project.ModelG.GuestStatus;
@@ -243,7 +242,7 @@ public class GuestFragment extends BaseFragment {
                             "Evet",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    ContactListSingleton.getInst().getSelectedContactsList().removeContactsByPhoneNumbers(checkedguests);
+                                 //   ContactListSingleton.getInst().getSelectedContactsList().removeContactsByPhoneNumbers(checkedguests);
                                     GuestListSingleton.getInst().removeAllguests();
                                     guest_adapter.notifyDataSetChanged();
 

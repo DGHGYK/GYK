@@ -42,9 +42,6 @@
         <activity android:name=".ActivityH.TemplateActivity" />
         <activity android:name=".ActivityH.InfoActivity" />
         <activity android:name=".ActivityH.LayoutSS" />
-        <activity android:name=".ActivityG.AddManuallyActivity" />
-        <activity android:name=".ActivityG.ContactsPickerActivity" />
-        <activity android:name=".ActivityG.GuestActivity" />
         <activity android:name=".ActivityG.GuestEditActivity" />
         <activity android:name=".ActivityH.StartActivity" />
         <activity android:name=".ActivityD.PrintActivity" />

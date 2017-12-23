@@ -330,6 +330,8 @@ public class InfoFragment extends BaseFragment {
 
     }
 
+
+
     @Override
     protected void handlers() {
 

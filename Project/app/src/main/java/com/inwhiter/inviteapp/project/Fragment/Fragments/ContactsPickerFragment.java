@@ -21,7 +21,6 @@ import com.inwhiter.inviteapp.project.BusinessG.ContactsLoader;
 import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.FragmentController;
 import com.inwhiter.inviteapp.project.ModelG.Contact;
-import com.inwhiter.inviteapp.project.ModelG.ContactListSingleton;
 import com.inwhiter.inviteapp.project.ModelG.ContactsList;
 import com.inwhiter.inviteapp.project.ModelG.Guest;
 import com.inwhiter.inviteapp.project.ModelG.GuestStatus;
@@ -37,6 +36,17 @@ public class ContactsPickerFragment extends BaseFragment {
     ContactsListAdapter contactsListAdapter;
     ContactsLoader contactsLoader;
     static String inviteId;
+    public ContactsList selectedContactsList,lastSelectedContactsList;
+
+     if(contact!=null && isChecked){
+        selectedContactsList.addContact(contact);
+        lastSelectedContactsList.addContact(contact);
+    }
+                else if(contact!=null && !isChecked){
+        selectedContactsList.removeContact(contact);
+        lastSelectedContactsList.removeContact(contact);
+    }
+
 
 
     @Override
@@ -75,6 +85,7 @@ public class ContactsPickerFragment extends BaseFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 contactsListAdapter.filter(s.toString());
+                contactsListAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -89,7 +100,6 @@ public class ContactsPickerFragment extends BaseFragment {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference guestRef = database.getReference("guest");
                 String guestId = guestRef.push().getKey();
-                ContactsList lastSelected = ContactListSingleton.getInst().getLastSelectedContactsList();
                 for(Contact c :lastSelected.contactArrayList) {
                     Guest in = new Guest(guestId, inviteId, 0, c.getName(), c.getPhoneNumber(), new GuestStatus());
                     guestRef.child(guestId).setValue(in);
@@ -106,24 +116,15 @@ public class ContactsPickerFragment extends BaseFragment {
     }
 
     private void loadContacts(String filter){
-
+        try{
         if(contactsLoader!=null && contactsLoader.getStatus()!= AsyncTask.Status.FINISHED){
-            try{
                 contactsLoader.cancel(true);
-            }catch (Exception e){
-
-            }
         }
         if(filter==null) filter="";
-
-        try{
             //Asenkron olarak rehber loaderı çalıştırır
-            if (ContactListSingleton.getInst().getContactsList().getCount() == 0)
-            {
                 contactsLoader = new ContactsLoader(getActivity(),contactsListAdapter);
                 contactsLoader.txtProgress = txtLoadInfo;
                 contactsLoader.execute(filter);
-            }
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -140,8 +141,14 @@ public class ContactsPickerFragment extends BaseFragment {
             //bu satırdan sonra onRequestPermissionResult metodu çalışır
         } else {
             //izinler tamamsa contactListAdapter ile rehberdeki kişileri yüklüyoruz
-            contactsListAdapter = new ContactsListAdapter(getActivity());
+            contactsListAdapter = new ContactsListAdapter(getActivity(),null);
             contactsChooser.setAdapter(contactsListAdapter);
+            contactsListAdapter.setListener(new ContactsListAdapter(getContext(),selectedContactsList,).AdapterListener() {
+                public void onClick(String name) {
+                    // do something with the string here.
+
+                }
+            });
             loadContacts("");
         }
     }

@@ -15,6 +15,7 @@ import android.widget.Spinner;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.inwhiter.inviteapp.project.ActivityB.MainActivity;
 import com.inwhiter.inviteapp.project.ModelG.GuestListSingleton;
 import com.inwhiter.inviteapp.project.R;
 
@@ -90,7 +91,7 @@ public class GuestEditActivity extends AppCompatActivity {
                 guestRef.child(GuestListSingleton.getInst().getGuestList().get(position).getGuestId()).setValue(GuestListSingleton.getInst().getGuestList().get(position));
 
 
-                Intent intent = new Intent(getBaseContext(), GuestActivity.class);
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
 
             }
