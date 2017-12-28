@@ -77,5 +77,15 @@ public class ContactsList {
         return null;
     }
 
+    public Contact getContactByPhoneNumber(String phone){
+        for(int i=0;i<this.getCount();i++){
+            if (PhoneNumberUtils.compare(contactArrayList.get(i).getPhoneNumber(),phone)) {
+                return contactArrayList.get(i);
+            }
+        }
+
+        return null;
+    }
+
 
 }

@@ -35,11 +35,12 @@ import java.util.List;
 public class GuestListAdapter extends BaseExpandableListAdapter {
     //public List<Guest> GuestListSingleton.getInst().getGuestList();
     public Activity activity;
+    String inviteId;
 
 
-    public GuestListAdapter(Activity activity) {
-        // this.GuestListSingleton.getInst().getGuestList() = GuestListSingleton.getInst().getGuestList();
+    public GuestListAdapter(Activity activity, String inviteId) {
         this.activity = activity;
+        this.inviteId=inviteId;
     }
 
     @Override
@@ -143,7 +144,7 @@ public class GuestListAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 Guest in= GuestListSingleton.getInst().getGuestList().get(groupPosition);
-                GuestListSingleton.getInst().removeguest(in);
+                GuestListSingleton.getInst().deleteGuest(in, inviteId);
                 notifyDataSetChanged();
             }
         });

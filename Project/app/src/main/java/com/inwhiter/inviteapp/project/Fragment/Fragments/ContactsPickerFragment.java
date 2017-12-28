@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,10 +24,11 @@ import com.inwhiter.inviteapp.project.Fragment.FragmentController;
 import com.inwhiter.inviteapp.project.ModelG.Contact;
 import com.inwhiter.inviteapp.project.ModelG.ContactsList;
 import com.inwhiter.inviteapp.project.ModelG.Guest;
+import com.inwhiter.inviteapp.project.ModelG.GuestListSingleton;
 import com.inwhiter.inviteapp.project.ModelG.GuestStatus;
 import com.inwhiter.inviteapp.project.R;
 
-public class ContactsPickerFragment extends BaseFragment {
+public class ContactsPickerFragment extends BaseFragment implements ContactsListAdapter.AdapterCallback {
 
 
     ListView contactsChooser;
@@ -38,7 +40,7 @@ public class ContactsPickerFragment extends BaseFragment {
     static String inviteId;
     public ContactsList selectedContactsList,lastSelectedContactsList;
 
-     if(contact!=null && isChecked){
+   /*  if(contact!=null && isChecked){
         selectedContactsList.addContact(contact);
         lastSelectedContactsList.addContact(contact);
     }
@@ -46,7 +48,7 @@ public class ContactsPickerFragment extends BaseFragment {
         selectedContactsList.removeContact(contact);
         lastSelectedContactsList.removeContact(contact);
     }
-
+*/
 
 
     @Override
@@ -54,6 +56,8 @@ public class ContactsPickerFragment extends BaseFragment {
         return R.layout.activity_contacts_picker;
     }
 
+
+    //hangi davetiyede işlem yapılacağını bilmek için inviteId taşınır
     public static ContactsPickerFragment newInstance(Bundle args) {
         ContactsPickerFragment fragment = new ContactsPickerFragment();
         inviteId= args.getString("inviteId");
@@ -62,6 +66,12 @@ public class ContactsPickerFragment extends BaseFragment {
 
     @Override
     protected void init() {
+        //Eskiden seçilmiş davetliler rehberde seçili geleceğinden yüklenir
+        selectedContactsList = new ContactsList();
+        getOldContacts();
+        //En sn seçilenler ayrıca kaydedileceğinden ayrı bir listede tutulur
+        lastSelectedContactsList = new ContactsList();
+
         //kişi seç butonu
         contactsChooser = (ListView) getActivity().findViewById(R.id.lst_contacts_chooser);
         //seçilen kişileri davetli listesine ekle butonu
@@ -70,13 +80,14 @@ public class ContactsPickerFragment extends BaseFragment {
         txtFilter = (EditText) getActivity().findViewById(R.id.txt_filter);
         //Rehberdeki kişiler yüklenene kadar Yükleniyor yazısının görünmesi için
         txtLoadInfo = (TextView) getActivity().findViewById(R.id.txt_load_progress);
-
     }
 
     @Override
     protected void handlers() {
         //layoutta rehber kişilerinin gösterilmesi
         showContacts();
+
+        //aramada girilen texte göre rehberin filtrelenmesi
         txtFilter.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -93,6 +104,8 @@ public class ContactsPickerFragment extends BaseFragment {
             }
         });
 
+
+        //davetliler listesine ekle butonuna basılınca olacaklar
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +113,7 @@ public class ContactsPickerFragment extends BaseFragment {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference guestRef = database.getReference("guest");
                 String guestId = guestRef.push().getKey();
-                for(Contact c :lastSelected.contactArrayList) {
+              for(Contact c :lastSelectedContactsList.contactArrayList) {
                     Guest in = new Guest(guestId, inviteId, 0, c.getName(), c.getPhoneNumber(), new GuestStatus());
                     guestRef.child(guestId).setValue(in);
                     DatabaseReference inviteRef = database.getReference("invite").child(inviteId).child("guestIds");
@@ -141,14 +154,9 @@ public class ContactsPickerFragment extends BaseFragment {
             //bu satırdan sonra onRequestPermissionResult metodu çalışır
         } else {
             //izinler tamamsa contactListAdapter ile rehberdeki kişileri yüklüyoruz
-            contactsListAdapter = new ContactsListAdapter(getActivity(),null);
+            contactsListAdapter = new ContactsListAdapter(getActivity(),selectedContactsList, ContactsPickerFragment.this);
             contactsChooser.setAdapter(contactsListAdapter);
-            contactsListAdapter.setListener(new ContactsListAdapter(getContext(),selectedContactsList,).AdapterListener() {
-                public void onClick(String name) {
-                    // do something with the string here.
 
-                }
-            });
             loadContacts("");
         }
     }
@@ -164,5 +172,21 @@ public class ContactsPickerFragment extends BaseFragment {
                 Toast.makeText(getActivity(), "Rehbere ulaşma izni verene kadar rehberdeki kişileri listeleyemezsiniz.", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public void getOldContacts(){
+        for (Guest g: GuestListSingleton.getInst().getGuestList()) {
+            Contact c = new Contact(null,g.getName(),g.getPhoneNumber(), null);
+            selectedContactsList.addContact(c);
+        }
+    }
+
+    @Override
+    public void onItemChecked(Contact c) {
+        selectedContactsList.addContact(c);
+        lastSelectedContactsList.addContact(c);
+
+        Log.d("position...............", c.getName());
+
     }
 }

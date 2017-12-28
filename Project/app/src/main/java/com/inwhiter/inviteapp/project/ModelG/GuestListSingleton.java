@@ -15,6 +15,9 @@ import java.util.List;
 public class GuestListSingleton {
     private static GuestListSingleton inst = null;
     private List<Guest> guestList= new ArrayList<>();
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    final DatabaseReference inviteRef = database.getReference("invite");
+    final DatabaseReference guestRef = database.getReference("guest");
 
     private GuestListSingleton() {
     }
@@ -29,14 +32,6 @@ public class GuestListSingleton {
         return inst;
     }
 
-    public static void setInst(GuestListSingleton inst) {
-        GuestListSingleton.inst = inst;
-    }
-
-
-    public void setGuestList(List<Guest> guestList) {
-        this.guestList = guestList;
-    }
 
     public List<Guest> getGuestList() {
         if(guestList!=null)
@@ -44,33 +39,29 @@ public class GuestListSingleton {
         return new ArrayList<Guest>();
     }
 
-
-    public int getCount(){
-
-        return guestList.size();
-    }
-
-    public void addguest(Guest guest){
+    public void addGuest(Guest guest){
         guestList.add(guest);
     }
-    public void removeguest(Guest guest){
 
-        guestList.remove(guest);
+
+    public void deleteGuest(Guest guest, String inviteId){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference guestRef = database.getReference("guest");
         guestRef.child(guest.getGuestId()).removeValue();
+
+        DatabaseReference inviteRef = database.getReference("invite");
+        inviteRef.child(inviteId).child("guestIds").child(guest.getGuestId()).removeValue();
+        guestList.remove(guest);
     }
 
-    public void removeAllguests(){
+    public void deleteAllGuests(String inviteId, List<Guest> guests){
+        for (Guest g: guests) {
+            deleteGuest(g, inviteId);
+        }
+    }
+
+    public void removeAllGuests(){
         guestList.removeAll(guestList);
-      /*  guestList.removeAll(guests);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference guestRef = database.getReference("guest");
-
-        for (Guest in: guests) {
-            guestRef.child(in.getGuestId()).removeValue();
-        }*/
-
     }
 
     public boolean isSameNumber(String phoneNumber){
@@ -78,9 +69,6 @@ public class GuestListSingleton {
             if(PhoneNumberUtils.compare(in.getPhoneNumber(),phoneNumber)){
                 return true;
             }
-            /*if(in.getPhoneNumber().equals(phoneNumber)){
-                return true;
-            }*/
         }
         return false;
     }

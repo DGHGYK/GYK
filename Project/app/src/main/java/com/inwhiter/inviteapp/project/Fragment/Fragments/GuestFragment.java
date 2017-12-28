@@ -25,7 +25,6 @@ import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.FragmentController;
 import com.inwhiter.inviteapp.project.ModelG.Guest;
 import com.inwhiter.inviteapp.project.ModelG.GuestListSingleton;
-import com.inwhiter.inviteapp.project.ModelG.GuestStatus;
 import com.inwhiter.inviteapp.project.R;
 
 import java.util.ArrayList;
@@ -49,9 +48,6 @@ public class GuestFragment extends BaseFragment {
     static String inviteId;
     final int CONTACT_PICK_REQUEST = 1000;
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference inviteRef = database.getReference("invite");
-    DatabaseReference guestRef = database.getReference("guest");
 
     public GuestFragment(){
 
@@ -80,7 +76,7 @@ public class GuestFragment extends BaseFragment {
         deleteguest = (Button) getActivity().findViewById(R.id.bt_guest_delete);
         addManually = (Button) getActivity().findViewById(R.id.bt_guest_addManually);
 
-        guest_adapter = new GuestListAdapter(getActivity());
+        guest_adapter = new GuestListAdapter(getActivity(), inviteId);
         guest_expandable.setAdapter(guest_adapter);
 
 
@@ -94,7 +90,7 @@ public class GuestFragment extends BaseFragment {
 
     @Override
     protected void handlers() {
-        GuestListSingleton.getInst().removeAllguests();
+        GuestListSingleton.getInst().removeAllGuests();
         getOldGuests();
 
 
@@ -103,7 +99,7 @@ public class GuestFragment extends BaseFragment {
             @Override
             public void onGroupExpand(int groupPosition) {
                 Toast.makeText(getActivity(),
-                        ((Guest)guest_adapter.getGroup(groupPosition)).getName()+ " List Expanded.",
+                        (guest_adapter.getGroup(groupPosition)).getName()+ " List Expanded.",
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -125,9 +121,9 @@ public class GuestFragment extends BaseFragment {
                                         int groupPosition, int childPosition, long id) {
                 Toast.makeText(
                         getActivity(),
-                        ((Guest)guest_adapter.getGroup(groupPosition)).getName()
+                        (guest_adapter.getGroup(groupPosition)).getName()
                                 + " -> "
-                                + ((GuestStatus)guest_adapter.getChild(groupPosition,childPosition)).isAnswered(), Toast.LENGTH_SHORT
+                                + (guest_adapter.getChild(groupPosition,childPosition)).isAnswered(), Toast.LENGTH_SHORT
                 ).show();
                 return false;
             }
@@ -243,7 +239,7 @@ public class GuestFragment extends BaseFragment {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                  //   ContactListSingleton.getInst().getSelectedContactsList().removeContactsByPhoneNumbers(checkedguests);
-                                    GuestListSingleton.getInst().removeAllguests();
+                                    GuestListSingleton.getInst().deleteAllGuests(inviteId, checkedguests);
                                     guest_adapter.notifyDataSetChanged();
 
                                     // initList();
@@ -282,10 +278,13 @@ public class GuestFragment extends BaseFragment {
     }
 
 
-    private void getOldGuests(){
 
+    public void getOldGuests(){
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference inviteRef = database.getReference("invite");
+        final DatabaseReference guestRef = database.getReference("guest");
         final List<String> oldGuestIds = new ArrayList<String>();
-        inviteRef.child(inviteId).child("guestIds").addValueEventListener(new ValueEventListener() {
+        inviteRef.child(inviteId).child("guestIds") .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
@@ -302,10 +301,11 @@ public class GuestFragment extends BaseFragment {
                                     if(addedId!=0){
                                         GuestListSingleton.getInst().getGuestList().set(addedId,g);
                                     }else {
-                                        GuestListSingleton.getInst().addguest(g);
+                                        GuestListSingleton.getInst().addGuest(g);
                                     }
+                                    guest_adapter.notifyDataSetChanged();
                                 }
-                                guest_adapter.notifyDataSetChanged();
+
                             }
 
                             @Override
@@ -322,9 +322,8 @@ public class GuestFragment extends BaseFragment {
             }
         });
 
-
-
     }
+
 
 
 

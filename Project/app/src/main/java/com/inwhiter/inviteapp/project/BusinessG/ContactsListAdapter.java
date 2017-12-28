@@ -142,7 +142,7 @@ public class ContactsListAdapter extends BaseAdapter {
     public boolean alreadySelected(Contact contact)
     {
 
-        if(selectedContactsList!=null && selectedContactsList.getContactById(Integer.parseInt(contact.getId()))!=null)
+        if(selectedContactsList!=null && selectedContactsList.getContactByPhoneNumber(contact.getPhoneNumber())!=null)
             return true;
 
         return false;
