@@ -112,8 +112,9 @@ public class ContactsPickerFragment extends BaseFragment implements ContactsList
                 //davetli kişi verisi veritabanına kaydedilir
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference guestRef = database.getReference("guest");
-                String guestId = guestRef.push().getKey();
+
               for(Contact c :lastSelectedContactsList.contactArrayList) {
+                  String guestId = guestRef.push().getKey();
                     Guest in = new Guest(guestId, inviteId, 0, c.getName(), c.getPhoneNumber(), new GuestStatus());
                     guestRef.child(guestId).setValue(in);
                     DatabaseReference inviteRef = database.getReference("invite").child(inviteId).child("guestIds");

@@ -79,7 +79,7 @@ public class GuestListSingleton {
                 return guestList.indexOf(g);
             }
         }
-        return 0;
+        return -1;
     }
 
 }

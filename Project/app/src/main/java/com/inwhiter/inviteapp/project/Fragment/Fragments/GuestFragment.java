@@ -28,7 +28,9 @@ import com.inwhiter.inviteapp.project.ModelG.GuestListSingleton;
 import com.inwhiter.inviteapp.project.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by gncal on 29.10.2017.
@@ -222,10 +224,11 @@ public class GuestFragment extends BaseFragment {
                     ConstraintLayout itemLayout = (ConstraintLayout) guest_expandable.getChildAt(i);
                     CheckBox cb = (CheckBox) itemLayout.findViewById(R.id.cb_item_check);
                     TextView tv = (TextView) itemLayout.findViewById(R.id.tv_item_id);
+                    Map<String, Object> tobeRemoved = new HashMap<>();
 
                     if (cb.isChecked()) {
                         checkedguests.add(GuestListSingleton.getInst().getGuestList().get(i));
-
+                        tobeRemoved.put(GuestListSingleton.getInst().getGuestList().get(i).getGuestId(), null);
                     }
                 }
 
@@ -289,16 +292,16 @@ public class GuestFragment extends BaseFragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
                     for (DataSnapshot data : dataSnapshot.getChildren()){
-                        String g = data.getKey();
-                        oldGuestIds.add(g);
+                        String gId = data.getKey();
+                        oldGuestIds.add(gId);
 
-                        guestRef.child(g).addValueEventListener(new ValueEventListener() {
+                        guestRef.child(gId).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot guestSnapshot) {
                                 if(guestSnapshot!=null){
                                     Guest g = guestSnapshot.getValue(Guest.class);
                                     int addedId=GuestListSingleton.getInst().alreadyAdded(g.getGuestId());
-                                    if(addedId!=0){
+                                    if(addedId!=-1){
                                         GuestListSingleton.getInst().getGuestList().set(addedId,g);
                                     }else {
                                         GuestListSingleton.getInst().addGuest(g);
