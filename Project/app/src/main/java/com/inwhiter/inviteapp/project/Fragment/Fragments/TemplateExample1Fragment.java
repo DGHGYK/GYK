@@ -27,6 +27,7 @@ public class TemplateExample1Fragment extends BaseFragment {
     protected void init() {
     }
 
+
     @Override
     protected void handlers() {
 
