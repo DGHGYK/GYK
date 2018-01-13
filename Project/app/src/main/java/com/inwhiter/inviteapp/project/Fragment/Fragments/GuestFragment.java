@@ -220,6 +220,7 @@ public class GuestFragment extends BaseFragment {
             public void onClick(View v) {
 
                 final List<Guest> checkedguests = new ArrayList<>();
+                
                 for(int i=0; i < guest_expandable.getChildCount(); i++) {
                     ConstraintLayout itemLayout = (ConstraintLayout) guest_expandable.getChildAt(i);
                     CheckBox cb = (CheckBox) itemLayout.findViewById(R.id.cb_item_check);
@@ -300,11 +301,13 @@ public class GuestFragment extends BaseFragment {
                             public void onDataChange(DataSnapshot guestSnapshot) {
                                 if(guestSnapshot!=null){
                                     Guest g = guestSnapshot.getValue(Guest.class);
-                                    int addedId=GuestListSingleton.getInst().alreadyAdded(g.getGuestId());
-                                    if(addedId!=-1){
-                                        GuestListSingleton.getInst().getGuestList().set(addedId,g);
-                                    }else {
-                                        GuestListSingleton.getInst().addGuest(g);
+                                    if(g!=null) {
+                                        int addedId = GuestListSingleton.getInst().alreadyAdded(g.getGuestId());
+                                        if (addedId != -1) {
+                                            GuestListSingleton.getInst().getGuestList().set(addedId, g);
+                                        } else {
+                                            GuestListSingleton.getInst().addGuest(g);
+                                        }
                                     }
                                     guest_adapter.notifyDataSetChanged();
                                 }
