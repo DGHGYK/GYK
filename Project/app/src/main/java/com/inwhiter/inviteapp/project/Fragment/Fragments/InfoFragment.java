@@ -331,7 +331,6 @@ public class InfoFragment extends BaseFragment {
     }
 
 
-
     @Override
     protected void handlers() {
 
@@ -412,19 +411,13 @@ public class InfoFragment extends BaseFragment {
                 /*if(btn_crop.isClickable()){
                     startCropActivity(imageUri);
 
-
                 }
-
 
                 //startCropActivity(imageUri);
                 foto.setImageURI(imageUri);
 
                 // String fotoname=String.valueOf(foto.getTag()) ;
-
-
             }
-
-
         }
     }*/
 

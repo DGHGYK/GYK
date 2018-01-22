@@ -1,13 +1,7 @@
 package com.inwhiter.inviteapp.project.Fragment.Fragments;
 
 
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
-import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
-import com.inwhiter.inviteapp.project.Fragment.FragmentController;
-import com.inwhiter.inviteapp.project.R;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -28,6 +22,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -45,7 +40,6 @@ import android.widget.VideoView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -55,7 +49,6 @@ import com.inwhiter.inviteapp.project.BusineesH.CustomAdaptorMediaplayer;
 import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.FragmentController;
 import com.inwhiter.inviteapp.project.ModelG.Info;
-import com.inwhiter.inviteapp.project.ModelG.Invite;
 import com.inwhiter.inviteapp.project.ModelH.Media;
 import com.inwhiter.inviteapp.project.R;
 import com.rajasharan.layout.RearrangeableLayout;
@@ -67,7 +60,6 @@ import com.yalantis.contextmenu.lib.interfaces.OnMenuItemLongClickListener;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -117,12 +109,10 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
     ImageView invalidation1, invalidation2, invalidation3, c1_foto;
     Context context = getActivity();
 
-
     String title, maintext, family1, family2, date, time, adress, tag, fotoS, videoS;
 
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
-
 
     public TemplateFragment newInstance(Bundle args) {//bundle ile infodan gelen bilgileri almak için
         TemplateFragment fragment = new TemplateFragment();
@@ -139,8 +129,6 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
     protected void init() {
         setHasOptionsMenu(true);
         listener.selectTemplate(FragmentController.TEMPLATE1);
-
-        setHasOptionsMenu(true);
         contextMenu();
 
 //        root = (RearrangeableLayout) getActivity().findViewById(R.id.rearrangeable_layout);
@@ -213,10 +201,6 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
 
             videoLayoutSelected();}
         //id=R.layout.h_video1;*//*
-
-
-
-
 
        *//* *//*REARREGENABLE LAYOUT FUNCTION*//*
        *//*
@@ -579,9 +563,6 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         v1_video.setVideoURI(video);
         v1_video.start();
 
-
-
-
     }
 
 
@@ -898,6 +879,7 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
                 });
             }
 
+            @SuppressLint("DefaultLocale")
             private void play() {
                 seekBar.setClickable(false);
                 mp.start();
@@ -933,6 +915,7 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
 
             }
             Runnable UpdateSongTime = new Runnable() {
+                @SuppressLint("DefaultLocale")
                 public void run() {
                     startTime = mp.getCurrentPosition();
                     total_duration.setText(String.format("%d min, %d sec",
@@ -958,13 +941,15 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
                 mp.pause();
             }
 
-        });dialog.show();
+        });
+        dialog.show();
     }
 
     private void initMenuFragment() {
         MenuParams menuParams = new MenuParams();
         menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.tool_bar_height));
         menuParams.setMenuObjects(getMenuObjects());
+        Log.d(TAG, "initMenuFragment: " + getMenuObjects());
         menuParams.setClosableOutside(false);
         mMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
         mMenuDialogFragment.setItemClickListener(this);
@@ -1011,17 +996,12 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         MenuObject save= new MenuObject("Kaydet");
         save.setResource(R.drawable.save);
 
-
         menuObjects.add(close);
         menuObjects.add(template);
         menuObjects.add(color);
         menuObjects.add(font);
         menuObjects.add(music);
         menuObjects.add(save);
-
-
-
-
 
         return menuObjects;
     }
@@ -1081,6 +1061,7 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.context_menu:
+                mMenuDialogFragment.show(fragmentManager,"ContextMenuDialogFragment");
                 break;
         }
         return super.onOptionsItemSelected(item);
