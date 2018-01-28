@@ -46,14 +46,14 @@
             android:orientation="vertical"
             android:weightSum="1">
 
-    <EditText
-        android:id="@+id/et_login_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/et_login_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="20dp" />
 
     <EditText
         android:id="@+id/et_login_password"
@@ -89,9 +89,9 @@
                 android:id="@+id/tv_login_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
                 android:layout_weight="0.23"
-                android:text="kayıtlı değil misiniz?"
+                android:paddingLeft="20dp"
+                android:text="Kayıtlı değil misiniz?"
                 android:textColor="@color/colorPrimaryDark" />
 
 

@@ -10,15 +10,15 @@
 
     <CheckBox
         android:id="@+id/cb_guest_checkAll"
-        android:layout_width="108dp"
         android:layout_height="32dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Tümünü Seç"
-        android:textSize="10sp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/lv_guest_expandable" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="Tümü"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_guest_stats"
+        app:layout_constraintEnd_toStartOf="@+id/bt_guest_stats"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
         android:id="@+id/bt_guest_send"

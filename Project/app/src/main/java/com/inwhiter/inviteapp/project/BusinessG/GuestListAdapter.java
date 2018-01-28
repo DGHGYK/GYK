@@ -2,9 +2,9 @@ package com.inwhiter.inviteapp.project.BusinessG;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +14,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.inwhiter.inviteapp.project.ActivityG.GuestEditActivity;
+import com.inwhiter.inviteapp.project.Fragment.FragmentController;
+import com.inwhiter.inviteapp.project.Fragment.FragmentListener;
 import com.inwhiter.inviteapp.project.ModelG.Guest;
 import com.inwhiter.inviteapp.project.ModelG.GuestListSingleton;
 import com.inwhiter.inviteapp.project.ModelG.GuestStatus;
@@ -35,12 +36,14 @@ import java.util.List;
 public class GuestListAdapter extends BaseExpandableListAdapter {
     //public List<Guest> GuestListSingleton.getInst().getGuestList();
     public Activity activity;
+    protected FragmentListener listener;
     String inviteId;
 
 
     public GuestListAdapter(Activity activity, String inviteId) {
         this.activity = activity;
         this.inviteId=inviteId;
+        listener=(FragmentListener) activity;
     }
 
     @Override
@@ -164,9 +167,12 @@ public class GuestListAdapter extends BaseExpandableListAdapter {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, GuestEditActivity.class);
-                intent.putExtra("position", groupPosition);
-                activity.startActivity(intent);
+
+                Bundle bundle= new Bundle();
+                bundle.putString("inviteId", inviteId);
+                bundle.putInt("position", groupPosition);
+                listener.changeFragment(FragmentController.GUEST_EDIT, bundle);
+
             }
         });
 
