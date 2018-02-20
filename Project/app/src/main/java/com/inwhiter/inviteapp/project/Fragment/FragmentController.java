@@ -11,6 +11,7 @@ import com.inwhiter.inviteapp.project.Fragment.Fragments.InfoFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.LayoutSSFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.ProfileFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.PurchaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.StatusFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateExample1Fragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateFragment;
@@ -36,6 +37,8 @@ public class FragmentController {
     public static final String INFO="fragment_info";
     public static final String CONTACTS_PICKER="fragment_contacts_picker";
     public static final String LAYOUTSS="fragment_layout_ss";
+    public static final String PURCHASE="fragment_purchase";
+
 
 
     //Şablonlar
@@ -101,6 +104,10 @@ public class FragmentController {
         else if (fragment == STATUS)
         {
             return new StatusFragment().newInstance(bundle);
+        }
+        else if (fragment == PURCHASE)
+        {
+            return new PurchaseFragment();
         }
 
         else

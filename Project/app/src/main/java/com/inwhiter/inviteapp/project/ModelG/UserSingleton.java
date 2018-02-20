@@ -7,6 +7,7 @@ package com.inwhiter.inviteapp.project.ModelG;
 public class UserSingleton {
     private static UserSingleton user = new UserSingleton();
     private String token;
+    private int count; //hesabındaki davetiye sayısını verir.
 
 
     public static UserSingleton getInstance() {
@@ -22,5 +23,13 @@ public class UserSingleton {
     }
 
     private UserSingleton() {
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }
