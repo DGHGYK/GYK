@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.inwhiter.inviteapp.project.BusineesH.DatePickerFragment;
 import com.inwhiter.inviteapp.project.BusineesH.TimePickerFragment;
@@ -46,7 +47,7 @@ public class InfoFragment extends BaseFragment {
     String SimageUri = null;
     String SvideoUri = null;
     String data;
-    String mood;
+    String mood,denemetitle;
 
     Info info;
 
@@ -80,7 +81,9 @@ public class InfoFragment extends BaseFragment {
         Bundle bundle = this.getArguments();//topicten gelen mood değerini aldık
         if (bundle != null) {
             mood= bundle.getString("mood");
+
         }
+        Toast.makeText(getActivity(), "topicten  gelen mood :"+mood , Toast.LENGTH_SHORT).show();
 
         btn_bilgi_save = (Button) getActivity().findViewById(R.id.btn_bilgi_save);
         btn_bilgi_imageload = (Button) getActivity().findViewById(R.id.btn_bilgi_imageload);
@@ -118,9 +121,11 @@ public class InfoFragment extends BaseFragment {
                     Bundle bundle=new Bundle();
                     //Bundle bundle2=new Bundle();
                     bundle.putParcelable("info",info);
-                    bundle.putString("menu", "template");
-                    listener.changeFragment(FragmentController.TEMPLATE,bundle);//template e değerler gönderdik
-                   // listener.changeFragment(FragmentController.TEMPLATE,bundle2);
+                    bundle.putString("menu","template");
+
+              /*deneme*/   //   bundle.putString("menu", "template");
+                   // listener.changeFragment(FragmentController.TEMPLATE,bundle);//template e değerler gönderdik
+                    listener.changeFragment(FragmentController.TEMPLATE,bundle);
               //      Intent intent = new Intent(InfoActivity.this, TemplateActivity2.class);
                     //   data= getIntent().getExtras().get("mood").toString();
 
