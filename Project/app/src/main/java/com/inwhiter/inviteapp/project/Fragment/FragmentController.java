@@ -10,6 +10,7 @@ import com.inwhiter.inviteapp.project.Fragment.Fragments.GuestFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.InfoFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.LayoutSSFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.PrivacyFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.ProfileFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.PurchaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.StatusFragment;
@@ -32,6 +33,8 @@ public class FragmentController {
     public static final String STATUS = "fragment_status";
     public static final String TEMPLATE = "fragment_template";
     public static final String PROFILE="fragment_profile";
+    public static final String PRIVACY="fragment_privacy";
+
 
     public static final String TOPIC="fragment_topic";
     public static final String INFO="fragment_info";
@@ -108,6 +111,10 @@ public class FragmentController {
         else if (fragment == PURCHASE)
         {
             return new PurchaseFragment();
+        }
+        else if (fragment == PRIVACY)
+        {
+            return new PrivacyFragment();
         }
 
         else

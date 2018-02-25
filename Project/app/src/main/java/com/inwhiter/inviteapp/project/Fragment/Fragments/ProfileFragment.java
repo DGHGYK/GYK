@@ -1,16 +1,10 @@
 package com.inwhiter.inviteapp.project.Fragment.Fragments;
 
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.vending.billing.IInAppBillingService;
 import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.FragmentController;
 import com.inwhiter.inviteapp.project.R;
@@ -39,21 +33,16 @@ public class ProfileFragment extends BaseFragment {
         purchase.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view) {
-               listener.changeFragment(FragmentController.PURCHASE);
+            public void onClick(View v) {
+                listener.changeFragment(FragmentController.PURCHASE);
             }
         });
+
     }
 
     @Override
     protected void handlers() {
-        purchase.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
 
