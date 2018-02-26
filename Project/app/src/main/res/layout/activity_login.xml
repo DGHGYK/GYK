@@ -55,34 +55,34 @@
                 android:inputType="textEmailAddress"
                 android:paddingLeft="20dp" />
 
-    <EditText
-        android:id="@+id/et_login_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:ems="10"
-        android:hint="Şifre"
-        android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/et_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Şifre"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp" />
 
             <Button
                 android:id="@+id/bt_login_login"
 
                 android:layout_width="match_parent"
                 android:layout_height="23dp"
-                android:background="@drawable/buttonshape"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.19"
 
+                android:background="@drawable/buttonshape"
                 android:shadowColor="#85A62D"
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="5"
                 android:text="giriş yap"
                 android:textColor="#F3F3F3"
-                android:textSize="16sp"
-                android:layout_weight="0.19" />
+                android:textSize="16sp" />
 
 
             <TextView

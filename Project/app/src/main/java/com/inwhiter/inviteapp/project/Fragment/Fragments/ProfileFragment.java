@@ -30,6 +30,11 @@ public class ProfileFragment extends BaseFragment {
     @Override
     protected void init() {//ONCREATE İŞLEMLERİN BURADA OLACAK
         purchase = (Button) getActivity().findViewById(R.id.bt_profile_purchase);
+        
+    }
+
+    @Override
+    protected void handlers() {
         purchase.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -37,12 +42,6 @@ public class ProfileFragment extends BaseFragment {
                 listener.changeFragment(FragmentController.PURCHASE);
             }
         });
-
-    }
-
-    @Override
-    protected void handlers() {
-
     }
 
 
