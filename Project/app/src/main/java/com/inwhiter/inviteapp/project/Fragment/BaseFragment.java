@@ -44,4 +44,10 @@ public abstract class BaseFragment extends Fragment {
         super.onDetach();
         listener = null;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        listener = null;
+    }
 }

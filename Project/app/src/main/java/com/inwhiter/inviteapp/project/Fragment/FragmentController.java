@@ -12,7 +12,9 @@ import com.inwhiter.inviteapp.project.Fragment.Fragments.GuestFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.InfoFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.LayoutSSFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.MainFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.PrivacyFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.ProfileFragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.PurchaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.StatusFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateExample1Fragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateExample2Fragment;
@@ -35,11 +37,15 @@ public class FragmentController {
     public static final String STATUS = "fragment_status";
     public static final String TEMPLATE = "fragment_template";
     public static final String PROFILE="fragment_profile";
+    public static final String PRIVACY="fragment_privacy";
+
 
     public static final String TOPIC="fragment_topic";
     public static final String INFO="fragment_info";
     public static final String CONTACTS_PICKER="fragment_contacts_picker";
     public static final String LAYOUTSS="fragment_layout_ss";
+    public static final String PURCHASE="fragment_purchase";
+
 
     public String currentFragment = null;
 
@@ -117,6 +123,14 @@ public class FragmentController {
         {
             return new StatusFragment().newInstance(bundle);
 
+        }
+        else if (fragment == PURCHASE)
+        {
+            return new PurchaseFragment();
+        }
+        else if (fragment == PRIVACY)
+        {
+            return new PrivacyFragment();
         }
 
         else

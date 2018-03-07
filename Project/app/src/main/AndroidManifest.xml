@@ -36,8 +36,6 @@
             </intent-filter>
 
         </activity>
-
-
         <activity android:name=".ActivityB.SignUpActivity" />
         <activity android:name=".ActivityH.MenuActivity" />
         <activity android:name=".ActivityH.TopicActivity" />
@@ -50,7 +48,6 @@
         <activity
             android:name=".ActivityB.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
         </activity>
 
         <service android:name=".BusinessG.FirebaseToken">
@@ -76,6 +73,8 @@
             android:theme="@style/AppTheme">
 
         </activity>
+
+
     </application>
 
 </manifest>
