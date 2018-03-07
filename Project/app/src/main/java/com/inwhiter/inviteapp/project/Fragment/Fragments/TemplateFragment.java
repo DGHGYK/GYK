@@ -22,7 +22,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -103,6 +105,7 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
 
     Info info;
     Bundle bnd;
+    String font;
 
     Uri foto, video;
     int DefaultColor;
@@ -137,31 +140,12 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
     protected void init() {
         setHasOptionsMenu(true);
         Bundle bundle = this.getArguments();
-        //   title=bundle.getString("menu");
-//        Toast.makeText(getActivity(), "infodan gelen manu adı :"+menuuuu , Toast.LENGTH_SHORT).show();
-
-//        root = (RearrangeableLayout) getActivity().findViewById(R.id.rearrangeable_layout);
-//          /*info sayfasından gelen bilgiler*/
-        // String menuuuu=getArguments().getString("menu");
-        //   Toast.makeText(getActivity(), "infodan gelen manu adı :"+menuuuu , Toast.LENGTH_SHORT).show();
-
         info = bundle.getParcelable("info");
         menu = bundle.getString("menu");
 
         bundleInfo=new Bundle();
         bundleInfo.putParcelable("info",info);
         bundleInfo.putInt("Color",-16185079);
-
-//        title=info.getTitle();
-//        maintext = info.getText();
-//        family1 = info.getFamily1();
-//        family2 = info.getFamily2();
-//        adress = info.getAddress();
-//        time = info.getTime();
-//        date = info.getDate();
-//        tag = info.getHashtag();
-
-        //   Toast.makeText(getActivity(), "infodan gelenler :"+maintext+title+family1+family2+adress+time+date+tag , Toast.LENGTH_SHORT).show();
 
         if (menu.equals("template")) {
 
@@ -186,29 +170,10 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
 //        }
 //        inviteRef.child(inviteId).setValue(invite);
 
-//         /*seçeneğe göre layoutların çağırımı*/
-////
-//        if (getArguments().getString("menu").equals("template")) {
-//            Toast.makeText(getActivity(), "template seçildiii " , Toast.LENGTH_SHORT).show();
-//            //id = R.layout.h_sablonbir;
-//            //setContentView(R.layout.h_sablonbir);
-//            contextMenu();
-//
-//
-      //  }
+//         /*seçeneğe göre layoutların çağırımı*/resim ve videoyu eklediğinde ekle
+        /*REARREGENABLE LAYOUT FUNCTION*/
 
-/*        else if (getIntent().getExtras().get("menu").equals("camera")) {
-            fotoLayoutSelected();
-            id=R.layout.h_camerabir;
-
-      *//*  } else if (getIntent().getExtras().get("menu").equals("video")) {
-
-            videoLayoutSelected();}
-        //id=R.layout.h_video1;*//*
-
-       *//* *//*REARREGENABLE LAYOUT FUNCTION*//*
-       *//*
-        root.setChildPositionListener(new RearrangeableLayout.ChildPositionListener() {
+  /*      root.setChildPositionListener(new RearrangeableLayout.ChildPositionListener() {
             @Override
             public void onChildMoved(View childView, Rect oldPosition, Rect newPosition) {
                 Log.d(TAG, title.toString());
@@ -246,122 +211,59 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
     }
 
 //    /*fontSelected function*/
-//   public void fontSelected() {
-//       final Dialog dialog = new Dialog(getActivity());
-//
-//       dialog.setContentView(R.layout.h_custom_dialog_font);
-//       dialog.setTitle("Font");
-//
-//
-//       rb_bonbonRegularfont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_bonbon);
-//       rb_solenafont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_solenafont);
-//       rb_glaresomefont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_glarosomefont);
-//       rb_geckofont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_geckofont);
-//
-//
+   public void fontSelected() {
+       final Dialog dialog = new Dialog(getActivity());
+
+       dialog.setContentView(R.layout.h_custom_dialog_font);
+       dialog.setTitle("Font");
+
+
+       rb_bonbonRegularfont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_bonbon);
+       rb_solenafont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_solenafont);
+       rb_glaresomefont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_glarosomefont);
+       rb_geckofont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_geckofont);
+
+
 //        /*fontlar*/
-//       face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/BonbonRegular.otf");
-//       rb_bonbonRegularfont.setTypeface(face);
-//       face2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/solena.otf");
-//       rb_solenafont.setTypeface(face2);
-//       face3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Glaresome.otf");
-//       rb_glaresomefont.setTypeface(face3);
-//       face4 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Gecko.ttf");
-//       rb_geckofont.setTypeface(face4);
-//      // c< Bundle bundleFontTpye=new Bundle(),
-//
-//        final Button ok = (Button) dialog.findViewById(R.id.btn_cdfont_ok);
-//        ok.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (rb_bonbonRegularfont.isChecked()) {
-//                    bundleInfo.putSerializable("font",face);
-////                    bundleFont=new Bundle();
-////                    bundleFont.put("Font",face);
-//                   // bundleFont.put
-//
-////                    font_edit(face);
-//             } else if (rb_solenafont.isChecked()) {
-//                   // font_edit(face2);
-//
-//                } else if (rb_glaresomefont.isChecked()) {
-//                   // font_edit(face3);
-//
-//                } else if (rb_geckofont.isChecked()) {
-//                   // font_edit(face4);
-//                }
-//                dialog.dismiss();
-//            }
-//        });
-//        dialog.show();
-//
-//
-//    }
-//
-//   /* ******************************************************************/
-//    public void font_edit(Typeface tf) {
-//        if (getArguments().get("menu").equals("template")) {
-//
-////            SpannableString s = new SpannableString("My Title");
-////            s.setSpan(new TypefaceSpan(this, "MyTypeface.otf"), 0, s.length(),
-////                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//            //String title=info.getTitle().set
-////            if(id==R.layout.h_sablonbir)
-////                /*sadece şablon1 in elemanlarını yapabildim */
-////                s1_title.setTypeface(tf);
-////                s1_maintext.setTypeface(tf);
-////                s1_family1.setTypeface(tf);
-////                s1_family2.setTypeface(tf);
-////                s1_adress.setTypeface(tf);
-////                s1_tag.setTypeface(tf);
-////                s1_time.setTypeface(tf);
-////                s1_date.setTypeface(tf);
-////                    /*SpannableString ss=  new SpannableString(title);
-////                ss.setSpan(new ForegroundColorSpan(color), 0, 5, 0);*/}
-////            else if(id==R.layout.h_sabloniki){
-////                s2_title.setTypeface(tf);
-////                s2_maintext.setTypeface(tf);
-////                s2_family1.setTypeface(tf);
-////                s2_family2.setTypeface(tf);
-////                s2_adress.setTypeface(tf);
-////                s2_tag.setTypeface(tf);
-////                s2_time.setTypeface(tf);
-////                s2_date.setTypeface(tf);
-////            }
-////            else if(id==R.layout.h_sablonuc){
-////                s3_title.setTypeface(tf);
-////                s3_maintext.setTypeface(tf);
-////                s3_family1.setTypeface(tf);
-////                s3_family2.setTypeface(tf);
-////                s3_adress.setTypeface(tf);
-////                s3_tag.setTypeface(tf);
-////                s3_time.setTypeface(tf);
-////                s3_date.setTypeface(tf);
-//            }}
-////        }
-//
-////        else if (getArguments().get("menu").equals("camera")) {
-////            c1_title.setTypeface(tf);
-////            c1_maintext.setTypeface(tf);
-////            c1_family1.setTypeface(tf);
-////            c1_family2.setTypeface(tf);
-////            c1_adress.setTypeface(tf);
-////            c1_tag.setTypeface(tf);
-////            c1_time.setTypeface(tf);
-////            c1_date.setTypeface(tf);
-////        }
-////        else if (getArguments().get("menu").equals("video")) {
-////            v1_title.setTypeface(tf);
-////            v1_maintext.setTypeface(tf);
-////            v1_family1.setTypeface(tf);
-////            v1_family2.setTypeface(tf);
-////            v1_adress.setTypeface(tf);
-////            v1_tag.setTypeface(tf);
-////            v1_time.setTypeface(tf);
-////            v1_date.setTypeface(tf);
-////        }
-////    }
-//
+       face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/BonbonRegular.otf");
+       rb_bonbonRegularfont.setTypeface(face);
+       face2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/solena.otf");
+       rb_solenafont.setTypeface(face2);
+       face3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Glaresome.otf");
+       rb_glaresomefont.setTypeface(face3);
+       face4 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Gecko.ttf");
+       rb_geckofont.setTypeface(face4);
+
+
+
+        final Button ok = (Button) dialog.findViewById(R.id.btn_cdfont_ok);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rb_bonbonRegularfont.isChecked()) {
+                    font="face1";
+
+
+             } else if (rb_solenafont.isChecked()) {
+                   font="face2";
+
+                } else if (rb_glaresomefont.isChecked()) {
+                   font="face3";
+
+                } else if (rb_geckofont.isChecked()) {
+                   font="face4";
+                }
+                bundleInfo.putString("font",font);
+                listener.selectTemplate(String.valueOf(FragmentController.getInstance().currentFragment), bundleInfo);
+                Toast.makeText(getActivity(),"gönderilen font: "+font, Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+
+    }
+
     /*colorSelected function*/
     public void colorSelected() {
         OpenColorPickerDialog(false);
@@ -375,95 +277,10 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
                 //bundleColor=new Bundle();
                 DefaultColor = color;
                 bundleInfo.putInt("Color",color);
-               // if(FragmentController==FragmentController.TEMPLATE1) {
-                    listener.selectTemplate(FragmentController.TEMPLATE1, bundleInfo);
+
+                    listener.selectTemplate(String.valueOf(FragmentController.getInstance().currentFragment), bundleInfo);
                     Toast.makeText(getActivity(), "gönderilen color1 kod" + color, Toast.LENGTH_SHORT).show();
-               // }
-              // else  Toast.makeText(getActivity(), "şimdiki fragment değil", Toast.LENGTH_SHORT).show();
 
-
-//                for(int i=1;i<4;i++){
-//                    String template="TEMPLATE"+i;
-//                    listener.selectTemplate(FragmentController.tem, bundleColor);
-//
-//                }
-//                if(sablonid==1) {
-//                    listener.selectTemplate(FragmentController.TEMPLATE1, bundleColor);
-//                    Toast.makeText(getActivity(), "gönderilen color1 kod"+color, Toast.LENGTH_SHORT).show();
-//
-//                }
-//                else if(sablonid==2){
-//                    listener.selectTemplate(FragmentController.TEMPLATE2, bundleColor);
-//                    Toast.makeText(getActivity(), "gönderilen color2 kod"+color, Toast.LENGTH_SHORT).show();
-//
-//                }
-//                else if(sablonid==3){
-//                    listener.selectTemplate(FragmentController.TEMPLATE3, bundleColor);
-//                    Toast.makeText(getActivity(), "gönderilen color3 kod"+color, Toast.LENGTH_SHORT).show();
-//
-//                }
-
-                /*burada rengni değiştirecekleri yaz*//*çözüm bulamadım amele gibi hepsini tek tek yazacağim*/
-//                if (getArguments().get("menu").equals("template")) {
-//                    if(id==R.layout.h_sablonbir){
-//                           /*sadece şablon1 in elemanlarını yapabildim */
-//                        s1_title.setTextColor(color);
-//                        s1_maintext.setTextColor(color);
-//                        s1_family1.setTextColor(color);
-//                        s1_family2.setTextColor(color);
-//                        s1_adress.setTextColor(color);
-//                        s1_tag.setTextColor(color);
-//                        s1_time.setTextColor(color);
-//                        s1_date.setTextColor(color);
-//                    /*SpannableString ss=  new SpannableString(title);
-//                ss.setSpan(new ForegroundColorSpan(color), 0, 5, 0);*/}
-//                    else if(id==R.layout.h_sabloniki){
-//                        s2_title.setTextColor(color);
-//                        s2_maintext.setTextColor(color);
-//                        s2_family1.setTextColor(color);
-//                        s2_family2.setTextColor(color);
-//                        s2_adress.setTextColor(color);
-//                        s2_tag.setTextColor(color);
-//                        s2_time.setTextColor(color);
-//                        s2_date.setTextColor(color);
-//
-//                    }
-//
-//                    else if(id==R.layout.h_sablonuc){
-//                        s3_title.setTextColor(color);
-//                        s3_maintext.setTextColor(color);
-//                        s3_family1.setTextColor(color);
-//                        s3_family2.setTextColor(color);
-//                        s3_adress.setTextColor(color);
-//                        s3_tag.setTextColor(color);
-//                        s3_time.setTextColor(color);
-//                        s3_date.setTextColor(color);
-//
-//                    }
-//                }
-//                else if (getArguments().get("menu").equals("camera")) {
-//
-//                    c1_title.setTextColor(color);
-//                    c1_maintext.setTextColor(color);
-//                    c1_family1.setTextColor(color);
-//                    c1_family2.setTextColor(color);
-//                    c1_adress.setTextColor(color);
-//                    c1_tag.setTextColor(color);
-//                    c1_time.setTextColor(color);
-//                    c1_date.setTextColor(color);
-//
-//
-//                }
-//                else if (getArguments().get("menu").equals("video")) {
-//
-//                    v1_title.setTextColor(color);
-//                    v1_maintext.setTextColor(color);
-//                    v1_family1.setTextColor(color);
-//                    v1_family2.setTextColor(color);
-//                    v1_adress.setTextColor(color);
-//                    v1_tag.setTextColor(color);
-//                    v1_time.setTextColor(color);
-//                }
             }
 
             @Override
@@ -475,65 +292,66 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
     }
 
 //    /*layout screenshot*/
-//    public void registerLayout() {
-//
-//
-///*        Intent intent=new Intent(TemplateActivity2.this,LayoutSS.class);
-//        intent.putExtra("inviteId", inviteId);*/
-//
-//        byte[] encoded=takeScreenshot();
-//
-//        Bundle bundle = new Bundle();
-//        bundle.putString("inviteId", inviteId);
-//        bundle.putByteArray("ss", encoded);
-//        // TODO: 9.11.2017 Layoutss oluşturulduktan sonra burası değiştirilecek.
-//        listener.changeFragment(FragmentController.LAYOUTSS,bundle);
-//
-///*        intent.putExtra("ss",encoded);
-//        startActivity(intent);*/
-//
-//
-//
-//        mStorageRef = FirebaseStorage.getInstance().getReference();
-//
-//        StorageReference isRef = mStorageRef.child("invites/"+inviteId+".jpg");
-//
-//        UploadTask uploadTask = isRef.putBytes(encoded);
-//        uploadTask.addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception exception) {
-//                // Handle unsuccessful uploads
-//            }
-//        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-//                @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
-//            }
-//        });
-//    }
-//
-//    public byte[] takeScreenshot() {
-//        View rootView = null;
-//
-//        if(id==R.layout.h_sablonbir) rootView=getActivity().findViewById(R.id.sablon1);
-//        else if(id==R.layout.h_sabloniki) rootView=getActivity().findViewById(R.id.sablon2);
-//        else if(id==R.layout.h_sablonuc) rootView=getActivity().findViewById(R.id.sablon3);
-//        else if(id==R.layout.h_camerabir) rootView=getActivity().findViewById(R.id.camera1);
-//        //else if(id==R.layout.h_video1) rootView=findViewById(R.id.video1);
-//
-//        View v1=rootView;
-//        v1.setDrawingCacheEnabled(true);
-//        Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
-//        v1.setDrawingCacheEnabled(false);
-//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-//        byte[] byteArray = byteArrayOutputStream .toByteArray();
-//        rootView.setDrawingCacheEnabled(false);
-//
-//        return byteArray;
-//
-//    }
+    public void registerLayout() {
+
+
+/*        Intent intent=new Intent(TemplateActivity2.this,LayoutSS.class);
+        intent.putExtra("inviteId", inviteId);*/
+
+        byte[] encoded=takeScreenshot();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("inviteId", inviteId);
+        bundle.putByteArray("ss", encoded);
+        // TODO: 9.11.2017 Layoutss oluşturulduktan sonra burası değiştirilecek.
+        listener.changeFragment(FragmentController.LAYOUTSS,bundle);
+        Toast.makeText(getActivity(), "SS ALINDI", Toast.LENGTH_SHORT).show();
+
+
+
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        StorageReference isRef = mStorageRef.child("invites/"+inviteId+".jpg");
+
+        UploadTask uploadTask = isRef.putBytes(encoded);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
+            }
+        });
+    }
+
+    public byte[] takeScreenshot() {
+        View rootView = null;
+       // rootView=FragmentController.getInstance().getCurrentFragment();
+       //   rootView=FragmentController.getInstance().getFragment(FragmentController.getInstance().getCurrentFragment());
+        if(FragmentController.getInstance().getCurrentFragment()==FragmentController.TEMPLATE1)rootView=getActivity().findViewById(R.id.sablon1);
+      //else Toast.makeText(getActivity(), "SS ALInamadı", Toast.LENGTH_SHORT).show();
+
+        else if(FragmentController.getInstance().getCurrentFragment()==FragmentController.TEMPLATE2) rootView=getActivity().findViewById(R.id.sablon2);
+        else if(FragmentController.getInstance().getCurrentFragment()==FragmentController.TEMPLATE3) rootView=getActivity().findViewById(R.id.sablon3);
+     //  // else if(id==R.layout.h_camerabir) rootView=getActivity().findViewById(R.id.camera1);
+        //else if(id==R.layout.h_video1) rootView=findViewById(R.id.video1);
+
+        View v1=rootView;
+        v1.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+        v1.setDrawingCacheEnabled(false);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream .toByteArray();
+        rootView.setDrawingCacheEnabled(false);
+
+        return byteArray;
+
+    }
 //
 //    /*fotoLayoutSelected function*/
 //    public void fotoLayoutSelected(){
@@ -682,243 +500,244 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         dialog_theme.show();
     }
 
-//    public void MusicAdd(){
-//        final Dialog dialog = new Dialog(context,R.style.dialogTheme);
-//
-//        dialog.setContentView(R.layout.h_mediaplayer_custom_dialog);
-//        dialog.setTitle("Media player");
-//
-//
-//        //layout_media_player=(Layout) findViewById(R.layout.h_satir_mediaplayer);
-//        seekBar=(SeekBar)dialog.findViewById(R.id.seek_bar);
-//        lv_playlist=(ListView)dialog.findViewById(R.id.lv_playlist);
-//        current_duration=(TextView)dialog.findViewById(R.id.txt_current_duration);
-//        current_music=(TextView)dialog.findViewById(R.id.txt_current_music);
-//        total_duration=(TextView)dialog.findViewById(R.id.txt_total_duration);
-//        play_pause=(ImageView)dialog.findViewById(R.id.btn_play_pause);
-//        btn_ok=(Button)dialog.findViewById(R.id.btn_ok);
-//
-//        // icon_play= (ImageView)findViewById(R.id.media_simge);
-//
-//
-//        play_pause.setVisibility(View.INVISIBLE);
-//
-//
-//
-//        playlist.add(new Media("dm",false));
-//        playlist.add(new Media("happy1",false));
-//        playlist.add(new Media("happy2",false));
-//        playlist.add(new Media("happy3",false));
-//        playlist.add(new Media("slow1",false));
-//        playlist.add(new Media("slow2",false));
-//
-//        final CustomAdaptorMediaplayer adp=new CustomAdaptorMediaplayer((Activity) context, playlist);
-//        lv_playlist.setAdapter(adp);
-//
-//        lv_playlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//
-//                final Media media = playlist.get(position);
-//                media.setIs_play(true);
-//                adp.notifyDataSetChanged();
-//
-//                btn_ok.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        String firebase_music_name=media.getMusic_name();
+    public void MusicAdd(){
+        final Dialog dialog = new Dialog(getActivity());
+
+        dialog.setContentView(R.layout.h_mediaplayer_custom_dialog);
+        dialog.setTitle("Media player");
+
+
+        //layout_media_player=(Layout) findViewById(R.layout.h_satir_mediaplayer);
+        seekBar=(SeekBar)dialog.findViewById(R.id.seek_bar);
+        lv_playlist=(ListView)dialog.findViewById(R.id.lv_playlist);
+        current_duration=(TextView)dialog.findViewById(R.id.txt_current_duration);
+        current_music=(TextView)dialog.findViewById(R.id.txt_current_music);
+        total_duration=(TextView)dialog.findViewById(R.id.txt_total_duration);
+        play_pause=(ImageView)dialog.findViewById(R.id.btn_play_pause);
+        btn_ok=(Button)dialog.findViewById(R.id.btn_ok);
+
+        // icon_play= (ImageView)findViewById(R.id.media_simge);
+
+
+        play_pause.setVisibility(View.INVISIBLE);
+
+
+
+        playlist.add(new Media("dm",false));
+        playlist.add(new Media("happy1",false));
+        playlist.add(new Media("happy2",false));
+        playlist.add(new Media("happy3",false));
+        playlist.add(new Media("slow1",false));
+        playlist.add(new Media("slow2",false));
+
+        final CustomAdaptorMediaplayer adp=new CustomAdaptorMediaplayer(getActivity(), playlist);
+        lv_playlist.setAdapter(adp);
+
+        lv_playlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                final Media media = playlist.get(position);
+                media.setIs_play(true);
+                adp.notifyDataSetChanged();
+
+                btn_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       String firebase_music_name=media.getMusic_name();
 //                        database = FirebaseDatabase.getInstance();
 //                        DatabaseReference musicRef = database.getReference("invite").child(inviteId).child("info").child("music");
 //                        musicRef.setValue(firebase_music_name);
-//                        Toast.makeText(getActivity(),media.getMusic_name()+ " seçildi", Toast.LENGTH_SHORT).show();
-//
-//                        mp.stop();
-//
-//                        dialog.dismiss();
-//
-//                    }
-//                });
-//
-//                //play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
-//                play_pause.setVisibility(View.VISIBLE);
-//                if (media.getMusic_name().equals("dm")) {
-//
-//
-//                    if (mp != null) {
-//
-//                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
-//                        mp.reset();
-//
-//                    }
-//
-//                    mp = MediaPlayer.create(getActivity(), R.raw.dm);
-//                    // icon_play.setImageDrawable(getResources().getDrawable(R.drawable.icon_music_play));
-//
-//                    current_music.setText("Düğün Marşı");
-//                    play();
-//
-//
-//
-//
-//                }
-//                else if(media.getMusic_name().equals("happy1"))
-//
-//                {
-//                    if (mp != null) {
-//                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
-//
-//                        mp.reset();
-//
-//                    }
-//                    mp = MediaPlayer.create(getActivity(), R.raw.happy1);
-//                    // icon_play.setImageDrawable(getResources().getDrawable(R.drawable.icon_music_play));
-//                    current_music.setText("Happy 1");
-//                    play();
-//
-//                }
-//                else if(media.getMusic_name().equals("happy2"))
-//
-//                {
-//                    if (mp != null) {
-//
-//                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
-//                        mp.reset();
-//
-//
-//                    }
-//                    mp = MediaPlayer.create(getActivity(), R.raw.happy2);
-//                    current_music.setText("Happy2");
-//                    play();
-//
-//                }
-//                else if(media.getMusic_name().equals("happy3"))
-//
-//                {
-//                    if (mp != null) {
-//                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
-//
-//                        mp.reset();
-//
-//
-//                    }
-//                    mp = MediaPlayer.create(getActivity(), R.raw.happy3);
-//                    current_music.setText("Happy3");
-//                    play();
-//
-//                }
-//                else if(media.getMusic_name().equals("slow1"))
-//
-//                {
-//                    if (mp != null) {
-//                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
-//
-//                        mp.reset();
-//
-//
-//                    }
-//                    mp = MediaPlayer.create(getActivity(), R.raw.slow1);
-//                    current_music.setText("slow1");
-//                    play();
-//
-//                }
-//                else if(media.getMusic_name().equals("slow2"))
-//
-//                {
-//                    if (mp != null) {
-//                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
-//
-//                        mp.reset();
-//
-//
-//                    }
-//                    mp = MediaPlayer.create(getActivity(), R.raw.slow2);
-//                    current_music.setText("slow2");
-//                    play();
-//
-//                }
-//
-//                play_pause.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        if(mp.isPlaying()){
-//                            play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_black));
-//                            pause();
-//                        }
-//                        else{
-//                            play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
-//                            play();
-//                        }
-//                    }
-//
-//                });
-//            }
-//
-//            @SuppressLint("DefaultLocale")
-//            private void play() {
-//                seekBar.setClickable(false);
-//                mp.start();
-//
-//
-//                finalTime = mp.getDuration();
-//                startTime = mp.getCurrentPosition();
-//                if (oneTimeOnly == 0) {
-//                    seekBar.setMax((int) finalTime);
-//                    oneTimeOnly = 1;
-//                }
-//                //Muziğin toplamda ne kadar süre oldugunu  endTimeField controller ına yazdırıyoruz...
-//                total_duration.setText(String.format("%d min, %d sec",
-//                        TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
-//                        TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
-//                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
-//                                        toMinutes((long) finalTime)))
-//                );
-//                //Muziğin başladıgı andan itibaren gecen süreyi ,startTimeField controller ına yazdırıyoruz...
-//                current_duration.setText(String.format("%d min, %d sec",
-//                        TimeUnit.MILLISECONDS.toMinutes((long) startTime),
-//                        TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
-//                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
-//                                        toMinutes((long) startTime)))
-//                );
-//                //Muziğin hangi sürede oldugunu gostermek icin, seekbar kullarak gosteriyoruz...
-//                seekBar.setProgress((int) startTime);
-//                myHandler.postDelayed(UpdateSongTime, 100);
-//                //pause.setImageDrawable(getResources().getDrawable(R.mipmap.ic_pause));
-//                //pause.setEnabled(true);
-//                //play.setEnabled(false);
-//
-//
-//            }
-//            Runnable UpdateSongTime = new Runnable() {
-//                @SuppressLint("DefaultLocale")
-//                public void run() {
-//                    startTime = mp.getCurrentPosition();
-//                    total_duration.setText(String.format("%d min, %d sec",
-//                            TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
-//                            TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
-//                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
-//                                            toMinutes((long) finalTime)))
-//                    );
-//                    current_duration.setText(String.format("%d min, %d sec",
-//                            TimeUnit.MILLISECONDS.toMinutes((long) startTime),
-//                            TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
-//                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
-//                                            toMinutes((long) startTime)))
-//                    );
-//                    //Muziğin hangi sürede oldugunu gostermek icin, seekbar kullarak gosteriyoruz...
-//                    seekBar.setProgress((int)startTime);
-//                    myHandler.postDelayed(this, 100);
-//                }
-//            };
-//
-//            public  void pause(){
-//
-//                mp.pause();
-//            }
-//
-//        });
-//        dialog.show();
-//    }
+                        Toast.makeText(getActivity(),media.getMusic_name()+ " seçildi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),firebase_music_name+ " seçildi", Toast.LENGTH_SHORT).show();
+
+                        mp.stop();
+
+                        dialog.dismiss();
+
+                    }
+                });
+
+                //play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+                play_pause.setVisibility(View.VISIBLE);
+                if (media.getMusic_name().equals("dm")) {
+
+
+                    if (mp != null) {
+
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+                        mp.reset();
+
+                    }
+
+                    mp = MediaPlayer.create(getActivity(), R.raw.dm);
+                    // icon_play.setImageDrawable(getResources().getDrawable(R.drawable.icon_music_play));
+
+                    current_music.setText("Düğün Marşı");
+                    play();
+
+
+
+
+                }
+                else if(media.getMusic_name().equals("happy1"))
+
+                {
+                    if (mp != null) {
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
+                        mp.reset();
+
+                    }
+                    mp = MediaPlayer.create(getActivity(), R.raw.happy1);
+                    // icon_play.setImageDrawable(getResources().getDrawable(R.drawable.icon_music_play));
+                    current_music.setText("Happy 1");
+                    play();
+
+                }
+                else if(media.getMusic_name().equals("happy2"))
+
+                {
+                    if (mp != null) {
+
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+                        mp.reset();
+
+
+                    }
+                    mp = MediaPlayer.create(getActivity(), R.raw.happy2);
+                    current_music.setText("Happy2");
+                    play();
+
+                }
+                else if(media.getMusic_name().equals("happy3"))
+
+                {
+                    if (mp != null) {
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
+                        mp.reset();
+
+
+                    }
+                    mp = MediaPlayer.create(getActivity(), R.raw.happy3);
+                    current_music.setText("Happy3");
+                    play();
+
+                }
+                else if(media.getMusic_name().equals("slow1"))
+
+                {
+                    if (mp != null) {
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
+                        mp.reset();
+
+
+                    }
+                    mp = MediaPlayer.create(getActivity(), R.raw.slow1);
+                    current_music.setText("slow1");
+                    play();
+
+                }
+                else if(media.getMusic_name().equals("slow2"))
+
+                {
+                    if (mp != null) {
+                        play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+
+                        mp.reset();
+
+
+                    }
+                    mp = MediaPlayer.create(getActivity(), R.raw.slow2);
+                    current_music.setText("slow2");
+                    play();
+
+                }
+
+                play_pause.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(mp.isPlaying()){
+                            play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_black));
+                            pause();
+                        }
+                        else{
+                            play_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_black));
+                            play();
+                        }
+                    }
+
+                });
+            }
+
+            @SuppressLint("DefaultLocale")
+            private void play() {
+                seekBar.setClickable(false);
+                mp.start();
+
+
+                finalTime = mp.getDuration();
+                startTime = mp.getCurrentPosition();
+                if (oneTimeOnly == 0) {
+                    seekBar.setMax((int) finalTime);
+                    oneTimeOnly = 1;
+                }
+                //Muziğin toplamda ne kadar süre oldugunu  endTimeField controller ına yazdırıyoruz...
+                total_duration.setText(String.format("%d min, %d sec",
+                        TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
+                        TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                        toMinutes((long) finalTime)))
+                );
+                //Muziğin başladıgı andan itibaren gecen süreyi ,startTimeField controller ına yazdırıyoruz...
+                current_duration.setText(String.format("%d min, %d sec",
+                        TimeUnit.MILLISECONDS.toMinutes((long) startTime),
+                        TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                        toMinutes((long) startTime)))
+                );
+                //Muziğin hangi sürede oldugunu gostermek icin, seekbar kullarak gosteriyoruz...
+                seekBar.setProgress((int) startTime);
+                myHandler.postDelayed(UpdateSongTime, 100);
+                //pause.setImageDrawable(getResources().getDrawable(R.mipmap.ic_pause));
+                //pause.setEnabled(true);
+                //play.setEnabled(false);
+
+
+            }
+            Runnable UpdateSongTime = new Runnable() {
+                @SuppressLint("DefaultLocale")
+                public void run() {
+                    startTime = mp.getCurrentPosition();
+                    total_duration.setText(String.format("%d min, %d sec",
+                            TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
+                            TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
+                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                            toMinutes((long) finalTime)))
+                    );
+                    current_duration.setText(String.format("%d min, %d sec",
+                            TimeUnit.MILLISECONDS.toMinutes((long) startTime),
+                            TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
+                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                            toMinutes((long) startTime)))
+                    );
+                    //Muziğin hangi sürede oldugunu gostermek icin, seekbar kullarak gosteriyoruz...
+                    seekBar.setProgress((int)startTime);
+                    myHandler.postDelayed(this, 100);
+                }
+            };
+
+            public  void pause(){
+
+                mp.pause();
+            }
+
+        });
+        dialog.show();
+    }
 
     private void initMenuFragment() {
         MenuParams menuParams = new MenuParams();
@@ -999,10 +818,10 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
                 onBackPressed();
             }
         });*/
-/*        String titlem="InWhiter";
+       String titlem="InWhiter";
         SpannableString s = new SpannableString(titlem);
         s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        mToolBarTextView.setText(s);*/
+        mToolBarTextView.setText(s);
     }
 
     protected void addFragment(Fragment fragment, boolean addToBackStack, int containerId) {
@@ -1055,15 +874,15 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         }
         else if(position==3){
             Toast.makeText(getActivity(), "font seçme tıklandı" , Toast.LENGTH_SHORT).show();
-           // fontSelected();
+            fontSelected();
         }
         else if(position==4){
             Toast.makeText(getActivity(), "müzik ekleme tıklandı" , Toast.LENGTH_SHORT).show();
-            //MusicAdd();
+            MusicAdd();
         }
         else if(position==5){
             Toast.makeText(getActivity(), "ss alma tıklandı" , Toast.LENGTH_SHORT).show();
-            //registerLayout();
+            registerLayout();
         }
         // Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
     }

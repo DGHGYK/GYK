@@ -49,8 +49,9 @@ public class GuestListSingleton {
         DatabaseReference guestRef = database.getReference("guest");
         guestRef.child(guest.getGuestId()).removeValue();
 
+        //guestIds listesinde davetli listesinden silinenlerin değeri -1 olarak görünür
         DatabaseReference inviteRef = database.getReference("invite");
-        inviteRef.child(inviteId).child("guestIds").child(guest.getGuestId()).removeValue();
+        inviteRef.child(inviteId).child("guestIds").child(guest.getGuestId()).setValue(-1);
         guestList.remove(guest);
     }
 

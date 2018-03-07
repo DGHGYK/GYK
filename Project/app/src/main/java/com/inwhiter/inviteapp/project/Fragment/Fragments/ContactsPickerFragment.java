@@ -118,7 +118,7 @@ public class ContactsPickerFragment extends BaseFragment implements ContactsList
                     Guest in = new Guest(guestId, inviteId, 0, c.getName(), c.getPhoneNumber(), new GuestStatus());
                     guestRef.child(guestId).setValue(in);
                     DatabaseReference inviteRef = database.getReference("invite").child(inviteId).child("guestIds");
-                    inviteRef.child(guestId).setValue(true);
+                    inviteRef.child(guestId).setValue(0);
                 }
                 Bundle bundle= new Bundle();
                 bundle.putString("inviteId", inviteId);

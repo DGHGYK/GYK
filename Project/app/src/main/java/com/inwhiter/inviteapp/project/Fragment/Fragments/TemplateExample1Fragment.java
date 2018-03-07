@@ -1,6 +1,7 @@
 package com.inwhiter.inviteapp.project.Fragment.Fragments;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,7 +14,9 @@ import com.inwhiter.inviteapp.project.R;
 public class TemplateExample1Fragment extends BaseFragment {
     Bundle bundle;
     int color=-44444626;
+    String font;
     Info info;
+    Typeface face,face1,face2,face3,face4=null;
 
 
     public TemplateExample1Fragment() {}
@@ -31,15 +34,35 @@ public class TemplateExample1Fragment extends BaseFragment {
 
     @Override
     protected void init() {
-        /*deneme*/
+//         /*fontlar*/
+       face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/BonbonRegular.otf");
+       face2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/solena.otf");
+       face3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Glaresome.otf");
+       face4 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Gecko.ttf");
+
         bundle=this.getArguments();
         info= bundle.getParcelable("info");
         color=bundle.getInt("Color");
+        font=bundle.getString("font");
+
+        if(font=="face1"){
+            face=face1;
+
+        }
+        else if(font=="face2"){
+            face=face2;
+        }
+        else if(font=="face3"){
+            face=face3;
+        }
+        else if(font=="face4"){
+            face=face4;
+        }
 
 
         TextView title = (TextView) getActivity().findViewById(R.id.tv_sablon1_title);
         title.setText(info.getTitle());
-        title.setTextColor(color);
+
 
 
         TextView maintext = (TextView) getActivity().findViewById(R.id.tv_sablon1_maintext);
@@ -69,7 +92,7 @@ public class TemplateExample1Fragment extends BaseFragment {
 //-44444626
 
 //
-//            title.setTextColor(color);
+            title.setTextColor(color);
             maintext.setTextColor(color);
             family1.setTextColor(color);
             family2.setTextColor(color);
@@ -78,10 +101,20 @@ public class TemplateExample1Fragment extends BaseFragment {
             time.setTextColor(color);
             date.setTextColor(color);
 
+             title.setTypeface(face);
+             maintext.setTypeface(face);
+             family1.setTypeface(face);
+             family2.setTypeface(face);
+             adress.setTypeface(face);
+             tag.setTypeface(face);
+             time.setTypeface(face);
+             date.setTypeface(face);
 
 
 
-        }
+
+
+    }
 
 
 

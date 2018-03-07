@@ -1,6 +1,7 @@
 package com.inwhiter.inviteapp.project.Fragment.Fragments;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,40 +17,12 @@ import com.inwhiter.inviteapp.project.R;
  * A simple {@link Fragment} subclass.
  */
 public class TemplateExample2Fragment extends BaseFragment {
+    int color=-44444626;
+    Info info;
+    Bundle bundle;
+    Typeface face,face2,face1,face3,face4=null;
+    String font;
 
-//    public TemplateExample1Fragment() {}
-//
-//    public static TemplateExample1Fragment newInstance(Bundle args) {
-//        TemplateExample1Fragment fragment = new TemplateExample1Fragment();
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-//
-//    @Override
-//    protected int getFID() {
-//        return R.layout.fragment_template_example1;
-//    }
-//
-//    @Override
-//    protected void init() {
-//        /*deneme*/
-//        Bundle bundle=this.getArguments();
-//        Info info= bundle.getParcelable("info");
-////        String temp=bundle.getString("temp");
-////        Toast.makeText(getActivity(), "seçilen temp :"+temp, Toast.LENGTH_SHORT).show();
-//
-//        TextView s1_title = (TextView) getActivity().findViewById(R.id.tv_sablon1_title);
-//        s1_title.setText(info.getTitle());
-//
-//
-//
-//    }
-//
-//
-//    @Override
-//    protected void handlers() {
-//
-//    }
 
 
     public TemplateExample2Fragment() {
@@ -68,9 +41,31 @@ public class TemplateExample2Fragment extends BaseFragment {
 
     @Override
     protected void init() {
-        Bundle bundle=this.getArguments();
-        Info info= bundle.getParcelable("info");
-        int color=bundle.getInt("Color");
+        //         /*fontlar*/
+        face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/BonbonRegular.otf");
+        face2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/solena.otf");
+        face3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Glaresome.otf");
+        face4 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Gecko.ttf");
+
+        bundle=this.getArguments();
+        info= bundle.getParcelable("info");
+        color=bundle.getInt("Color");
+        font=bundle.getString("font");
+
+        if(font=="face1"){
+            face=face1;
+
+        }
+        else if(font=="face2"){
+            face=face2;
+        }
+        else if(font=="face3"){
+            face=face3;
+        }
+        else if(font=="face4"){
+            face=face4;
+        }
+
 
         TextView title = (TextView) getActivity().findViewById(R.id.tv_sablon2_title);
         title.setText(info.getTitle());
@@ -103,6 +98,15 @@ public class TemplateExample2Fragment extends BaseFragment {
         TextView date= (TextView) getActivity().findViewById(R.id.tv_sablon2_date);
         date.setText(info.getDate());
         date.setTextColor(color);
+
+        title.setTypeface(face);
+        maintext.setTypeface(face);
+        family1.setTypeface(face);
+        family2.setTypeface(face);
+        adress.setTypeface(face);
+        tag.setTypeface(face);
+        time.setTypeface(face);
+        date.setTypeface(face);
 
     }
 

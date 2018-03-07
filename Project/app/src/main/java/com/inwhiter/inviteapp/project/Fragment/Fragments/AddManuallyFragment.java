@@ -87,7 +87,7 @@ public class AddManuallyFragment extends BaseFragment {
                         guestRef.child(guestId).setValue(in);
 
                         DatabaseReference inviteRef = database.getReference("invite").child(inviteId).child("guestIds");
-                        inviteRef.child(guestId).setValue(true);
+                        inviteRef.child(guestId).setValue(0);
 
                         Bundle bundle= new Bundle();
                         bundle.putString("inviteId", inviteId);

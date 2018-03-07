@@ -74,30 +74,30 @@ public class LayoutSSFragment extends BaseFragment {
     @Override
     protected void init() {//burası böyle olmalı sanırım @gamze senin burası ama
         Bundle bundle= this.getArguments();
-        if(bundle!=null){
-            inviteId = bundle.getString("inviteId");
-        }
-
-
-        /*custom action bar*//////////////////////////////////////////////////////////
-       getActivity().getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getActivity().getActionBar().setDisplayShowCustomEnabled(true);
-       getActivity().getActionBar().setCustomView(R.layout.h_custom_actionbar_ss);
-        View customSS =getActivity().getActionBar().getCustomView();
-        Button addguests=(Button)customSS.findViewById(R.id.btn_actionbarSS_addguests);
-
-        addguests.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle=new Bundle();
-                bundle.putString("inviteId", inviteId);
-                listener.changeFragment(FragmentController.GUEST,bundle);
-              /*  Intent intent = new Intent(LayoutSS.this, GuestActivity.class);
-                intent.putExtra("inviteId", inviteId);
-                startActivity(intent);*/
-            }
-        });
-
+//        if(bundle!=null){
+//            inviteId = bundle.getString("inviteId");
+//        }
+//
+//
+//        /*custom action bar*//////////////////////////////////////////////////////////
+//       getActivity().getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+//        getActivity().getActionBar().setDisplayShowCustomEnabled(true);
+//       getActivity().getActionBar().setCustomView(R.layout.h_custom_actionbar_ss);
+//        View customSS =getActivity().getActionBar().getCustomView();
+//        Button addguests=(Button)customSS.findViewById(R.id.btn_actionbarSS_addguests);
+//
+//        addguests.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Bundle bundle=new Bundle();
+//                bundle.putString("inviteId", inviteId);
+//                listener.changeFragment(FragmentController.GUEST,bundle);
+//              /*  Intent intent = new Intent(LayoutSS.this, GuestActivity.class);
+//                intent.putExtra("inviteId", inviteId);
+//                startActivity(intent);*/
+//            }
+//        });
+//
 
 
 

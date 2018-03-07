@@ -45,10 +45,10 @@ public class GuestFragment extends BaseFragment {
     Button pickContacts;
     Button sendSMS;
     CheckBox checkAll;
-    Button deleteguest;
+    Button deleteGuest;
     Button addManually;
+    Button viewStatus;
     static String inviteId;
-    final int CONTACT_PICK_REQUEST = 1000;
 
 
     public GuestFragment(){
@@ -75,8 +75,9 @@ public class GuestFragment extends BaseFragment {
         pickContacts = (Button) getActivity().findViewById(R.id.iv_guest_pickContacts);
         sendSMS = (Button) getActivity().findViewById(R.id.bt_guest_send);
         checkAll = (CheckBox) getActivity().findViewById(R.id.cb_guest_checkAll);
-        deleteguest = (Button) getActivity().findViewById(R.id.bt_guest_delete);
+        deleteGuest = (Button) getActivity().findViewById(R.id.bt_guest_delete);
         addManually = (Button) getActivity().findViewById(R.id.bt_guest_addManually);
+        viewStatus = (Button) getActivity().findViewById(R.id.bt_guest_stats);
 
         guest_adapter = new GuestListAdapter(getActivity(), inviteId);
         guest_expandable.setAdapter(guest_adapter);
@@ -139,6 +140,16 @@ public class GuestFragment extends BaseFragment {
                 listener.changeFragment(FragmentController.ADD_MANUALLY, bundle);
             }
         });
+
+        viewStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle= new Bundle();
+                bundle.putString("inviteId", inviteId);
+                listener.changeFragment(FragmentController.STATUS, bundle);
+            }
+        });
+
 
 
         //rehberden kişi ekleme için rehberden çekilen kişi listesinin açılması
@@ -215,7 +226,7 @@ public class GuestFragment extends BaseFragment {
         });
 
 
-        deleteguest.setOnClickListener(new View.OnClickListener() {
+        deleteGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
