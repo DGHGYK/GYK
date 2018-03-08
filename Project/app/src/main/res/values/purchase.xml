@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ADET_50">davetiye50</string>
+    <string name="ADET_100">davetiye100</string>
+    <string name="ADET_500">davetiye500</string>
+    <string name="ADET_10">davetiye10</string>
+    <string name="RC_REQUEST">9900</string>
+
+
+
+
+</resources>

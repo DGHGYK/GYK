@@ -159,7 +159,7 @@ public class GuestListAdapter extends BaseExpandableListAdapter {
                 Guest in= GuestListSingleton.getInst().getGuestList().get(groupPosition);
                 List<Guest> list = new ArrayList<>();
                 list.add(in);
-                new SendSMS().execute(list);
+                new SendSMSService().execute(list);
             }
         });
 

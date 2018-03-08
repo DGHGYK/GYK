@@ -15,10 +15,7 @@ public class PurchaseFragment extends BaseFragment {
     Button purchase50;
     Button purchase100;
     Button purchase500;
-    static final String ADET_50 = "davetiye50";
-    static final String ADET_100 = "davetiye100";
-    static final String ADET_500 = "davetiye500";
-    static final String ADET_10 = "davetiye10";
+
     public PurchaseFragment() {
     }
 
@@ -39,25 +36,25 @@ public class PurchaseFragment extends BaseFragment {
         purchase10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).davetiyeSatinAl(ADET_10);
+                ((MainActivity)getActivity()).davetiyeSatinAl(getString(R.string.ADET_10));
             }
         });
         purchase50.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).davetiyeSatinAl(ADET_50);
+                ((MainActivity)getActivity()).davetiyeSatinAl(getString(R.string.ADET_50));
             }
         });
         purchase100.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).davetiyeSatinAl(ADET_100);
+                ((MainActivity)getActivity()).davetiyeSatinAl(getString(R.string.ADET_100));
             }
         });
         purchase500.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).davetiyeSatinAl(ADET_500);
+                ((MainActivity)getActivity()).davetiyeSatinAl(getString(R.string.ADET_500));
             }
         });
 

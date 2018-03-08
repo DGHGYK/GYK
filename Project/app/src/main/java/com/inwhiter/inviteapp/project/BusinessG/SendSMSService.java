@@ -18,7 +18,7 @@ import okhttp3.Response;
  * Created by gncal on 8/4/2017.
  */
 
-public class SendSMS extends AsyncTask<List<Guest>, Void, String> {
+public class SendSMSService extends AsyncTask<List<Guest>, Void, String> {
 
     //sms apiye bağlanmak için 3. parti okhttpclient kullanıyoruz
 

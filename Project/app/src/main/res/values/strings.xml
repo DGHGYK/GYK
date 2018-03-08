@@ -1,5 +1,21 @@
 <resources>
     <string name="app_name">Inwhiter</string>
+    <string name="durum">Durum</string>
+    <string name="rehberdenEkle">Rehberden Ekle</string>
+    <string name="elleEkle">Elle Ekle</string>
+    <string name="smsGonder">SMS Gönder</string>
+    <string name="sil">Sil</string>
+    <string name="yukleniyor">Yükleniyor</string>
+    <string name="davetiyeSatinAlin">Davetiye Satin Alin</string>
+    <string name="cikis">Çıkış</string>
+    <string name="gonderim10">10 Gönderim</string>
+    <string name="gonderim50">50 Gönderim</string>
+    <string name="gonderim100">100 Gönderim</string>
+    <string name="gonderim500">50
+        0 Gönderim</string>
+
+
+
 
     <string name="text">hatice.</string>
     <string name="title">My Description</string>

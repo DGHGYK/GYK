@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.inwhiter.inviteapp.project.BusinessG.GuestListAdapter;
-import com.inwhiter.inviteapp.project.BusinessG.SendSMS;
+import com.inwhiter.inviteapp.project.BusinessG.SendSMSService;
 import com.inwhiter.inviteapp.project.Fragment.BaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.FragmentController;
 import com.inwhiter.inviteapp.project.ModelG.Guest;
@@ -198,7 +198,7 @@ public class GuestFragment extends BaseFragment {
                             "Evet",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    new SendSMS().execute(checkedguests);
+                                    new SendSMSService().execute(checkedguests);
                                     Toast.makeText(getActivity(), "Davetiyeleriniz seçilen davetlilere SMS ile iletilmiştir.", Toast.LENGTH_LONG).show();
                                     dialog.cancel();
 

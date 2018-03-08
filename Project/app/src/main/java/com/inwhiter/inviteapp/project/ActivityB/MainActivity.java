@@ -22,6 +22,12 @@ import android.widget.TextView;
 
 import com.android.vending.billing.IInAppBillingService;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.inwhiter.inviteapp.project.CustomB.CustomBottomView.CustomBottomView;
 import com.inwhiter.inviteapp.project.CustomB.CustomBottomView.CustomBottomViewListener;
 import com.inwhiter.inviteapp.project.CustomB.CustomBottomView.CustomBottomViewOption;
@@ -50,10 +56,7 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
     private Toolbar mToolbar;
     // Debug tag, for logging
     static final String TAG = "InwhiterPurchase";
-    static final String ADET_50 = "davetiye50";
-    static final String ADET_100 = "davetiye100";
-    static final String ADET_500 = "davetiye500";
-    static final String ADET_10 = "davetiye10";
+
     static final int RC_REQUEST = 9900;
     IInAppBillingService mService;
     ServiceConnection mServiceConn;
@@ -327,24 +330,46 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
             // if we were disposed of in the meantime, quit.
             if (mHelper == null) return;
 
-            // We know this is the "gas" sku because it's the only one we consume,
-            // so we don't check which sku was consumed. If you have more than one
-            // sku, you probably should check...
+
             if (result.isSuccess()) {
-                // successfully consumed, so we apply the effects of the item in our
-                // game world's logic, which in our case means filling the gas tank a bit
+
                 Log.d(TAG, "Alım bitti");
-                if (purchase.getSku().equals(ADET_10)) {
-                    alinanDavetiyeSayisi += 10;
-                } else if (purchase.getSku().equals(ADET_50)) {
-                    alinanDavetiyeSayisi += 50;
-                } else if (purchase.getSku().equals(ADET_100)) {
-                    alinanDavetiyeSayisi += 100;
-                } else if (purchase.getSku().equals(ADET_500)) {
-                    alinanDavetiyeSayisi += 500;
+                if (purchase.getSku().equals(getString(R.string.ADET_10))) {
+                    alinanDavetiyeSayisi = 10;
+                } else if (purchase.getSku().equals(getString(R.string.ADET_50))) {
+                    alinanDavetiyeSayisi = 50;
+                } else if (purchase.getSku().equals(getString(R.string.ADET_100))) {
+                    alinanDavetiyeSayisi = 100;
+                } else if (purchase.getSku().equals(getString(R.string.ADET_500))) {
+                    alinanDavetiyeSayisi = 500;
                 }
-                saveData();
-                alert("Toplam devetiye sayısı " + String.valueOf(alinanDavetiyeSayisi));
+
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                FirebaseUser currentUser= mAuth.getCurrentUser();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference userRef = database.getReference("user");
+                final DatabaseReference balanceRef =  userRef.child(currentUser.getUid()).child("balance");
+
+
+                balanceRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        int mevcutDavetiye=0;
+                        if (dataSnapshot.exists()) {
+                            mevcutDavetiye = dataSnapshot.getValue(Integer.class);
+                        }
+                        mevcutDavetiye +=alinanDavetiyeSayisi;
+                        balanceRef.setValue(mevcutDavetiye);
+                        alert("Toplam devetiye sayısı " + String.valueOf(mevcutDavetiye));
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
             } else {
                 complain("Alım hatası: " + result);
             }
@@ -370,41 +395,41 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
             Log.d(TAG, "Envanter sorgusu başarılı.");
 
 
-            Purchase purchase10 = inventory.getPurchase(ADET_10);
+            Purchase purchase10 = inventory.getPurchase(getString(R.string.ADET_10));
             if (purchase10 != null && verifyDeveloperPayLoad(purchase10)) {
                 Log.d(TAG, "10 davetiye bulundu");
                 try {
-                    mHelper.consumeAsync(inventory.getPurchase(ADET_10), mConsumeFinishedListener);
+                    mHelper.consumeAsync(inventory.getPurchase(getString(R.string.ADET_10)), mConsumeFinishedListener);
                 } catch (IabHelper.IabAsyncInProgressException e) {
                     complain("10 davetiye paketi sorgulanırken hata oluştu. Asenkron başka bir işlem yapılıyor.");
                 }
                 return;
             }
-            Purchase purchase50 = inventory.getPurchase(ADET_50);
+            Purchase purchase50 = inventory.getPurchase(getString(R.string.ADET_50));
             if (purchase50 != null && verifyDeveloperPayLoad(purchase50)) {
                 Log.d(TAG, "50 davetiye bulundu");
                 try {
-                    mHelper.consumeAsync(inventory.getPurchase(ADET_50), mConsumeFinishedListener);
+                    mHelper.consumeAsync(inventory.getPurchase(getString(R.string.ADET_50)), mConsumeFinishedListener);
                 } catch (IabHelper.IabAsyncInProgressException e) {
                     complain("50 davetiye paketi sorgulanırken hata oluştu. Asenkron başka bir işlem yapılıyor.");
                 }
                 return;
             }
-            Purchase purchase100 = inventory.getPurchase(ADET_100);
+            Purchase purchase100 = inventory.getPurchase(getString(R.string.ADET_100));
             if (purchase100 != null && verifyDeveloperPayLoad(purchase100)) {
                 Log.d(TAG, "100 davetiye bulundu");
                 try {
-                    mHelper.consumeAsync(inventory.getPurchase(ADET_100), mConsumeFinishedListener);
+                    mHelper.consumeAsync(inventory.getPurchase(getString(R.string.ADET_100)), mConsumeFinishedListener);
                 } catch (IabHelper.IabAsyncInProgressException e) {
                     complain("100 davetiye paketi sorgulanırken hata oluştu. Asenkron başka bir işlem yapılıyor.");
                 }
                 return;
             }
-            Purchase purchase500 = inventory.getPurchase(ADET_500);
+            Purchase purchase500 = inventory.getPurchase(getString(R.string.ADET_500));
             if (purchase500 != null && verifyDeveloperPayLoad(purchase500)) {
                 Log.d(TAG, "500 davetiye bulundu");
                 try {
-                    mHelper.consumeAsync(inventory.getPurchase(ADET_500), mConsumeFinishedListener);
+                    mHelper.consumeAsync(inventory.getPurchase(getString(R.string.ADET_500)), mConsumeFinishedListener);
                 } catch (IabHelper.IabAsyncInProgressException e) {
                     complain("500 davetiye paketi sorgulanırken hata oluştu. Asenkron başka bir işlem yapılıyor.");
                 }
@@ -439,7 +464,7 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
 
             Log.d(TAG, "Satın alma başarılı");
 
-            if (purchase.getSku().equals(ADET_10) || purchase.getSku().equals(ADET_50) || purchase.getSku().equals(ADET_100) || purchase.getSku().equals(ADET_500)) {
+            if (purchase.getSku().equals(getString(R.string.ADET_10)) || purchase.getSku().equals(getString(R.string.ADET_50)) || purchase.getSku().equals(getString(R.string.ADET_100)) || purchase.getSku().equals(getString(R.string.ADET_500))) {
 
                 Log.d(TAG, "Davetiye alındı");
                 try {
@@ -551,7 +576,6 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
     private String computePayload(){
         return "INW"+ FirebaseAuth.getInstance().getCurrentUser().getUid()+"APP";
     }
-
 
 
     @Override
