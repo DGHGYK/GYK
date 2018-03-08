@@ -22,6 +22,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -87,6 +90,8 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
     public ImageView play_pause, on_off;
     public TextView current_duration, total_duration, current_music;
     Button btn_ok;
+    Bundle bundleInfo,bundleFont,bundleColor;
+    int sablonid=0;
 
     TextView s1_title, s1_maintext, s1_family1, s1_family2, s1_adress, s1_tag, s1_time, s1_date;//sablon1 için
     TextView s2_title, s2_maintext, s2_family1, s2_family2, s2_adress, s2_tag, s2_time, s2_date;//şablon2 için
@@ -99,6 +104,8 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
     VideoView v1_video;
 
     Info info;
+    Bundle bnd;
+    String font;
 
     Uri foto, video;
     int DefaultColor;
@@ -109,7 +116,7 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
     ImageView invalidation1, invalidation2, invalidation3, c1_foto;
     Context context = getActivity();
 
-    String title, maintext, family1, family2, date, time, adress, tag, fotoS, videoS;
+    String menu,title, maintext, family1, family2, date, time, adress, tag, fotoS, videoS;
 
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
@@ -122,29 +129,36 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
 
     @Override
     protected int getFID() {
+//        Bundle bundle=this.getArguments();
+//        String menuuuu=bundle.getString("menu");
+//        Toast.makeText(getActivity(), "infodan gelen manu adı :"+menuuuu , Toast.LENGTH_SHORT).show();
+
         return R.layout.fragment_template;
     }
 
     @Override
     protected void init() {
         setHasOptionsMenu(true);
-        listener.selectTemplate(FragmentController.TEMPLATE1);
-        contextMenu();
+        Bundle bundle = this.getArguments();
+        info = bundle.getParcelable("info");
+        menu = bundle.getString("menu");
 
-//        root = (RearrangeableLayout) getActivity().findViewById(R.id.rearrangeable_layout);
-//          /*info sayfasından gelen bilgiler*/
-//        info = getArguments().getParcelable("info");
-//        title = info.getTitle();
-//        maintext = info.getText();
-//        family1 = info.getFamily1();
-//        family2 = info.getFamily2();
-//        adress = info.getAddress();
-//        time = info.getTime();
-//        date = info.getDate();
-//        tag = info.getHashtag();
+        bundleInfo=new Bundle();
+        bundleInfo.putParcelable("info",info);
+        bundleInfo.putInt("Color",-16185079);
+
+        if (menu.equals("template")) {
+
+            Toast.makeText(getActivity(), "infodan gelenler menu:" + menu, Toast.LENGTH_SHORT).show();
+            listener.selectTemplate(FragmentController.TEMPLATE1, bundleInfo);
+            contextMenu();
+
+
+        }
+    }
 //
 //
-//        //girilen değerler veri tabanına kaydedilir
+////        //girilen değerler veri tabanına kaydedilir
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        DatabaseReference inviteRef = database.getReference("invite");
 //
@@ -155,56 +169,11 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
 //            inviteId = inviteRef.push().getKey();
 //        }
 //        inviteRef.child(inviteId).setValue(invite);
-//
-//         /*seçeneğe göre layoutların çağırımı*/
-//
-//        if (getArguments().get("menu").equals("template")) {
-//            //Toast.makeText(this, "template seçildiii "+title , Toast.LENGTH_SHORT).show();
-//            id = R.layout.h_sablonbir;
-//            //setContentView(R.layout.h_sablonbir);
-//            contextMenu();
-//
-//            View v = getActivity().findViewById(R.id.sablon1);
-//
-//            s1_title = (TextView) v.findViewById(R.id.tv_sablon1_title);
-//            s1_title.setText(title);
-//
-//            s1_date = (TextView) v.findViewById(R.id.tv_sablon1_date);
-//            s1_date.setText(date);
-//
-//            s1_maintext = (TextView) v.findViewById(R.id.tv_sablon1_maintext);
-//            s1_maintext.setText(maintext);
-//
-//            s1_family1 = (TextView) v.findViewById(R.id.tv_sablon1_family1);
-//            s1_family1.setText(family1);
-//
-//            s1_family2 = (TextView) v.findViewById(R.id.tv_sablon1_family2);
-//            s1_family2.setText(family2);
-//
-//            s1_adress = (TextView) v.findViewById(R.id.tv_sablon1_adress);
-//            s1_adress.setText(adress);
-//
-//            s1_time = (TextView) v.findViewById(R.id.tv_sablon1_time);
-//            s1_time.setText(time);
-//
-//            s1_tag = (TextView) v.findViewById(R.id.tv_sablon1_tag);
-//            s1_tag.setText(tag);
-//
 
-      //  }
+//         /*seçeneğe göre layoutların çağırımı*/resim ve videoyu eklediğinde ekle
+        /*REARREGENABLE LAYOUT FUNCTION*/
 
-/*        else if (getIntent().getExtras().get("menu").equals("camera")) {
-            fotoLayoutSelected();
-            id=R.layout.h_camerabir;
-
-      *//*  } else if (getIntent().getExtras().get("menu").equals("video")) {
-
-            videoLayoutSelected();}
-        //id=R.layout.h_video1;*//*
-
-       *//* *//*REARREGENABLE LAYOUT FUNCTION*//*
-       *//*
-        root.setChildPositionListener(new RearrangeableLayout.ChildPositionListener() {
+  /*      root.setChildPositionListener(new RearrangeableLayout.ChildPositionListener() {
             @Override
             public void onChildMoved(View childView, Rect oldPosition, Rect newPosition) {
                 Log.d(TAG, title.toString());
@@ -216,6 +185,8 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
             @Override
             public void onGlobalLayout() {
                 Log.d(TAG, "onGlobalLayout");
+
+
                 Log.d(TAG, root.toString());
             }
         });
@@ -230,7 +201,7 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         });*//*
         }*/
 
-    }
+    //}//}
 
     public void contextMenu(){
         /* context menu*/
@@ -239,109 +210,58 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         initMenuFragment();
     }
 
-    /*fontSelected function*/
-    public void fontSelected() {
-        final Dialog dialog = new Dialog(context,R.style.dialogTheme);
+//    /*fontSelected function*/
+   public void fontSelected() {
+       final Dialog dialog = new Dialog(getActivity());
 
-        dialog.setContentView(R.layout.h_custom_dialog_font);
-        dialog.setTitle("Font");
-
-
-        rb_bonbonRegularfont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_bonbon);
-        rb_solenafont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_solenafont);
-        rb_glaresomefont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_glarosomefont);
-        rb_geckofont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_geckofont);
+       dialog.setContentView(R.layout.h_custom_dialog_font);
+       dialog.setTitle("Font");
 
 
-        /*fontlar*/
-        face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/BonbonRegular.otf");
-        rb_bonbonRegularfont.setTypeface(face);
-        face2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/solena.otf");
-        rb_solenafont.setTypeface(face2);
-        face3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Glaresome.otf");
-        rb_glaresomefont.setTypeface(face3);
-        face4 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Gecko.ttf");
-        rb_geckofont.setTypeface(face4);
+       rb_bonbonRegularfont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_bonbon);
+       rb_solenafont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_solenafont);
+       rb_glaresomefont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_glarosomefont);
+       rb_geckofont = (RadioButton) dialog.findViewById(R.id.rb_bilgi_geckofont);
+
+
+//        /*fontlar*/
+       face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/BonbonRegular.otf");
+       rb_bonbonRegularfont.setTypeface(face);
+       face2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/solena.otf");
+       rb_solenafont.setTypeface(face2);
+       face3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Glaresome.otf");
+       rb_glaresomefont.setTypeface(face3);
+       face4 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Gecko.ttf");
+       rb_geckofont.setTypeface(face4);
+
+
 
         final Button ok = (Button) dialog.findViewById(R.id.btn_cdfont_ok);
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (rb_bonbonRegularfont.isChecked()) {
-                    font_edit(face);
-                } else if (rb_solenafont.isChecked()) {
-                    font_edit(face2);
+                    font="face1";
+
+
+             } else if (rb_solenafont.isChecked()) {
+                   font="face2";
 
                 } else if (rb_glaresomefont.isChecked()) {
-                    font_edit(face3);
+                   font="face3";
 
                 } else if (rb_geckofont.isChecked()) {
-                    font_edit(face4);
+                   font="face4";
                 }
+                bundleInfo.putString("font",font);
+                listener.selectTemplate(String.valueOf(FragmentController.getInstance().currentFragment), bundleInfo);
+                Toast.makeText(getActivity(),"gönderilen font: "+font, Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
         dialog.show();
 
 
-    }
-
-    /* ******************************************************************/
-    public void font_edit(Typeface tf) {
-        if (getArguments().get("menu").equals("template")) {
-            if(id==R.layout.h_sablonbir){
-                           /*sadece şablon1 in elemanlarını yapabildim */
-                s1_title.setTypeface(tf);
-                s1_maintext.setTypeface(tf);
-                s1_family1.setTypeface(tf);
-                s1_family2.setTypeface(tf);
-                s1_adress.setTypeface(tf);
-                s1_tag.setTypeface(tf);
-                s1_time.setTypeface(tf);
-                s1_date.setTypeface(tf);
-                    /*SpannableString ss=  new SpannableString(title);
-                ss.setSpan(new ForegroundColorSpan(color), 0, 5, 0);*/}
-            else if(id==R.layout.h_sabloniki){
-                s2_title.setTypeface(tf);
-                s2_maintext.setTypeface(tf);
-                s2_family1.setTypeface(tf);
-                s2_family2.setTypeface(tf);
-                s2_adress.setTypeface(tf);
-                s2_tag.setTypeface(tf);
-                s2_time.setTypeface(tf);
-                s2_date.setTypeface(tf);
-            }
-            else if(id==R.layout.h_sablonuc){
-                s3_title.setTypeface(tf);
-                s3_maintext.setTypeface(tf);
-                s3_family1.setTypeface(tf);
-                s3_family2.setTypeface(tf);
-                s3_adress.setTypeface(tf);
-                s3_tag.setTypeface(tf);
-                s3_time.setTypeface(tf);
-                s3_date.setTypeface(tf);
-            }
-        }
-        else if (getArguments().get("menu").equals("camera")) {
-            c1_title.setTypeface(tf);
-            c1_maintext.setTypeface(tf);
-            c1_family1.setTypeface(tf);
-            c1_family2.setTypeface(tf);
-            c1_adress.setTypeface(tf);
-            c1_tag.setTypeface(tf);
-            c1_time.setTypeface(tf);
-            c1_date.setTypeface(tf);
-        }
-        else if (getArguments().get("menu").equals("video")) {
-            v1_title.setTypeface(tf);
-            v1_maintext.setTypeface(tf);
-            v1_family1.setTypeface(tf);
-            v1_family2.setTypeface(tf);
-            v1_adress.setTypeface(tf);
-            v1_tag.setTypeface(tf);
-            v1_time.setTypeface(tf);
-            v1_date.setTypeface(tf);
-        }
     }
 
     /*colorSelected function*/
@@ -354,68 +274,13 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         AmbilWarnaDialog ambilWarnaDialog = new AmbilWarnaDialog(getActivity(), DefaultColor, AlphaSupport, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onOk(AmbilWarnaDialog ambilWarnaDialog, int color) {
+                //bundleColor=new Bundle();
                 DefaultColor = color;
-                /*burada rengni değiştirecekleri yaz*//*çözüm bulamadım amele gibi hepsini tek tek yazacağim*/
-                if (getArguments().get("menu").equals("template")) {
-                    if(id==R.layout.h_sablonbir){
-                           /*sadece şablon1 in elemanlarını yapabildim */
-                        s1_title.setTextColor(color);
-                        s1_maintext.setTextColor(color);
-                        s1_family1.setTextColor(color);
-                        s1_family2.setTextColor(color);
-                        s1_adress.setTextColor(color);
-                        s1_tag.setTextColor(color);
-                        s1_time.setTextColor(color);
-                        s1_date.setTextColor(color);
-                    /*SpannableString ss=  new SpannableString(title);
-                ss.setSpan(new ForegroundColorSpan(color), 0, 5, 0);*/}
-                    else if(id==R.layout.h_sabloniki){
-                        s2_title.setTextColor(color);
-                        s2_maintext.setTextColor(color);
-                        s2_family1.setTextColor(color);
-                        s2_family2.setTextColor(color);
-                        s2_adress.setTextColor(color);
-                        s2_tag.setTextColor(color);
-                        s2_time.setTextColor(color);
-                        s2_date.setTextColor(color);
+                bundleInfo.putInt("Color",color);
 
-                    }
+                    listener.selectTemplate(String.valueOf(FragmentController.getInstance().currentFragment), bundleInfo);
+                    Toast.makeText(getActivity(), "gönderilen color1 kod" + color, Toast.LENGTH_SHORT).show();
 
-                    else if(id==R.layout.h_sablonuc){
-                        s3_title.setTextColor(color);
-                        s3_maintext.setTextColor(color);
-                        s3_family1.setTextColor(color);
-                        s3_family2.setTextColor(color);
-                        s3_adress.setTextColor(color);
-                        s3_tag.setTextColor(color);
-                        s3_time.setTextColor(color);
-                        s3_date.setTextColor(color);
-
-                    }
-                }
-                else if (getArguments().get("menu").equals("camera")) {
-
-                    c1_title.setTextColor(color);
-                    c1_maintext.setTextColor(color);
-                    c1_family1.setTextColor(color);
-                    c1_family2.setTextColor(color);
-                    c1_adress.setTextColor(color);
-                    c1_tag.setTextColor(color);
-                    c1_time.setTextColor(color);
-                    c1_date.setTextColor(color);
-
-
-                }
-                else if (getArguments().get("menu").equals("video")) {
-
-                    v1_title.setTextColor(color);
-                    v1_maintext.setTextColor(color);
-                    v1_family1.setTextColor(color);
-                    v1_family2.setTextColor(color);
-                    v1_adress.setTextColor(color);
-                    v1_tag.setTextColor(color);
-                    v1_time.setTextColor(color);
-                }
             }
 
             @Override
@@ -426,7 +291,7 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         ambilWarnaDialog.show();
     }
 
-    /*layout screenshot*/
+//    /*layout screenshot*/
     public void registerLayout() {
 
 
@@ -440,9 +305,7 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         bundle.putByteArray("ss", encoded);
         // TODO: 9.11.2017 Layoutss oluşturulduktan sonra burası değiştirilecek.
         listener.changeFragment(FragmentController.LAYOUTSS,bundle);
-
-/*        intent.putExtra("ss",encoded);
-        startActivity(intent);*/
+        Toast.makeText(getActivity(), "SS ALINDI", Toast.LENGTH_SHORT).show();
 
 
 
@@ -467,11 +330,14 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
 
     public byte[] takeScreenshot() {
         View rootView = null;
+       // rootView=FragmentController.getInstance().getCurrentFragment();
+       //   rootView=FragmentController.getInstance().getFragment(FragmentController.getInstance().getCurrentFragment());
+        if(FragmentController.getInstance().getCurrentFragment()==FragmentController.TEMPLATE1)rootView=getActivity().findViewById(R.id.sablon1);
+      //else Toast.makeText(getActivity(), "SS ALInamadı", Toast.LENGTH_SHORT).show();
 
-        if(id==R.layout.h_sablonbir) rootView=getActivity().findViewById(R.id.sablon1);
-        else if(id==R.layout.h_sabloniki) rootView=getActivity().findViewById(R.id.sablon2);
-        else if(id==R.layout.h_sablonuc) rootView=getActivity().findViewById(R.id.sablon3);
-        else if(id==R.layout.h_camerabir) rootView=getActivity().findViewById(R.id.camera1);
+        else if(FragmentController.getInstance().getCurrentFragment()==FragmentController.TEMPLATE2) rootView=getActivity().findViewById(R.id.sablon2);
+        else if(FragmentController.getInstance().getCurrentFragment()==FragmentController.TEMPLATE3) rootView=getActivity().findViewById(R.id.sablon3);
+     //  // else if(id==R.layout.h_camerabir) rootView=getActivity().findViewById(R.id.camera1);
         //else if(id==R.layout.h_video1) rootView=findViewById(R.id.video1);
 
         View v1=rootView;
@@ -486,90 +352,91 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         return byteArray;
 
     }
-
-    /*fotoLayoutSelected function*/
-    public void fotoLayoutSelected(){
-
-        //setContentView(R.layout.h_camerabir);
-        contextMenu();
-
-        fotoS=getArguments().getString("foto");
-        foto=Uri.parse(fotoS);//GAMZE FIRABASE E ATACAĞIN RESİM
-
-        c1_title = (TextView) getActivity().findViewById(R.id.tv_camera_title);
-        c1_title.setText(title);
-
-        c1_maintext = (TextView) getActivity().findViewById(R.id.tv_camera_maintext);
-        c1_maintext.setText(maintext);
-
-        c1_family1 = (TextView) getActivity().findViewById(R.id.tv_camera_family1);
-        c1_family1.setText(family1);
-
-        c1_family2 = (TextView) getActivity().findViewById(R.id.tv_camera_family2);
-        c1_family2.setText(family2);
-
-        c1_adress = (TextView) getActivity().findViewById(R.id.tv_camera_adress);
-        c1_adress.setText(adress);
-
-        c1_time = (TextView) getActivity().findViewById(R.id.tv_camera_time);
-        c1_time.setText(time);
-
-        c1_date = (TextView) getActivity().findViewById(R.id.tv_camera_date);
-        c1_date.setText(date);
-
-        c1_tag = (TextView) getActivity().findViewById(R.id.tv_camera_tag);
-        c1_tag.setText(tag);
-
-        c1_foto = (ImageView) getActivity().findViewById(R.id.iv_camera_foto);
-        c1_foto.setImageURI(foto);
-
-
-
-
-    }
-    /*videoLayoutSelected*/
-    public void videoLayoutSelected(){
-
-        //setContentView(R.layout.h_video1);
-
-        videoS=getArguments().getString("video");
-        video=Uri.parse(videoS);//GAMZE FIREBASE ATACAĞIN VİDEO
-
-        v1_title = (TextView) getActivity().findViewById(R.id.tv_video_title);
-        v1_title.setText(title);
-
-        v1_maintext = (TextView) getActivity().findViewById(R.id.tv_video_maintext);
-        v1_maintext.setText(maintext);
-
-        v1_family1 = (TextView) getActivity().findViewById(R.id.tv_video_family1);
-        v1_family1.setText(family1);
-
-        v1_family2 = (TextView) getActivity().findViewById(R.id.tv_video_family2);
-        v1_family2.setText(family2);
-
-        v1_adress = (TextView) getActivity().findViewById(R.id.tv_video_adress);
-        v1_adress.setText(adress);
-
-        v1_time = (TextView) getActivity().findViewById(R.id.tv_video_time);
-        v1_time.setText(time);
-
-        v1_date = (TextView) getActivity().findViewById(R.id.tv_video_date);
-        v1_date.setText(date);
-
-        v1_tag = (TextView) getActivity().findViewById(R.id.tv_video_tag);
-        v1_tag.setText(tag);
-
-        v1_video=(VideoView) getActivity().findViewById(R.id.vv_video);
-        v1_video.setVideoURI(video);
-        v1_video.start();
-
-    }
-
-
-
-    /*themeSelected function*/
+//
+//    /*fotoLayoutSelected function*/
+//    public void fotoLayoutSelected(){
+//
+//        //setContentView(R.layout.h_camerabir);
+//        contextMenu();
+//
+//        fotoS=getArguments().getString("foto");
+//        foto=Uri.parse(fotoS);//GAMZE FIRABASE E ATACAĞIN RESİM
+//
+//        c1_title = (TextView) getActivity().findViewById(R.id.tv_camera_title);
+//        c1_title.setText(title);
+//
+//        c1_maintext = (TextView) getActivity().findViewById(R.id.tv_camera_maintext);
+//        c1_maintext.setText(maintext);
+//
+//        c1_family1 = (TextView) getActivity().findViewById(R.id.tv_camera_family1);
+//        c1_family1.setText(family1);
+//
+//        c1_family2 = (TextView) getActivity().findViewById(R.id.tv_camera_family2);
+//        c1_family2.setText(family2);
+//
+//        c1_adress = (TextView) getActivity().findViewById(R.id.tv_camera_adress);
+//        c1_adress.setText(adress);
+//
+//        c1_time = (TextView) getActivity().findViewById(R.id.tv_camera_time);
+//        c1_time.setText(time);
+//
+//        c1_date = (TextView) getActivity().findViewById(R.id.tv_camera_date);
+//        c1_date.setText(date);
+//
+//        c1_tag = (TextView) getActivity().findViewById(R.id.tv_camera_tag);
+//        c1_tag.setText(tag);
+//
+//        c1_foto = (ImageView) getActivity().findViewById(R.id.iv_camera_foto);
+//        c1_foto.setImageURI(foto);
+//
+//
+//
+//
+//    }
+//    /*videoLayoutSelected*/
+//    public void videoLayoutSelected(){
+//
+//        //setContentView(R.layout.h_video1);
+//
+//        videoS=getArguments().getString("video");
+//        video=Uri.parse(videoS);//GAMZE FIREBASE ATACAĞIN VİDEO
+//
+//        v1_title = (TextView) getActivity().findViewById(R.id.tv_video_title);
+//        v1_title.setText(title);
+//
+//        v1_maintext = (TextView) getActivity().findViewById(R.id.tv_video_maintext);
+//        v1_maintext.setText(maintext);
+//
+//        v1_family1 = (TextView) getActivity().findViewById(R.id.tv_video_family1);
+//        v1_family1.setText(family1);
+//
+//        v1_family2 = (TextView) getActivity().findViewById(R.id.tv_video_family2);
+//        v1_family2.setText(family2);
+//
+//        v1_adress = (TextView) getActivity().findViewById(R.id.tv_video_adress);
+//        v1_adress.setText(adress);
+//
+//        v1_time = (TextView) getActivity().findViewById(R.id.tv_video_time);
+//        v1_time.setText(time);
+//
+//        v1_date = (TextView) getActivity().findViewById(R.id.tv_video_date);
+//        v1_date.setText(date);
+//
+//        v1_tag = (TextView) getActivity().findViewById(R.id.tv_video_tag);
+//        v1_tag.setText(tag);
+//
+//        v1_video=(VideoView) getActivity().findViewById(R.id.vv_video);
+//        v1_video.setVideoURI(video);
+//        v1_video.start();
+//
+//    }
+//
+//
+//
+//    /*themeSelected function*/
     public void themeSelected() {
-        final Dialog dialog_theme = new Dialog(context,R.style.dialogTheme);
+
+        final Dialog dialog_theme = new Dialog(getActivity());
 
         dialog_theme.setContentView(R.layout.h_custom_dilaog_sablon_choose);
         dialog_theme.setTitle("şablon");
@@ -579,40 +446,17 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         invalidation2 = (ImageView) dialog_theme.findViewById(R.id.iv_cd_sablon_choose_inva2);
         invalidation3 = (ImageView) dialog_theme.findViewById(R.id.iv_cd_sablon_choose_inva3);
 
+
+
         invalidation1.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View v) {
-                id=R.layout.h_sablonbir;
-                //setContentView(R.layout.h_sablonbir);
-                contextMenu();
-                s1_title = (TextView) getActivity().findViewById(R.id.tv_sablon1_title);
-                s1_title.setText(title);
 
-
-                s1_maintext = (TextView) getActivity().findViewById(R.id.tv_sablon1_maintext);
-                s1_maintext.setText(maintext);
-
-                s1_family1 = (TextView) getActivity().findViewById(R.id.tv_sablon1_family1);
-                s1_family1.setText(family1);
-
-                s1_family2 = (TextView) getActivity().findViewById(R.id.tv_sablon1_family2);
-                s1_family2.setText(family2);
-
-                s1_adress = (TextView) getActivity().findViewById(R.id.tv_sablon1_adress);
-                s1_adress.setText(adress);
-
-                s1_time = (TextView) getActivity().findViewById(R.id.tv_sablon1_time);
-                s1_time.setText(time);
-
-                s1_date = (TextView) getActivity().findViewById(R.id.tv_sablon1_date);
-                s1_date.setText(date);
-
-                s1_tag = (TextView) getActivity().findViewById(R.id.tv_sablon1_tag);
-                s1_tag.setText(tag);
-
-
+                Toast.makeText(getActivity(), "şablon1 seçildi", Toast.LENGTH_SHORT).show();
+                listener.selectTemplate(FragmentController.TEMPLATE1,bundleInfo);
+                sablonid=1;
 
             }
         });
@@ -623,36 +467,11 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
 
             @Override
             public void onClick(View v) {
-                id=R.layout.h_sabloniki;
 
-                //setContentView(R.layout.h_sabloniki);
-                contextMenu();
-                s2_title = (TextView) getActivity().findViewById(R.id.tv_sablon2_title);
-                s2_title.setText(title);
-
-
-                s2_maintext = (TextView) getActivity().findViewById(R.id.tv_sablon2_maintext);
-                s2_maintext.setText(maintext);
-
-                s2_family1 = (TextView) getActivity().findViewById(R.id.tv_sablon2_family1);
-                s2_family1.setText(family1);
-
-                s2_family2 = (TextView) getActivity().findViewById(R.id.tv_sablon2_family2);
-                s2_family2.setText(family2);
-
-                s2_adress = (TextView) getActivity().findViewById(R.id.tv_sablon2_adress);
-                s2_adress.setText(adress);
-
-                s2_time = (TextView) getActivity().findViewById(R.id.tv_sablon2_time);
-                s2_time.setText(time);
-
-                s2_date = (TextView) getActivity().findViewById(R.id.tv_sablon2_date);
-                s2_date.setText(date);
-
-                s2_tag = (TextView) getActivity().findViewById(R.id.tv_sablon2_tag);
-                s2_tag.setText(tag);
-
-
+                Toast.makeText(getActivity(), "şablon2 seçildi", Toast.LENGTH_SHORT).show();
+                listener.selectTemplate(FragmentController.TEMPLATE2,bundleInfo);
+                sablonid=2;
+               // listener.changeFragment(FragmentController.TEMPLATE1,bundleInfo);
 
             }
         });
@@ -662,35 +481,9 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
 
             @Override
             public void onClick(View v) {
-                id=R.layout.h_sablonuc;
-
-                //setContentView(R.layout.h_sablonuc);
-                contextMenu();
-                s3_title = (TextView) getActivity().findViewById(R.id.tv_sablon3_title);
-                s3_title.setText(title);
-
-
-                s3_maintext = (TextView) getActivity().findViewById(R.id.tv_sablon3_maintext);
-                s3_maintext.setText(maintext);
-
-                s3_family1 = (TextView) getActivity().findViewById(R.id.tv_sablon3_family1);
-                s3_family1.setText(family1);
-
-                s3_family2 = (TextView) getActivity().findViewById(R.id.tv_sablon3_family2);
-                s3_family2.setText(family2);
-
-                s3_adress = (TextView) getActivity().findViewById(R.id.tv_sablon3_adress);
-                s3_adress.setText(adress);
-
-                s3_time = (TextView) getActivity().findViewById(R.id.tv_sablon3_time);
-                s3_time.setText(time);
-
-                s3_date = (TextView) getActivity().findViewById(R.id.tv_sablon3_date);
-                s3_date.setText(date);
-
-                s3_tag = (TextView) getActivity().findViewById(R.id.tv_sablon3_tag);
-                s3_tag.setText(tag);
-
+                Toast.makeText(getActivity(), "şablon3 seçildi", Toast.LENGTH_SHORT).show();
+                listener.selectTemplate(FragmentController.TEMPLATE3,bundleInfo);
+                sablonid=3;
 
             }
         });
@@ -708,7 +501,7 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
     }
 
     public void MusicAdd(){
-        final Dialog dialog = new Dialog(context,R.style.dialogTheme);
+        final Dialog dialog = new Dialog(getActivity());
 
         dialog.setContentView(R.layout.h_mediaplayer_custom_dialog);
         dialog.setTitle("Media player");
@@ -737,7 +530,7 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
         playlist.add(new Media("slow1",false));
         playlist.add(new Media("slow2",false));
 
-        final CustomAdaptorMediaplayer adp=new CustomAdaptorMediaplayer((Activity) context, playlist);
+        final CustomAdaptorMediaplayer adp=new CustomAdaptorMediaplayer(getActivity(), playlist);
         lv_playlist.setAdapter(adp);
 
         lv_playlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -752,11 +545,12 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
                 btn_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String firebase_music_name=media.getMusic_name();
-                        database = FirebaseDatabase.getInstance();
-                        DatabaseReference musicRef = database.getReference("invite").child(inviteId).child("info").child("music");
-                        musicRef.setValue(firebase_music_name);
+                       String firebase_music_name=media.getMusic_name();
+//                        database = FirebaseDatabase.getInstance();
+//                        DatabaseReference musicRef = database.getReference("invite").child(inviteId).child("info").child("music");
+//                        musicRef.setValue(firebase_music_name);
                         Toast.makeText(getActivity(),media.getMusic_name()+ " seçildi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),firebase_music_name+ " seçildi", Toast.LENGTH_SHORT).show();
 
                         mp.stop();
 
@@ -1024,10 +818,10 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
                 onBackPressed();
             }
         });*/
-/*        String titlem="InWhiter";
+       String titlem="InWhiter";
         SpannableString s = new SpannableString(titlem);
         s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, titlem.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        mToolBarTextView.setText(s);*/
+        mToolBarTextView.setText(s);
     }
 
     protected void addFragment(Fragment fragment, boolean addToBackStack, int containerId) {
@@ -1070,18 +864,24 @@ public class TemplateFragment extends BaseFragment  implements OnMenuItemClickLi
     @Override
     public void onMenuItemClick(View clickedView, int position) {
         if(position==1){
+            Toast.makeText(getActivity(), "şablon seçme tıklandı" , Toast.LENGTH_SHORT).show();
             themeSelected();
         }
         else if(position==2){
+            Toast.makeText(getActivity(), "renk seçme tıklandı" , Toast.LENGTH_SHORT).show();
+            //if(FragmentController.TEMPLATE1)
             colorSelected();
         }
         else if(position==3){
+            Toast.makeText(getActivity(), "font seçme tıklandı" , Toast.LENGTH_SHORT).show();
             fontSelected();
         }
         else if(position==4){
+            Toast.makeText(getActivity(), "müzik ekleme tıklandı" , Toast.LENGTH_SHORT).show();
             MusicAdd();
         }
         else if(position==5){
+            Toast.makeText(getActivity(), "ss alma tıklandı" , Toast.LENGTH_SHORT).show();
             registerLayout();
         }
         // Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();

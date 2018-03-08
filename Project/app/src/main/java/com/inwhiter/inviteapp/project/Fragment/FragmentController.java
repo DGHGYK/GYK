@@ -2,6 +2,8 @@ package com.inwhiter.inviteapp.project.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.View;
 
 import com.inwhiter.inviteapp.project.Fragment.Fragments.AddManuallyFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.ContactsPickerFragment;
@@ -15,6 +17,8 @@ import com.inwhiter.inviteapp.project.Fragment.Fragments.ProfileFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.PurchaseFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.StatusFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateExample1Fragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateExample2Fragment;
+import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateExample3Fragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TemplateFragment;
 import com.inwhiter.inviteapp.project.Fragment.Fragments.TopicFragment;
 
@@ -43,9 +47,12 @@ public class FragmentController {
     public static final String PURCHASE="fragment_purchase";
 
 
+    public String currentFragment = null;
 
     //Şablonlar
     public static final String TEMPLATE1 ="fragment_template_example1";
+    public static final String TEMPLATE2 ="fragment_template_example2";
+    public static final String TEMPLATE3 ="fragment_template_example3";
 
 
     private FragmentController() { }
@@ -61,7 +68,7 @@ public class FragmentController {
     }
     public Fragment getFragment(String fragment, Bundle bundle) {
         if (fragment == null) { return null; }
-
+           currentFragment=fragment;
         if (fragment == MAIN)
         {
             return new MainFragment();
@@ -86,7 +93,7 @@ public class FragmentController {
         }
         else if (fragment == TEMPLATE)
         {
-            return new TemplateFragment();
+            return new TemplateFragment().newInstance(bundle);
         }
         else if (fragment == TOPIC)
         {
@@ -104,9 +111,18 @@ public class FragmentController {
         {
             return new TemplateExample1Fragment().newInstance(bundle);
         }
+
+        else if (fragment == TEMPLATE2)
+        {
+            return new TemplateExample2Fragment().newInstance(bundle);
+        }
+        else if (fragment == TEMPLATE3) {
+            return new TemplateExample3Fragment().newInstance(bundle);
+        }
         else if (fragment == STATUS)
         {
             return new StatusFragment().newInstance(bundle);
+
         }
         else if (fragment == PURCHASE)
         {
@@ -121,5 +137,8 @@ public class FragmentController {
         {
             return null;
         }
+    }
+    public String getCurrentFragment(){
+        return currentFragment;
     }
 }
